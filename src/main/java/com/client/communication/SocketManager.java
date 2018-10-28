@@ -11,6 +11,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 @Component
 public class SocketManager {
@@ -18,8 +19,8 @@ public class SocketManager {
     Socket clientSocket;
 
 
-    Queue<Message> messagesReceive;
-    Queue<Message> messagesSend;
+    Queue<Message> messagesReceive=new LinkedBlockingQueue<>();
+    Queue<Message> messagesSend=new LinkedBlockingQueue<>();
 
     @Autowired
     Bridge bridge;
@@ -35,14 +36,18 @@ public class SocketManager {
         listener();
     }
 
-    public void setMessages(Queue<Message> messagesReceive,Queue<Message> messagesSend ) throws IOException {
-        this.messagesReceive = messagesReceive;
-        this.messagesSend = messagesSend;
+    public void send(Message message){
+        messagesSend.add(message);
+    }
+
+    public Message receive(){
+        while(true){
+            if(!messagesReceive.isEmpty()) return messagesReceive.poll();
+        }
     }
 
     public void sender(){
         new Thread(()->{
-            System.out.println("Start to send");
            while(true){
                 if(!messagesSend.isEmpty()){
                     bridge.send(clientSocket, messagesSend.poll());

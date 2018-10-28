@@ -17,23 +17,21 @@ public class SomeExample {
     @Autowired
     SocketManager socketManager;
 
-    Queue<Message> messagesReceive=new LinkedBlockingQueue<>();
-    Queue<Message> messagesSend=new LinkedBlockingQueue<>();
+
 
     @PostConstruct
     public void init() throws IOException {
-        socketManager.setMessages(messagesReceive, messagesSend);
         socketManager.connect();
         printer();
-        messagesSend.add(new TestCommand("Hello", "world"));
-        messagesSend.add(new TestCommand("Bye", "world"));
-        messagesSend.add(new TestCommand("Something", "world"));
+        socketManager.send(new TestCommand("Hello", "world"));
+        socketManager.send(new TestCommand("Bye", "world"));
+        socketManager.send(new TestCommand("Something", "world"));
     }
 
     public void printer(){
         new Thread(()->{
             while(true){
-                if(!messagesReceive.isEmpty()) messagesReceive.poll().print();
+                socketManager.receive().print();
             }
         }).start();
     }
