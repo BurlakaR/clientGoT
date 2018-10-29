@@ -1,6 +1,5 @@
 package com.client.communication;
 
-import com.common.TestCommand;
 import org.springframework.stereotype.Component;
 
 import java.io.*;

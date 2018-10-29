@@ -1,16 +1,12 @@
 package com.client.model;
 
 import com.client.communication.SocketManager;
-import com.common.Message;
-import com.common.Port;
 import com.common.TestCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.util.Queue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 @Service
 public class SomeExample {
@@ -24,8 +20,6 @@ public class SomeExample {
         socketManager.connect();
         printer();
         socketManager.send(new TestCommand("Hello", "world"));
-        socketManager.send(new TestCommand("Bye", "world"));
-        socketManager.send(new TestCommand("Something", "world"));
     }
 
     public void printer(){
