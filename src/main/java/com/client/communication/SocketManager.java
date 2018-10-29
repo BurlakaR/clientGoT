@@ -11,7 +11,7 @@ import java.net.Socket;
 @Component
 public class SocketManager {
     static int port=10000;
-    Socket clientSocket;
+    Socket serverSocket;
 
 
 
@@ -21,20 +21,15 @@ public class SocketManager {
 
 
     public void connect() throws IOException {
-        clientSocket = new Socket("localhost", port);
-        Port p=((Port)bridge.receive(clientSocket));
-        port=p.getPort();
-        clientSocket=new Socket("localhost", port);
-
-
+        serverSocket = new Socket("localhost", port);
     }
 
     public void send(Message message){
-        bridge.send(clientSocket, message);
+        bridge.send(serverSocket, message);
     }
 
     public Message receive(){
-        return (Message)bridge.receive(clientSocket);
+        return (Message)bridge.receive(serverSocket);
     }
 
 
