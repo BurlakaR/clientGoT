@@ -7,12 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class Starter extends AbstractJavaFxApplicationSupport {
 
     @Autowired
     private ConfigurationControllers.View view;
+
+    protected ConfigurableApplicationContext context;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -21,6 +24,7 @@ public class Starter extends AbstractJavaFxApplicationSupport {
         stage.setResizable(true);
         stage.centerOnScreen();
         stage.show();
+
     }
 
     public static void main(String[] args) {
