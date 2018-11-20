@@ -15,8 +15,11 @@ public class SocketManager {
     static int portPlay;
     Socket serverSocket;
 
-    static String ip = "localhost";
+    String ip = "localhost";
 
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
 
     @Autowired
     Bridge bridge;
@@ -27,23 +30,30 @@ public class SocketManager {
             serverSocket = new Socket(ip, portCreation);
             send(new IntegerMessage(numberPlayers));
             int room=((IntegerMessage) receive()).getMessage();
-            System.out.println(room);
+            System.out.println("Number of created room:"+room);//delete this later
             connectGame(room);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void connectGame(int idGame){
+    public boolean connectGame(int idGame){
         try {
             serverSocket = new Socket(ip, portConnection);
             send(new IntegerMessage(idGame));
             portPlay=((IntegerMessage) receive()).getMessage();
-            System.out.println(portPlay);
-            serverSocket = new Socket(ip, portPlay);
+            if(portPlay>0) {
+                System.out.println("Port of a game:" + portPlay);//delete this later
+                serverSocket = new Socket(ip, portPlay);
+                return true;
+            }
+            else{
+                System.out.println("Failed");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     public void send(Message message){

@@ -15,11 +15,20 @@ public class SomeExample {
     SocketManager socketManager;
 
     @PostConstruct
-    public void init() throws IOException {
-        socketManager.createGame(3);
-        //socketManager.connectGame(1);
-        //TestCommand buf = (TestCommand)socketManager.receive();
-        //System.out.println(buf);
+    public void init(){
+
+    }
+
+    public void setIp(String ip){
+        socketManager.setIp(ip);
+    }
+
+    public void createRoom(int numberplayer){
+        socketManager.createGame(numberplayer);
+    }
+
+    public void connectRoom(int id){
+        socketManager.connectGame(id);
     }
 
 
