@@ -1,7 +1,7 @@
 package com.client.communication;
 
+import com.common.IntegerMessage;
 import com.common.Message;
-import com.common.Port;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,18 +10,50 @@ import java.net.Socket;
 
 @Component
 public class SocketManager {
-    static int port=10000;
+    static int portCreation=9998;
+    static int portConnection=9999;
+    static int portPlay;
     Socket serverSocket;
 
+    String ip = "localhost";
 
-
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
 
     @Autowired
     Bridge bridge;
 
 
-    public void connect() throws IOException {
-        serverSocket = new Socket("localhost", port);
+    public void createGame(int numberPlayers){
+        try {
+            serverSocket = new Socket(ip, portCreation);
+            send(new IntegerMessage(numberPlayers));
+            int room=((IntegerMessage) receive()).getMessage();
+            System.out.println("Number of created room:"+room);//delete this later
+            connectGame(room);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean connectGame(int idGame){
+        try {
+            serverSocket = new Socket(ip, portConnection);
+            send(new IntegerMessage(idGame));
+            portPlay=((IntegerMessage) receive()).getMessage();
+            if(portPlay>0) {
+                System.out.println("Port of a game:" + portPlay);//delete this later
+                serverSocket = new Socket(ip, portPlay);
+                return true;
+            }
+            else{
+                System.out.println("Failed");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public void send(Message message){
@@ -31,9 +63,6 @@ public class SocketManager {
     public Message receive(){
         return (Message)bridge.receive(serverSocket);
     }
-
-
-
 
 
 }
