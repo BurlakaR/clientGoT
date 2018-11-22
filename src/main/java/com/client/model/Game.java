@@ -1,13 +1,17 @@
 package com.client.model;
 
+import java.util.ArrayList;
+
 public class Game {
     private static Game INSTANCE;
     private Map map;
     private short moveNumber = 1;
-    private short currentWildForce = 1;
+    private short currentWildForce = 0;
     private short numberOfPlayers = 0;
+    private ArrayList<Player> players = new ArrayList<Player>();
 
 
+    //should be called before getting an instance
     public void setNumberOfPlayers(short numberOfPlayers) throws Exception {
         if(numberOfPlayers >= 3 && numberOfPlayers <= 6)
         {
@@ -66,6 +70,12 @@ public class Game {
     private void recountCastles()
     {
 
+    }
+
+    public void StartGame()
+    {
+        //create all players here
+        //put proper units on the map nodes here
     }
 
     private void GameOver() {
