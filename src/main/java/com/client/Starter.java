@@ -1,6 +1,8 @@
 package com.client;
 
 
+import com.client.model.decks.Deck;
+import com.client.model.decks.WildDeck;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;

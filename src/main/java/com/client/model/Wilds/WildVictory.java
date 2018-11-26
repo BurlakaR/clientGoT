@@ -1,16 +1,11 @@
 package com.client.model.Wilds;
 
 import com.client.model.Player;
+import com.client.model.decks.Card;
 
 import java.util.ArrayList;
 
-public abstract class WildVictory {
-    private String message;
-
-    public WildVictory(String message)
-    {
-        this.message = message;
-    }
+public abstract class WildVictory extends Card{
 
     public abstract void ApplyForHighestStake(Player player);
 
@@ -18,7 +13,5 @@ public abstract class WildVictory {
 
     public abstract void ApplyForEveryoneElse(ArrayList<Player> players);
 
-    public String getMessage() {
-        return message;
-    }
+
 }

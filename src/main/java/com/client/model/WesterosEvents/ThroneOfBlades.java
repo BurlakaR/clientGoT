@@ -6,12 +6,8 @@ public class ThroneOfBlades extends WesterosEvent {
             "\nвсе  Доба собирают войска" +
             "\nничего не происходит";
 
-    public ThroneOfBlades(){
-        super(true, message);
-    }
-
     @Override
-    public void Trigger() {
+    public void triggerCard() {
 
     }
 }

@@ -6,12 +6,8 @@ public class BlackWingsBlackWords extends WesterosEvent {
             "\nВсе Дома собирают власть с подвластных земель, в которых есть знак короны" +
             "\nНичего не происходит";
 
-    public BlackWingsBlackWords(){
-        super(true, message);
-    }
-
     @Override
-    public void Trigger() {
+    public void triggerCard() {
 
     }
 }

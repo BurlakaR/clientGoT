@@ -5,10 +5,10 @@ import com.client.model.Player;
 import java.util.ArrayList;
 
 public class SilenceAtTheWall extends WildVictory{
-    private String message = "Ничего не происходит";
 
-    public SilenceAtTheWall(String message) {
-        super(message);
+    public SilenceAtTheWall() {
+        this.message = "Ничего не происходит";
+        this.img="";
     }
 
     @Override

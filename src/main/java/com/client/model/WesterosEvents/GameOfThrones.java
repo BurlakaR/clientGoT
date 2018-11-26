@@ -5,12 +5,9 @@ public class GameOfThrones extends WesterosEvent {
             "за каждый знак короны  вподвластных ему землях. " +
             "Также Дом берёт жетон власти за каждый свой порт с кораблём, если в смежном море нет врага.";
 
-    public GameOfThrones(){
-        super(false, message);
-    }
 
     @Override
-    public void Trigger() {
+    public void triggerCard() {
 
     }
 }

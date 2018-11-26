@@ -6,12 +6,8 @@ public class LoyalToTheSword extends WesterosEvent {
             "\nВ фазе замыслов этого раунда не отдаются приказы похода +1" +
             "\nНичего не происходит";
 
-    public LoyalToTheSword(){
-        super(false, message);
-    }
-
     @Override
-    public void Trigger() {
+    public void triggerCard() {
 
     }
 }

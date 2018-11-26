@@ -6,12 +6,12 @@ import com.client.model.Player;
 import java.util.ArrayList;
 
 public class GatheringAtMopokovodnaya extends WildVictory{
-    private String message = "Высшая ставка забирает на руку весь сброс своих карт дома\n" +
-            "Низшая ставка, если держит в руке больше одной карты, сбрасывает всех своих полководцев с наибольшей силой\n" +
-            "Все остальные, если держат на руке более одной карты дома, сбрасывают по одной на свой выбор";
 
-    public GatheringAtMopokovodnaya(String message) {
-        super(message);
+    public GatheringAtMopokovodnaya() {
+        this.message = "Высшая ставка забирает на руку весь сброс своих карт дома\n" +
+                "Низшая ставка, если держит в руке больше одной карты, сбрасывает всех своих полководцев с наибольшей силой\n" +
+                "Все остальные, если держат на руке более одной карты дома, сбрасывают по одной на свой выбор";
+        this.img="";
     }
 
     @Override
@@ -31,4 +31,6 @@ public class GatheringAtMopokovodnaya extends WildVictory{
     public void ApplyForEveryoneElse(ArrayList<Player> players) {
 
     }
+
+
 }

@@ -24,6 +24,8 @@ public class Player {
         this.commanders = commanders;
     }
 
+    public Player(){;}
+
     public short getBarrelSupply() {
         return barrelSupply;
     }
