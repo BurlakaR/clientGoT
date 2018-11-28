@@ -1,8 +1,6 @@
 package com.client.model;
 
-import com.client.model.Commanders.Commander;
-
-import java.util.ArrayList;
+import com.client.model.Decks.CommanderDeck;
 
 public class Player {
     private String name;
@@ -11,17 +9,17 @@ public class Player {
     private short ironThronePosition;
     private short valyrianSwordPosition;
     private short ravenPosition;
-    private ArrayList<Commander> commanders = new ArrayList<Commander>();
+    private CommanderDeck commaders;
 
     public Player(String name, short barrelSupply, short numberOfCastles, short ironThronePosition,
-                  short valyrianSwordPosition, short ravenPosition, ArrayList<Commander> commanders){
+                  short valyrianSwordPosition, short ravenPosition, CommanderDeck commnders){
         this.name = name;
         this.barrelSupply = barrelSupply;
         this.numberOfCastles = numberOfCastles;
         this.ironThronePosition = ironThronePosition;
         this.valyrianSwordPosition = valyrianSwordPosition;
         this.ravenPosition = ravenPosition;
-        this.commanders = commanders;
+        this.commaders = commnders;
     }
 
     public Player(){;}
@@ -70,7 +68,7 @@ public class Player {
         return name;
     }
 
-    public ArrayList<Commander> getCommanders() {
-        return commanders;
+    public CommanderDeck getCommaders() {
+        return commaders;
     }
 }
