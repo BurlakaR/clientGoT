@@ -2,15 +2,12 @@ package com.client.model.Nodes;
 
 import com.client.model.utils.Castle;
 
-import java.util.ArrayList;
-
-public class Land extends Node {
+public class Land extends NodeMap {
     private Castle castle;
     private short numberOfBarrels;
     private short numberOfCrowns;
 
-    public Land(String name,  ArrayList<Node> neighbors)
-    {
-        super(name, neighbors);
+    public Land(int x, int y, int w, int h, String name) {
+        super(x, y, w, h, name);
     }
 }

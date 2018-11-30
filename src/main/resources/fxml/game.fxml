@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<ScrollPane prefHeight="1000.0" prefWidth="1680.0" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.client.ui.GameController">
+    <Group fx:id="imageGroup" id="imageGroup">
+        <ImageView fitHeight="2495.0" fitWidth="1659.0">
+            <Image url="/img/Map_5_players_rus (2 ed)_.png"/>
+        </ImageView>
+    </Group>
+</ScrollPane>

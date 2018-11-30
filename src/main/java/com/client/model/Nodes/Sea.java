@@ -1,9 +1,7 @@
 package com.client.model.Nodes;
 
-import java.util.ArrayList;
-
-public class Sea extends Node {
-    public Sea(String name, ArrayList<Node> neighbors) {
-        super(name, neighbors);
+public class Sea extends NodeMap {
+    public Sea(int x, int y, int w, int h, String name) {
+        super(x, y, w, h, name);
     }
 }
