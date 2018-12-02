@@ -5,6 +5,7 @@ import com.common.model.Cards.CardTypes.Wilds.*;
 import com.common.model.Decks.CommanderDeck;
 import com.common.model.Decks.WesterosDeck;
 import com.common.model.Decks.WildDeck;
+import com.common.model.Map.Map;
 import com.common.model.Orders.*;
 import com.common.model.utils.ComparePlayerRaven;
 import com.common.model.utils.ComparePlayersIron;
@@ -31,15 +32,20 @@ public class Game extends Message {
     public Game(){
         orders=new ArrayList<>();
         orders.add(new OrderFire(true));
-        orders.add(new OrderFire(false));orders.add(new OrderFire(false));
+        orders.add(new OrderFire(false));
+        orders.add(new OrderFire(false));
         orders.add(new OrderAtack(true,1));
-        orders.add(new OrderAtack(false, -1)); orders.add(new OrderAtack(false, 0));
+        orders.add(new OrderAtack(false, -1));
+        orders.add(new OrderAtack(false, 0));
         orders.add(new OrderHelp(true,1));
-        orders.add(new OrderHelp(false,0)); orders.add(new OrderHelp(false,0));
+        orders.add(new OrderHelp(false,0));
+        orders.add(new OrderHelp(false,0));
         orders.add(new OrderDefence(true, 2));
-        orders.add(new OrderDefence(false, 1)); orders.add(new OrderDefence(false, 1));
+        orders.add(new OrderDefence(false, 1));
+        orders.add(new OrderDefence(false, 1));
         orders.add(new OrderRule(true));
-        orders.add(new OrderRule(false));orders.add(new OrderRule(false));
+        orders.add(new OrderRule(false));
+        orders.add(new OrderRule(false));
 
         wilds = new WildDeck();
         wilds.add(new GatheringAtMopokovodnaya())

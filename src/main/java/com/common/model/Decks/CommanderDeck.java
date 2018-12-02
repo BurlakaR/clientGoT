@@ -1,10 +1,33 @@
 package com.common.model.Decks;
 
+import com.common.model.Cards.Card;
 import com.common.model.Cards.CardTypes.Commander;
+
+import java.util.ArrayList;
 
 public class CommanderDeck extends Deck {
     public CommanderDeck(){
         super();
+    }
+
+    public ArrayList<Commander> getCommanders() {
+        ArrayList<Commander> comanders = new ArrayList<Commander>();
+        ArrayList<Card> cards = super.cards;
+        for (Card c : cards){
+            comanders.add((Commander)c);
+        }
+
+        return comanders;
+    }
+
+    public ArrayList<Commander> getRemovedCommanders() {
+        ArrayList<Commander> removedCommanders = new ArrayList<Commander>();
+        ArrayList<Card> removed = super.removed;
+        for (Card c : removed){
+            removedCommanders.add((Commander)c);
+        }
+
+        return removedCommanders;
     }
 
     @Override

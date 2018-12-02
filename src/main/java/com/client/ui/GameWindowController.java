@@ -1,16 +1,10 @@
 package com.client.ui;
 
 import com.client.communication.SocketManager;
-import com.common.IntegerMessage;
 import com.common.model.Game;
-import com.common.model.Nodes.NodeMap;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 
@@ -51,8 +45,4 @@ public class GameWindowController {
         controllerViewMap= new ControllerViewMap(view,  imageGroup, scrollPane);
         controllerViewMap.ableAllNodes();
     }
-
-
-
-
 }

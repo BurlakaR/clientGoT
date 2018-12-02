@@ -1,18 +1,9 @@
 package com.client.ui;
 
 import com.common.model.Game;
-import com.common.model.Nodes.NodeMap;
-import com.common.model.Orders.Order;
-import com.common.model.utils.ForImage;
 import javafx.scene.Group;
 import javafx.scene.Parent;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class View {
     ImageBuilder imageBuilder;

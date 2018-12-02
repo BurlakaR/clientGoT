@@ -9,6 +9,13 @@ public abstract class Deck extends Message {
     ArrayList<Card> cards=new ArrayList<>();;
     ArrayList<Card> removed=new ArrayList<>();;
 
+    public ArrayList<Card> getCards(){
+        return cards;
+    }
+    public ArrayList<Card> getRemoved(){
+        return removed;
+    }
+
     public Deck add(Card card){
        cards.add(card);
        return this;

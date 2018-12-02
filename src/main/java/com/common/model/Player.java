@@ -2,6 +2,9 @@ package com.common.model;
 
 import com.common.Message;
 import com.common.model.Decks.CommanderDeck;
+import com.common.model.Map.MapNodes.MapNode;
+
+import java.util.ArrayList;
 
 public class Player extends Message {
     private String name;
@@ -12,6 +15,8 @@ public class Player extends Message {
     private short ravenPosition;
     private short starNumber;
     private CommanderDeck commaders;
+    private ArrayList<MapNode> ownedNodes = new ArrayList<MapNode>();
+
 
     public Player(String name, short barrelSupply, short numberOfCastles, short ironThronePosition,
                   short valyrianSwordPosition, short ravenPosition, CommanderDeck commnders){
@@ -23,6 +28,8 @@ public class Player extends Message {
         this.ravenPosition = ravenPosition;
         this.commaders = commnders;
     }
+
+
 
     public Player(String stark, int barrelSupply, int numberOfCastles, int ironThronePosition, int valyrianSwordPosition, int ravenPosition, CommanderDeck commnders){;}
 

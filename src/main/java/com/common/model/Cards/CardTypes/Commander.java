@@ -18,4 +18,8 @@ public abstract class Commander extends Card {
     }
 
     public abstract void ApplyCommander(Battle battle);
+
+    public short getForce() {
+        return force;
+    }
 }

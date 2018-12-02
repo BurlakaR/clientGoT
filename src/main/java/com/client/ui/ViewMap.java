@@ -1,20 +1,18 @@
 package com.client.ui;
 
-import com.common.model.Map;
-import com.common.model.Nodes.NodeMap;
+import com.common.model.Map.Map;
+import com.common.model.Map.MapNodes.MapNode;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
-import java.util.Set;
-
 
 public class ViewMap {
     Group root;
     ImageBuilder imageBuilder;
-    BiMap<NodeMap, ViewNodeMap> nodeMap;
-    BiMap<NodeMap, ImageView> mapView;
+    BiMap<MapNode, ViewNodeMap> nodeMap;
+    BiMap<MapNode, ImageView> mapView;
 
     public ViewMap(ImageBuilder imageBuilder, Group root, Map map){
         this.imageBuilder=imageBuilder;
@@ -22,7 +20,7 @@ public class ViewMap {
 
         nodeMap = HashBiMap.create();
         mapView = HashBiMap.create();
-        for (NodeMap node:
+        for (MapNode node:
              map.getNodes()) {
             nodeMap.put(node, new ViewNodeMap(node, imageBuilder));
             ImageView buf = imageBuilder.createView(node);
@@ -31,11 +29,11 @@ public class ViewMap {
         }
     }
 
-    public ImageView getNodeView(NodeMap node){
+    public ImageView getNodeView(MapNode node){
         return mapView.get(node);
     }
 
-    public NodeMap getNodeOfView(ImageView imageView){
+    public MapNode getNodeOfView(ImageView imageView){
         return mapView.inverse().get(imageView);
     }
 
@@ -43,7 +41,7 @@ public class ViewMap {
         return (ImageView)mapView.values().toArray()[index];
     }
 
-    public NodeMap getNodeAt(int index){
-        return (NodeMap) mapView.inverse().values().toArray()[index];
+    public MapNode getNodeAt(int index){
+        return (MapNode) mapView.inverse().values().toArray()[index];
     }
 }

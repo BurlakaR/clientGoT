@@ -1,5 +1,6 @@
 package com.common.model.Cards.CardTypes.Wilds;
 
+import com.client.GUIRequestsTempClass;
 import com.common.model.Cards.CardTypes.WildVictory;
 import com.common.model.Player;
 
@@ -16,7 +17,7 @@ public class HordeAssault extends WildVictory {
 
     @Override
     public void ApplyForHighestStake(Player player) {
-
+        GUIRequestsTempClass.getMapNodeWithCatle();
     }
 
     @Override
