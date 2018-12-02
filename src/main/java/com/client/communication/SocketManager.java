@@ -43,7 +43,6 @@ public class SocketManager {
             send(new IntegerMessage(idGame));
             portPlay=((IntegerMessage) receive()).getMessage();
             if(portPlay>0) {
-                System.out.println("Port of a game:" + portPlay);//delete this later
                 serverSocket = new Socket(ip, portPlay);
                 return true;
             }
@@ -61,7 +60,9 @@ public class SocketManager {
     }
 
     public Message receive(){
-        return (Message)bridge.receive(serverSocket);
+        Message buf=(Message)bridge.receive(serverSocket);
+        System.out.println(buf);
+        return buf;
     }
 
 

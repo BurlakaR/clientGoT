@@ -7,12 +7,10 @@ import java.net.Socket;
 
 @Component
 public class Bridge {
-    private static InputStream in;
-    private static OutputStream out;
 
     public void send(Socket socket, Object object){
         try {
-            out = socket.getOutputStream();
+            OutputStream out = socket.getOutputStream();
 
         ObjectOutputStream oos = new ObjectOutputStream(out);
         oos.writeObject(object);
@@ -23,7 +21,7 @@ public class Bridge {
 
     public Object receive(Socket socket){
         try {
-            in = socket.getInputStream();
+            InputStream in = socket.getInputStream();
             ObjectInputStream ois = new ObjectInputStream(in);
             Object toWrite = ois.readObject();
             return toWrite;

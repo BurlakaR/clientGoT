@@ -7,7 +7,7 @@
 
 
 <?import javafx.scene.layout.Pane?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="166.0" prefWidth="724.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.client.ui.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="166.0" prefWidth="724.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.client.ui.FirstWindowController">
     <children>
         <Button layoutX="15.0" layoutY="45.0" mnemonicParsing="false" onAction="#createGameRoom" text="Create gameroom" />
         <Button layoutX="19.0" layoutY="108.0" mnemonicParsing="false" onAction="#connectGameRoom" text="Connect to room" />

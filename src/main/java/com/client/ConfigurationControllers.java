@@ -1,6 +1,6 @@
 package com.client;
 
-import com.client.ui.Controller;
+import com.client.ui.FirstWindowController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import org.springframework.context.annotation.Bean;
@@ -22,8 +22,8 @@ public class ConfigurationControllers {
      * и заставили его произвести все необходимые инъекции.
      */
     @Bean
-    public Controller getMainController() throws IOException {
-        return (Controller) getMainView().getController();
+    public FirstWindowController getMainController() throws IOException {
+        return (FirstWindowController) getMainView().getController();
     }
 
     /**
