@@ -1,6 +1,6 @@
 package com.common.model.utils;
 
-import com.common.model.Player;
+import com.common.Player;
 
 import java.util.Comparator;
 

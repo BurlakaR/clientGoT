@@ -1,23 +1,25 @@
-package com.common.model.Cards.CardTypes.Commanders.Barateons;
+package com.common.model.utils;
 
 import com.client.communication.SocketManager;
 import com.common.ClientController;
 import com.common.Game;
 import com.common.Message;
-import com.common.model.Cards.CardTypes.Commander;
-import com.common.model.utils.Battle;
 
-public class BriennaTart extends Commander {
-    public BriennaTart() {
-        super("", 2);
-    }
+//this one would just help get and int stake from every player
+public class Stake extends Message {
+    private int stake;
+
     @Override
     public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
-
+        stake = controller.getStake();
     }
 
     @Override
     public Message executeOnServer(Game game, SocketManager socketManager) {
         return null;
+    }
+
+    public int getStake() {
+        return stake;
     }
 }

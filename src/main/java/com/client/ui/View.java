@@ -1,6 +1,6 @@
 package com.client.ui;
 
-import com.common.model.Game;
+import com.common.Game;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;

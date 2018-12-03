@@ -1,12 +1,13 @@
-package com.common.model;
+package com.common;
 
-import com.common.Message;
+import com.client.communication.SocketManager;
 import com.common.model.Cards.CardTypes.Wilds.*;
 import com.common.model.Decks.CommanderDeck;
 import com.common.model.Decks.WesterosDeck;
 import com.common.model.Decks.WildDeck;
 import com.common.model.Map.Map;
 import com.common.model.Orders.*;
+import com.common.model.utils.Auction;
 import com.common.model.utils.ComparePlayerRaven;
 import com.common.model.utils.ComparePlayersIron;
 import com.common.model.utils.ComparePlayersSword;
@@ -28,6 +29,7 @@ public class Game extends Message {
     private ArrayList<Player> ironThrone = new ArrayList<>();
     private ArrayList<Player> valyrianSword = new ArrayList<>();
     private ArrayList<Player> raven = new ArrayList<>();
+    private Auction auction; //I really don't like it here...
 
     public Game(){
         orders=new ArrayList<>();
@@ -218,5 +220,24 @@ public class Game extends Message {
                 raven.get(j).setStarNumber((short) (raven.get(j).getStarNumber()+1));
             }
         }
+    }
+
+    //for now those two are fucking useless...
+    @Override
+    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
+
+    }
+
+    @Override
+    public Message executeOnServer(Game game, SocketManager socketManager) {
+        return null;
+    }
+
+    public Auction getAuction() {
+        return auction;
+    }
+
+    public void setAuction(Auction auction) {
+        this.auction = auction;
     }
 }

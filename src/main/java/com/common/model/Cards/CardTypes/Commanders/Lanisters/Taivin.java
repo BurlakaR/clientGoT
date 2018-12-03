@@ -1,15 +1,23 @@
 package com.common.model.Cards.CardTypes.Commanders.Lanisters;
 
+import com.client.communication.SocketManager;
+import com.common.ClientController;
+import com.common.Game;
+import com.common.Message;
 import com.common.model.Cards.CardTypes.Commander;
 import com.common.model.utils.Battle;
 
 public class Taivin extends Commander {
-    public Taivin() throws Exception {
-        super((short)4);
+    public Taivin() {
+        super("", 4);
+    }
+    @Override
+    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
+
     }
 
     @Override
-    public void ApplyCommander(Battle battle) {
-
+    public Message executeOnServer(Game game, SocketManager socketManager) {
+        return null;
     }
 }

@@ -1,15 +1,23 @@
 package com.common.model.Cards.CardTypes.Commanders.Greyjoys;
 
+import com.client.communication.SocketManager;
+import com.common.ClientController;
+import com.common.Game;
+import com.common.Message;
 import com.common.model.Cards.CardTypes.Commander;
 import com.common.model.utils.Battle;
 
 public class EuronRavensEye extends Commander {
-    public EuronRavensEye() throws Exception {
-        super((short)4);
+    public EuronRavensEye() {
+        super("", 4);
+    }
+    @Override
+    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
+
     }
 
     @Override
-    public void ApplyCommander(Battle battle) {
-
+    public Message executeOnServer(Game game, SocketManager socketManager) {
+        return null;
     }
 }

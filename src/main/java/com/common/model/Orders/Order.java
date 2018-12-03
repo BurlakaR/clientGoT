@@ -1,8 +1,12 @@
 package com.common.model.Orders;
 
+import com.client.communication.SocketManager;
+import com.common.ClientController;
+import com.common.Game;
+import com.common.Message;
 import com.common.model.utils.ForImage;
 
-public class Order extends ForImage {
+public abstract class Order extends ForImage {
     boolean available;
     boolean star;
     int power;

@@ -2,7 +2,7 @@ package com.common.model.utils;
 
 import com.common.Message;
 
-public class ForImage extends Message {
+public abstract class ForImage extends Message {
 
     String imgName;
 

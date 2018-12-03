@@ -1,17 +1,20 @@
 package com.common.model.Cards.CardTypes;
 
 import com.common.model.Cards.Card;
-import com.common.model.Player;
+import com.common.Player;
 
 import java.util.ArrayList;
 
 public abstract class WildVictory extends Card {
 
-    public abstract void ApplyForHighestStake(Player player);
+    public WildVictory(String img) {
+        super(img);
+    }
 
-    public abstract void ApplyForLowestStake(Player player);
+    public abstract void applyForHighestStake(Player player);
 
-    public abstract void ApplyForEveryoneElse(ArrayList<Player> players);
+    public abstract void applyForLowestStake(Player player);
 
+    public abstract void applyForEveryoneElse(ArrayList<Player> players);
 
 }

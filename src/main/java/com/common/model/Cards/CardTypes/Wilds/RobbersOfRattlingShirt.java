@@ -1,31 +1,45 @@
 package com.common.model.Cards.CardTypes.Wilds;
 
+import com.client.communication.SocketManager;
+import com.common.ClientController;
+import com.common.Game;
+import com.common.Message;
 import com.common.model.Cards.CardTypes.WildVictory;
-import com.common.model.Player;
+import com.common.Player;
 
 import java.util.ArrayList;
 
 public class RobbersOfRattlingShirt extends WildVictory {
 
     public RobbersOfRattlingShirt() {
+        super("");
         this.message = "Высшая ставка продвигается на одно деление по треку снабжения\n" +
                 "Низшая ставка отступает на два деления назад по треку снабжения\n" +
                 "Все прочие отступают на одно деление назад по треку снабжения";
-        this.img="";
     }
 
     @Override
-    public void ApplyForHighestStake(Player player) {
-
-    }
-
-    @Override
-    public void ApplyForLowestStake(Player player) {
+    public void applyForHighestStake(Player player) {
 
     }
 
     @Override
-    public void ApplyForEveryoneElse(ArrayList<Player> players) {
+    public void applyForLowestStake(Player player) {
 
+    }
+
+    @Override
+    public void applyForEveryoneElse(ArrayList<Player> players) {
+
+    }
+
+    @Override
+    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
+
+    }
+
+    @Override
+    public Message executeOnServer(Game game, SocketManager socketManager) {
+        return null;
     }
 }

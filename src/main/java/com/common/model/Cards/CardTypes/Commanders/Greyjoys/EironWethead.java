@@ -1,15 +1,24 @@
 package com.common.model.Cards.CardTypes.Commanders.Greyjoys;
 
+import com.client.communication.SocketManager;
+import com.common.ClientController;
+import com.common.Game;
+import com.common.Message;
 import com.common.model.Cards.CardTypes.Commander;
 import com.common.model.utils.Battle;
 
 public class EironWethead extends Commander {
-    public EironWethead() throws Exception {
-        super((short)0);
+    public EironWethead() {
+        super("", 0);
     }
 
     @Override
-    public void ApplyCommander(Battle battle) {
+    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
 
+    }
+
+    @Override
+    public Message executeOnServer(Game game, SocketManager socketManager) {
+        return null;
     }
 }

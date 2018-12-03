@@ -1,5 +1,9 @@
 package com.common.model.Decks;
 
+import com.client.communication.SocketManager;
+import com.common.ClientController;
+import com.common.Game;
+import com.common.Message;
 import com.common.model.Cards.Card;
 import com.common.model.Cards.CardTypes.WesterosEvent;
 
@@ -43,5 +47,15 @@ public class WesterosDeck extends Deck {
     @Override
     public WesterosEvent getCard(int i){
         return (WesterosEvent)super.getCard(i);
+    }
+
+    @Override
+    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
+
+    }
+
+    @Override
+    public Message executeOnServer(Game game, SocketManager socketManager) {
+        return null;
     }
 }

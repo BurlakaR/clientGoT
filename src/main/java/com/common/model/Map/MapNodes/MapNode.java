@@ -1,5 +1,9 @@
 package com.common.model.Map.MapNodes;
 
+import com.client.communication.SocketManager;
+import com.common.ClientController;
+import com.common.Game;
+import com.common.Message;
 import com.common.model.Units.Squad;
 import com.common.model.utils.Castle;
 import com.common.model.utils.ForImage;
@@ -26,4 +30,15 @@ public class MapNode extends ForImage {
     }
 
     public void setNeighbors(ArrayList<MapNode> neighbors){ this.neighbors = neighbors;}
+
+    //one more erally bad plays for those guys
+    @Override
+    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
+
+    }
+
+    @Override
+    public Message executeOnServer(Game game, SocketManager socketManager) {
+        return null;
+    }
 }

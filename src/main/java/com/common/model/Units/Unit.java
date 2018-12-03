@@ -1,7 +1,5 @@
 package com.common.model.Units;
 
-import com.common.model.Player;
-
 public abstract class Unit {
     protected short cost;
     protected short damage;

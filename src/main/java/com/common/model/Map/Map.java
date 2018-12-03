@@ -1,5 +1,8 @@
 package com.common.model.Map;
 
+import com.client.communication.SocketManager;
+import com.common.ClientController;
+import com.common.Game;
 import com.common.Message;
 import com.common.model.Map.MapNodes.Land;
 import com.common.model.Map.MapNodes.MapNode;
@@ -81,5 +84,15 @@ public class Map extends Message {
         nodes.add(new Port(929, 1864, 110, 113, "PORT"));//Storm
         nodes.add(new Port(1063, 2174, 122, 126, "PORT"));//Dorn
         nodes.add(new Port(114, 1977, 113, 117, "PORT"));//Reach
+    }
+
+    @Override
+    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
+
+    }
+
+    @Override
+    public Message executeOnServer(Game game, SocketManager socketManager) {
+        return null;
     }
 }

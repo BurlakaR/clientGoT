@@ -1,7 +1,7 @@
 package com.client.ui;
 
 import com.client.communication.SocketManager;
-import com.common.model.Game;
+import com.common.Game;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;

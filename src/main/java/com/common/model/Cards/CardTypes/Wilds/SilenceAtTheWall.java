@@ -1,29 +1,43 @@
 package com.common.model.Cards.CardTypes.Wilds;
 
+import com.client.communication.SocketManager;
+import com.common.ClientController;
+import com.common.Game;
+import com.common.Message;
 import com.common.model.Cards.CardTypes.WildVictory;
-import com.common.model.Player;
+import com.common.Player;
 
 import java.util.ArrayList;
 
 public class SilenceAtTheWall extends WildVictory {
 
     public SilenceAtTheWall() {
+        super("");
         this.message = "Ничего не происходит";
-        this.img="";
     }
 
     @Override
-    public void ApplyForHighestStake(Player player) {
-
-    }
-
-    @Override
-    public void ApplyForLowestStake(Player player) {
+    public void applyForHighestStake(Player player) {
 
     }
 
     @Override
-    public void ApplyForEveryoneElse(ArrayList<Player> players) {
+    public void applyForLowestStake(Player player) {
 
+    }
+
+    @Override
+    public void applyForEveryoneElse(ArrayList<Player> players) {
+
+    }
+
+    @Override
+    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
+
+    }
+
+    @Override
+    public Message executeOnServer(Game game, SocketManager socketManager) {
+        return null;
     }
 }
