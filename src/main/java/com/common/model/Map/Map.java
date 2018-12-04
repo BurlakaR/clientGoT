@@ -15,76 +15,16 @@ import java.util.ArrayList;
 public class Map extends Message {
     private short numberOfPlayers;
     //dictionary of nodes here "field name" -> "instance of a node"
-    ArrayList<MapNode> nodes;
+    ArrayList<MapNode> nodes = new ArrayList<MapNode>();;
 
     public Map(short numberOfPlayers)
     {
         this.numberOfPlayers = numberOfPlayers;
-        nodes = new ArrayList<>();
-        allNodes();
+        addAllNodes();
 
         //full standart init here
     }
 
-    public ArrayList<MapNode> getNodes() {
-        return nodes;
-    }
-
-    private void allNodes(){
-        nodes.add(new Land(412, 1258, 280, 193, "Riverrun", null, 0, 1 ));
-        nodes.add(new Sea(4, 1852, 878, 643, "ChannelRedwin" ));
-        nodes.add(new Land(623, 535, 316, 379, "WhiteHarbor", new Castle(1, 0), 0, 0));
-        nodes.add(new Land(54, 2282, 160, 137, "Arbor", null, 0, 1));
-        nodes.add(new Land(521, 1078, 224, 185, "Twins", null, 0 , 1));
-        nodes.add(new Sea(962, 1305, 293, 780, "BayOfCrashedShips"));
-        nodes.add(new Land(789, 656, 225, 177, "WidowTower", null, 1 , 0));
-        nodes.add(new Land(221, 327, 696, 557, "Winterfell", new Castle(2, 2), 1, 1));
-        nodes.add(new Sea(816, 2064, 433, 431, "Summersea"));
-        nodes.add(new Land(542, 2139, 490, 201, "Dorn", null, 0 , 1));
-        nodes.add(new Land(360, 1900, 467, 310, "DornMarks", null, 1, 0));
-        nodes.add(new Sea(650, 1997, 445, 187, "DornSea"));
-        nodes.add(new Land(1028, 1422, 201, 215, "DragonStone", new Castle(2, 2), 1, 1));
-        nodes.add(new Sea(865, 189, 384, 630, "ColdSea"));
-        nodes.add(new Sea(0, 889, 241, 999, "WestSea"));
-        nodes.add(new Sea(45, 1010, 470, 464, "IronManBay"));
-        nodes.add(new Sea(1, 179, 631, 787, "IceBay"));
-        nodes.add(new Land(413, 2201, 253, 157, "Starfall", null, 1 , 0));
-        nodes.add(new Sea(29, 1282, 455, 367, "GoldBay"));
-        nodes.add(new Land(384, 1385, 225, 264, "StoneChurch", null, 0, 1));
-        nodes.add(new Land(129, 539, 338, 354, "StoneShore", null, 1, 0));
-        nodes.add(new Land(798, 311, 291, 260, "Karhold", null, 0 , 1));
-        nodes.add(new Land(719, 1565, 215, 216, "KingBay", new Castle(2, 5), 0, 2));
-        nodes.add(new Land(688, 1377, 376, 231, "KingRoad", new Castle(1, 0), 0 ,0));
-        nodes.add(new Land(705, 1561, 340, 360, "KingForest", null, 0, 1));
-        nodes.add(new Land(138, 911, 216, 145, "StoneFingers", new Castle(1, 0), 0, 0));
-        nodes.add(new Land(160, 1333, 281, 266, "Lannisport", new Castle(2, 2), 2 , 0));
-        nodes.add(new Land (618, 1090, 479, 332, "MoonMountaints", null, 1 , 0));
-        nodes.add(new Land(796, 1250, 331, 152, "EagleNest", new Castle(1, 6), 1 ,1));
-        nodes.add(new Land(338, 890, 180, 200, "Neck", null, 1 , 0));
-        nodes.add(new Land(706, 983, 372, 212, "Fingers", null, 1, 0));
-        nodes.add(new Land(194, 1561, 213, 273, "SeaRoad", null, 1, 0));
-        nodes.add(new Land(387, 1693, 377, 268, "Reach", new Castle(1, 0), 0,0));
-        nodes.add(new Land(369, 1058, 248, 221, "Sigard", null, 1, 1));
-        nodes.add(new Land(483, 836, 211, 305, "Keilin", new Castle(1,0), 0, 0));
-        nodes.add(new Land(790, 2141, 324, 124, "SunSpear", new Castle(1, 0), 1, 1));
-        nodes.add(new Land(154, 1973, 308, 332, "OldTown", new Castle(1, 0), 0, 0));
-        nodes.add(new Sea(606, 767, 647, 678, "NarrowSea"));
-        nodes.add(new Land(194, 1783, 258, 215, "Highgarden", new Castle(2,2), 2, 0 ));
-        nodes.add(new Land(560, 1358, 180, 183, "Harrenhall", new Castle(1, 0), 1, 0));
-        nodes.add(new Land(386, 1526, 341, 261, "Blackwater", null, 2 , 0));
-        nodes.add(new Sea(803, 1487, 221, 193, "BlackBay"));
-        nodes.add(new Land(508, 183, 399, 237, "BlackCastle", null, 0 , 1));
-        nodes.add(new Land(801, 1777, 301, 278, "StormEnd", new Castle(1, 0 ), 0 ,0));
-        nodes.add(new Land(85, 1106, 272, 224, "Pike", new Castle(2, 2), 1 , 1));
-        nodes.add(new Port(710, 855, 109, 112,"PORT"));//WhiteHarbor
-        nodes.add(new Port(281, 373, 115, 119, "PORT"));//Winterfell
-        nodes.add(new Port(239, 1104, 119, 123, "PORT"));//Iron
-        nodes.add(new Port(182, 1408, 116, 120, "PORT"));//Lannis
-        nodes.add(new Port(1108, 1570, 113, 117,"PORT"));//Dragon
-        nodes.add(new Port(929, 1864, 110, 113, "PORT"));//Storm
-        nodes.add(new Port(1063, 2174, 122, 126, "PORT"));//Dorn
-        nodes.add(new Port(114, 1977, 113, 117, "PORT"));//Reach
-    }
 
     @Override
     public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
@@ -94,5 +34,481 @@ public class Map extends Message {
     @Override
     public Message executeOnServer(Game game, SocketManager socketManager) {
         return null;
+    }
+
+    public ArrayList<MapNode> getNodes() {
+        return nodes;
+    }
+
+    //this could have been a graph...
+    private void addAllNodes(){
+        nodes.add(new Land(412, 1258, 280, 193, "Riverrun", null, 0, 1 ));//0
+        nodes.add(new Sea(4, 1852, 878, 643, "ChannelRedwin" ));//1
+        nodes.add(new Land(623, 535, 316, 379, "WhiteHarbor", new Castle(1, 0), 0, 0));//2
+        nodes.add(new Land(54, 2282, 160, 137, "Arbor", null, 0, 1));//3
+        nodes.add(new Land(521, 1078, 224, 185, "Twins", null, 0 , 1));//4
+        nodes.add(new Sea(962, 1305, 293, 780, "BayOfCrashedShips"));//5
+        nodes.add(new Land(789, 656, 225, 177, "WidowTower", null, 1 , 0));//6
+        nodes.add(new Land(221, 327, 696, 557, "Winterfell", new Castle(2, 2), 1, 1));//7
+        nodes.add(new Sea(816, 2064, 433, 431, "Summersea"));//8
+        nodes.add(new Land(542, 2139, 490, 201, "Dorn", null, 0 , 1));//9
+        nodes.add(new Land(360, 1900, 467, 310, "DornMarks", null, 1, 0));//10
+        nodes.add(new Sea(650, 1997, 445, 187, "DornSea"));//11
+        nodes.add(new Land(1028, 1422, 201, 215, "DragonStone", new Castle(2, 2), 1, 1));//12
+        nodes.add(new Sea(865, 189, 384, 630, "TremblingSea"));//13
+        nodes.add(new Sea(0, 889, 241, 999, "SunsetSea"));//14
+        nodes.add(new Sea(45, 1010, 470, 464, "IronManBay"));//15
+        nodes.add(new Sea(1, 179, 631, 787, "IceBay"));//16
+        nodes.add(new Land(413, 2201, 253, 157, "Starfall", null, 1 , 0));//17
+        nodes.add(new Sea(29, 1282, 455, 367, "GoldBay"));//18
+        nodes.add(new Land(384, 1385, 225, 264, "StoneChurch", null, 0, 1));//19
+        nodes.add(new Land(129, 539, 338, 354, "StoneShore", null, 1, 0));//20
+        nodes.add(new Land(798, 311, 291, 260, "Karhold", null, 0 , 1));//21
+        nodes.add(new Land(719, 1565, 215, 216, "KingBay", new Castle(2, 5), 0, 2));//22
+        nodes.add(new Land(688, 1377, 376, 231, "KingRoad", new Castle(1, 0), 0 ,0));//23
+        nodes.add(new Land(705, 1561, 340, 360, "KingForest", null, 0, 1));//24
+        nodes.add(new Land(138, 911, 216, 145, "StoneFingers", new Castle(1, 0), 0, 0));//25
+        nodes.add(new Land(160, 1333, 281, 266, "Lannisport", new Castle(2, 2), 2 , 0));//26
+        nodes.add(new Land (618, 1090, 479, 332, "MoonMountaints", null, 1 , 0));//27
+        nodes.add(new Land(796, 1250, 331, 152, "EagleNest", new Castle(1, 6), 1 ,1));//28
+        nodes.add(new Land(338, 890, 180, 200, "Neck", null, 1 , 0));//29
+        nodes.add(new Land(706, 983, 372, 212, "Fingers", null, 1, 0));//30
+        nodes.add(new Land(194, 1561, 213, 273, "SeaRoad", null, 1, 0));//31
+        nodes.add(new Land(387, 1693, 377, 268, "Reach", new Castle(1, 0), 0,0));//32
+        nodes.add(new Land(369, 1058, 248, 221, "Sigard", null, 1, 1));//33
+        nodes.add(new Land(483, 836, 211, 305, "Keilin", new Castle(1,0), 0, 0));//34
+        nodes.add(new Land(790, 2141, 324, 124, "SunSpear", new Castle(1, 0), 1, 1));//35
+        nodes.add(new Land(154, 1973, 308, 332, "OldTown", new Castle(1, 0), 0, 0));//36
+        nodes.add(new Sea(606, 767, 647, 678, "NarrowSea"));//37
+        nodes.add(new Land(194, 1783, 258, 215, "Highgarden", new Castle(2,2), 2, 0 ));//38
+        nodes.add(new Land(560, 1358, 180, 183, "Harrenhall", new Castle(1, 0), 1, 0));//39
+        nodes.add(new Land(386, 1526, 341, 261, "Blackwater", null, 2 , 0));//40
+        nodes.add(new Sea(803, 1487, 221, 193, "BlackBay"));//41
+        nodes.add(new Land(508, 183, 399, 237, "BlackCastle", null, 0 , 1));//42
+        nodes.add(new Land(801, 1777, 301, 278, "StormEnd", new Castle(1, 0 ), 0 ,0));//43
+        nodes.add(new Land(85, 1106, 272, 224, "Pike", new Castle(2, 2), 1 , 1));//44
+        nodes.add(new Port(710, 855, 109, 112,"PORT"));//WhiteHarbor//45
+        nodes.add(new Port(281, 373, 115, 119, "PORT"));//Winterfell//46
+        nodes.add(new Port(239, 1104, 119, 123, "PORT"));//Iron//Pike//47
+        nodes.add(new Port(182, 1408, 116, 120, "PORT"));//Lannis//48
+        nodes.add(new Port(1108, 1570, 113, 117,"PORT"));//Dragon//49
+        nodes.add(new Port(929, 1864, 110, 113, "PORT"));//Storm//50
+        nodes.add(new Port(1063, 2174, 122, 126, "PORT"));//Dorn//51
+        nodes.add(new Port(114, 1977, 113, 117, "PORT"));//Reach/простор//старомест//52
+
+        //setting neighbors
+        //Riverrun
+        nodes.get(0).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(15));
+            add(nodes.get(33));
+            add(nodes.get(27));
+            add(nodes.get(39));
+            add(nodes.get(19));
+            add(nodes.get(26));
+            add(nodes.get(18));
+        }});
+        //ChannelRedwin
+        nodes.get(1).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(3));
+            add(nodes.get(52));//this should be a port near staromest
+            add(nodes.get(32));
+            add(nodes.get(17));
+            add(nodes.get(38));
+            add(nodes.get(9));
+            add(nodes.get(8));
+            add(nodes.get(14));//закатное море
+        }});
+        //WhiteHarbor
+        nodes.get(2).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(34));
+            add(nodes.get(45));
+            add(nodes.get(6));
+            add(nodes.get(7));
+            add(nodes.get(13));
+            add(nodes.get(37));
+        }});
+        //Arbor
+        nodes.get(3).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(1));
+        }});
+        //Twins
+        nodes.get(4).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(33));
+            add(nodes.get(34));
+            add(nodes.get(37));
+            add(nodes.get(30));
+            add(nodes.get(27));
+        }});
+        //BayOfCrashedShips
+        nodes.get(5).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(49));
+            add(nodes.get(50));
+            add(nodes.get(12));
+            add(nodes.get(8));
+            add(nodes.get(11));
+            add(nodes.get(43));
+            add(nodes.get(24));
+            add(nodes.get(41));
+            add(nodes.get(23));
+            add(nodes.get(37));
+        }});
+        //WidowTower
+        nodes.get(6).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(37));
+            add(nodes.get(2));
+            add(nodes.get(13));
+        }});
+        //Winterfell
+        nodes.get(7).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(46));
+            add(nodes.get(20));
+            add(nodes.get(16));
+            add(nodes.get(42));
+            add(nodes.get(21));
+            add(nodes.get(13));
+            add(nodes.get(2));
+            add(nodes.get(34));
+        }});
+        //Summersea
+        nodes.get(8).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(1));
+            add(nodes.get(9));
+            add(nodes.get(35));
+            add(nodes.get(51));
+            add(nodes.get(11));
+            add(nodes.get(5));
+        }});
+        //Dorn
+        nodes.get(9).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(8));
+            add(nodes.get(1));
+            add(nodes.get(17));
+            add(nodes.get(10));
+            add(nodes.get(11));
+            add(nodes.get(35));
+        }});
+        //DornMarks
+        nodes.get(10).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(17));
+            add(nodes.get(9));
+            add(nodes.get(11));
+            add(nodes.get(43));
+            add(nodes.get(24));
+            add(nodes.get(32));
+            add(nodes.get(38));
+            add(nodes.get(36));
+        }});
+        //DornSea
+        nodes.get(11).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(5));
+            add(nodes.get(8));
+            add(nodes.get(35));
+            add(nodes.get(9));
+            add(nodes.get(10));
+            add(nodes.get(43));
+        }});
+        //DragonStone
+        nodes.get(12).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(49));
+            add(nodes.get(5));
+        }});
+        //TremblingSea
+        nodes.get(13).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(42));
+            add(nodes.get(21));
+            add(nodes.get(7));
+            add(nodes.get(2));
+            add(nodes.get(6));
+            add(nodes.get(37));
+        }});
+        //SunsetSea
+        nodes.get(14).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(16));
+            add(nodes.get(25));
+            add(nodes.get(15));
+            add(nodes.get(18));
+            add(nodes.get(31));
+            add(nodes.get(38));
+            add(nodes.get(1));
+        }});
+        //IronManBay
+        nodes.get(15).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(47));
+            add(nodes.get(44));
+            add(nodes.get(18));
+            add(nodes.get(14));
+            add(nodes.get(25));
+            add(nodes.get(29));
+            add(nodes.get(33));
+            add(nodes.get(0));
+        }});
+        //IceBay
+        nodes.get(16).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(46));
+            add(nodes.get(29));
+            add(nodes.get(25));
+            add(nodes.get(14));
+            add(nodes.get(20));
+            add(nodes.get(7));
+            add(nodes.get(42));
+        }});
+        //Starfall
+        nodes.get(17).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(1));
+            add(nodes.get(9));
+            add(nodes.get(10));
+        }});
+        //GoldBay
+        nodes.get(18).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(31));
+            add(nodes.get(14));
+            add(nodes.get(15));
+            add(nodes.get(48));
+            add(nodes.get(26));
+        }});
+        //StoneChurch
+        nodes.get(19).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(26));
+            add(nodes.get(0));
+            add(nodes.get(39));
+            add(nodes.get(40));
+            add(nodes.get(31));
+        }});
+        //StoneShore
+        nodes.get(20).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(7));
+            add(nodes.get(16));
+        }});
+        //Karhold
+        nodes.get(21).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(42));
+            add(nodes.get(13));
+            add(nodes.get(7));
+        }});
+        //KingBay
+        nodes.get(22).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(32));
+            add(nodes.get(40));
+            add(nodes.get(23));
+            add(nodes.get(41));
+            add(nodes.get(24));
+        }});
+        //KingRoad
+        nodes.get(23).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(37));
+            add(nodes.get(5));
+            add(nodes.get(41));
+            add(nodes.get(22));
+            add(nodes.get(40));
+            add(nodes.get(39));
+            add(nodes.get(27));
+        }});
+        //KingForest
+        nodes.get(24).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(32));
+            add(nodes.get(22));
+            add(nodes.get(41));
+            add(nodes.get(5));
+            add(nodes.get(43));
+            add(nodes.get(10));
+        }});
+        //StoneFingers
+        nodes.get(25).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(15));
+            add(nodes.get(14));
+            add(nodes.get(16));
+            add(nodes.get(29));
+        }});
+        //Lannisport
+        nodes.get(26).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(48));
+            add(nodes.get(18));
+            add(nodes.get(0));
+            add(nodes.get(19));
+            add(nodes.get(31));
+        }});
+        //MoonMountaints
+        nodes.get(27).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(4));
+            add(nodes.get(30));
+            add(nodes.get(37));
+            add(nodes.get(28));
+            add(nodes.get(23));
+        }});
+        //EagleNest
+        nodes.get(28).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(27));
+            add(nodes.get(37));
+        }});
+        //Neck
+        nodes.get(29).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(15));
+            add(nodes.get(25));
+            add(nodes.get(16));
+            add(nodes.get(34));
+            add(nodes.get(33));
+        }});
+        //Fingers
+        nodes.get(30).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(4));
+            add(nodes.get(37));
+            add(nodes.get(27));
+        }});
+        //SeaRoad
+        nodes.get(31).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(14));
+            add(nodes.get(18));
+            add(nodes.get(26));
+            add(nodes.get(19));
+            add(nodes.get(40));
+            add(nodes.get(32));
+            add(nodes.get(38));
+        }});
+        //Reach
+        nodes.get(32).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(38));
+            add(nodes.get(31));
+            add(nodes.get(40));
+            add(nodes.get(22));
+            add(nodes.get(24));
+            add(nodes.get(10));
+        }});
+        //Sigard
+        nodes.get(33).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(15));
+            add(nodes.get(29));
+            add(nodes.get(34));
+            add(nodes.get(4));
+            add(nodes.get(0));
+        }});
+        //Keilin
+        nodes.get(34).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(37));
+            add(nodes.get(4));
+            add(nodes.get(33));
+            add(nodes.get(29));
+            add(nodes.get(7));
+            add(nodes.get(2));
+        }});
+        //SunSpear
+        nodes.get(35).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(9));
+            add(nodes.get(11));
+            add(nodes.get(51));
+            add(nodes.get(8));
+        }});
+        //OldTown
+        nodes.get(36).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(1));
+            add(nodes.get(52));
+            add(nodes.get(38));
+            add(nodes.get(10));
+        }});
+        //NarrowSea
+        nodes.get(37).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(13));
+            add(nodes.get(6));
+            add(nodes.get(2));
+            add(nodes.get(45));
+            add(nodes.get(34));
+            add(nodes.get(4));
+            add(nodes.get(30));
+            add(nodes.get(27));
+            add(nodes.get(28));
+            add(nodes.get(23));
+            add(nodes.get(5));
+        }});
+        //Highgarden
+        nodes.get(38).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(1));
+            add(nodes.get(14));
+            add(nodes.get(31));
+            add(nodes.get(32));
+            add(nodes.get(10));
+            add(nodes.get(36));
+        }});
+        //Harrenhall
+        nodes.get(39).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(23));
+            add(nodes.get(40));
+            add(nodes.get(19));
+            add(nodes.get(0));
+        }});
+        //Blackwater
+        nodes.get(40).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(31));
+            add(nodes.get(19));
+            add(nodes.get(39));
+            add(nodes.get(23));
+            add(nodes.get(22));
+            add(nodes.get(32));
+        }});
+        //BlackBay
+        nodes.get(41).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(24));
+            add(nodes.get(22));
+            add(nodes.get(23));
+            add(nodes.get(5));
+        }});
+        //BlackCastle
+        nodes.get(42).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(16));
+            add(nodes.get(7));
+            add(nodes.get(21));
+            add(nodes.get(13));
+        }});
+        //StormEnd
+        nodes.get(43).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(50));
+            add(nodes.get(11));
+            add(nodes.get(10));
+            add(nodes.get(24));
+            add(nodes.get(5));
+        }});
+        //Pike
+        nodes.get(44).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(47));
+            add(nodes.get(15));
+        }});
+        //WhiteHarbor port
+        nodes.get(45).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(37));
+            add(nodes.get(2));
+        }});
+        //Winterfell
+        nodes.get(46).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(7));
+            add(nodes.get(16));
+        }});
+        //Iron port
+        nodes.get(47).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(15));
+            add(nodes.get(44));
+        }});
+        //Lannis port
+        nodes.get(48).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(18));
+            add(nodes.get(26));
+        }});
+        //Dragon port
+        nodes.get(49).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(12));
+            add(nodes.get(5));
+        }});
+        //Storm port
+        nodes.get(50).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(43));
+            add(nodes.get(5));
+        }});
+        //Dorn port
+        nodes.get(51).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(35));
+            add(nodes.get(8));
+        }});
+        //Reach port
+        nodes.get(52).setNeighbors(new ArrayList<MapNode>(){{
+            add(nodes.get(1));
+            add(nodes.get(36));
+        }});
     }
 }
