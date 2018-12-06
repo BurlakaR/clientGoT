@@ -10,10 +10,9 @@ import java.util.ArrayList;
 
 public class ViewNodeMap {
     ImageView nodeImage;
-    ImageView logo;
-    Pane nodePane;
+    ViewNodePane nodePane;
 
-    public ViewNodeMap(ImageView nodeImage, Pane nodePane){
+    public ViewNodeMap(ImageView nodeImage, ViewNodePane nodePane){
         this.nodeImage=nodeImage;
         this.nodePane=nodePane;
     }
@@ -22,19 +21,12 @@ public class ViewNodeMap {
         return nodeImage;
     }
 
-    public Pane getNodePane() {
-        return nodePane;
+    public ArrayList<ImageView> getNodePane() {
+        return nodePane.getNodePane();
     }
 
-    public void setNodePane(Pane nodePane) {
+    public void setNodePane(ViewNodePane nodePane) {
         this.nodePane = nodePane;
     }
 
-    public ImageView getLogo() {
-        return logo;
-    }
-
-    public void setLogo(ImageView logo) {
-        this.logo = logo;
-    }
 }

@@ -8,6 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
+
 public class HandlerBuilder {
     ModelViewBinding modelViewBinding;
     Group root;
@@ -49,21 +51,9 @@ public class HandlerBuilder {
                 source.setOnMouseExited(null);
                 source.setOnMouseClicked(nodeAnotherClicked);
                 source.setEffect(curentNode);
-                Pane pane = modelViewBinding.view.getViewMap().getNodeView(source).getNodePane();
-                pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        Pane sourcep =(Pane)(event.getSource());
-                        ImageView sourcei = modelViewBinding.view.getViewMap().getNodeView(sourcep).getNodeImage();
-                        sourcei.setOnMouseEntered(nodeEnter);
-                        sourcei.setOnMouseExited(nodeExit);
-                        sourcei.setOnMouseClicked(nodeClicked);
-                        sourcei.setEffect(bright);
-                        root.getChildren().remove(sourcep);
+                ArrayList<ImageView> pane= modelViewBinding.view.getViewMap().getNodeView(source).getNodePane();
 
-                    }
-                });
-                root.getChildren().add(pane);
+                root.getChildren().addAll(pane);
             }
         };
 
@@ -75,7 +65,7 @@ public class HandlerBuilder {
                 source.setOnMouseExited(nodeExit);
                 source.setOnMouseClicked(nodeClicked);
                 source.setEffect(bright);
-                root.getChildren().remove(modelViewBinding.view.getViewMap().getNodeView(source).getNodePane());
+                root.getChildren().removeAll(modelViewBinding.view.getViewMap().getNodeView(source).getNodePane());
             }
         };
     }

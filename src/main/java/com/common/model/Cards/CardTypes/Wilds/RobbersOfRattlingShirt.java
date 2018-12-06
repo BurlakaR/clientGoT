@@ -1,11 +1,8 @@
 package com.common.model.Cards.CardTypes.Wilds;
 
 import com.client.communication.SocketManager;
-import com.common.ClientController;
-import com.common.Game;
-import com.common.Message;
+import com.common.*;
 import com.common.model.Cards.CardTypes.WildVictory;
-import com.common.Player;
 
 import java.util.ArrayList;
 
@@ -34,12 +31,12 @@ public class RobbersOfRattlingShirt extends WildVictory {
     }
 
     @Override
-    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
+    public void executeOnClient(Game game, SocketManagerCommon socketManager, ClientController controller) {
 
     }
 
     @Override
-    public Message executeOnServer(Game game, SocketManager socketManager) {
+    public Message executeOnServer(Game game, SocketManagerCommon socketManager) {
         return null;
     }
 }

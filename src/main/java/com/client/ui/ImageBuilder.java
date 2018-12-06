@@ -11,6 +11,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
+import java.util.ArrayList;
+
 public class ImageBuilder {
     static String folder ="img/";
     static String format =".png";
@@ -36,28 +38,26 @@ public class ImageBuilder {
         return null;
     }
 
-    public Pane createNodePane(MapNode forNode){
-        Pane pane = new Pane();
-        pane.setPrefHeight(90);
-        pane.setPrefWidth(215);
-        pane.setLayoutX(forNode.getXpane());
-        pane.setLayoutY(forNode.getYpane());
-        Group group = new Group();
-        /*Rectangle rectangle = new Rectangle();
-        rectangle.setHeight(90);
-        rectangle.setWidth(215);
-        rectangle.setFill(Paint.valueOf("1e90ff"));
-        group.getChildren().add(rectangle);*/
+    public ViewNodePane createNodePane(MapNode forNode){
+        ViewNodePane pane = new ViewNodePane();
+        ForImage buf = forNode.getLogo();
+        buf.setX(buf.getX()+forNode.getXpane());
+        buf.setY(buf.getY()+forNode.getYpane());
+        pane.setCoin(createView(buf));
 
+        buf = forNode.getOrder();
+        buf.setX(buf.getX()+forNode.getXpane());
+        buf.setY(buf.getY()+forNode.getYpane());
+        pane.setOrder(createView(buf));
+
+        ArrayList<ImageView> bufy = new ArrayList<>();
         for(int i=0; i<forNode.getSquad().size();i++){
-            ImageView warrior=createView(forNode.getSquad().get(i));
-            warrior.setLayoutX(coordsSquad[i][0]);
-            warrior.setLayoutY(coordsSquad[i][1]);
-            group.getChildren().add(warrior);
+            buf=forNode.getSquad().get(i);
+            buf.setX(coordsSquad[i][0]+forNode.getXpane());
+            buf.setY(coordsSquad[i][1]+forNode.getYpane());
+            bufy.add(createView(buf));
         }
-        group.getChildren().add(createView(forNode.getOrder()));
-        group.getChildren().add(createView(forNode.getLogo()));
-        pane.getChildren().add(group);
+        pane.setUnits(bufy);
         return pane;
     }
 

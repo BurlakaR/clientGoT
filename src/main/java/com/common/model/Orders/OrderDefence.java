@@ -4,6 +4,7 @@ import com.client.communication.SocketManager;
 import com.common.ClientController;
 import com.common.Game;
 import com.common.Message;
+import com.common.SocketManagerCommon;
 
 public class OrderDefence extends Order {
     public OrderDefence(boolean star, int power) {
@@ -11,12 +12,12 @@ public class OrderDefence extends Order {
     }
 
     @Override
-    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
+    public void executeOnClient(Game game, SocketManagerCommon socketManager, ClientController controller) {
 
     }
 
     @Override
-    public Message executeOnServer(Game game, SocketManager socketManager) {
+    public Message executeOnServer(Game game, SocketManagerCommon socketManager) {
         return null;
     }
 }
