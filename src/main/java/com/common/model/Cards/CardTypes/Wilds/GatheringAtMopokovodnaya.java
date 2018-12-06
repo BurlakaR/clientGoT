@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 public class GatheringAtMopokovodnaya extends WildVictory {
     private ClientController controller;
-
     public GatheringAtMopokovodnaya() {
         super("");
         this.message = "Высшая ставка забирает на руку весь сброс своих карт дома\n" +
