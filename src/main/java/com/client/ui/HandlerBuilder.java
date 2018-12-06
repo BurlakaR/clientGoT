@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 public class HandlerBuilder {
     ModelViewBinding modelViewBinding;
@@ -48,7 +49,21 @@ public class HandlerBuilder {
                 source.setOnMouseExited(null);
                 source.setOnMouseClicked(nodeAnotherClicked);
                 source.setEffect(curentNode);
-                root.getChildren().add(modelViewBinding.view.getViewMap().getNodeView(source).getNodePane());
+                Pane pane = modelViewBinding.view.getViewMap().getNodeView(source).getNodePane();
+                pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        Pane sourcep =(Pane)(event.getSource());
+                        ImageView sourcei = modelViewBinding.view.getViewMap().getNodeView(sourcep).getNodeImage();
+                        sourcei.setOnMouseEntered(nodeEnter);
+                        sourcei.setOnMouseExited(nodeExit);
+                        sourcei.setOnMouseClicked(nodeClicked);
+                        sourcei.setEffect(bright);
+                        root.getChildren().remove(sourcep);
+
+                    }
+                });
+                root.getChildren().add(pane);
             }
         };
 
