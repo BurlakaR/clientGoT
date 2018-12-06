@@ -1,7 +1,6 @@
 package com.common;
 
 import com.client.communication.SocketManager;
-import com.common.Message;
 import com.common.model.Decks.CommanderDeck;
 import com.common.model.Map.MapNodes.MapNode;
 
@@ -9,18 +8,18 @@ import java.util.ArrayList;
 
 public class Player extends Message {
     private String name;
-    private short barrelSupply;
-    private short numberOfCastles;
-    private short ironThronePosition;
-    private short valyrianSwordPosition;
-    private short ravenPosition;
-    private short starNumber;
+    private int barrelSupply;
+    private int numberOfCastles;
+    private int ironThronePosition;
+    private int valyrianSwordPosition;
+    private int ravenPosition;
+    private int starNumber;
     private CommanderDeck commaders;
     private ArrayList<MapNode> ownedNodes = new ArrayList<MapNode>();
 
 
-    public Player(String name, short barrelSupply, short numberOfCastles, short ironThronePosition,
-                  short valyrianSwordPosition, short ravenPosition, CommanderDeck commnders){
+    public Player(String name, int barrelSupply, int numberOfCastles, int ironThronePosition,
+                  int valyrianSwordPosition, int ravenPosition, CommanderDeck commnders){
         this.name = name;
         this.barrelSupply = barrelSupply;
         this.numberOfCastles = numberOfCastles;
@@ -31,10 +30,7 @@ public class Player extends Message {
     }
 
 
-
-    public Player(String stark, int barrelSupply, int numberOfCastles, int ironThronePosition, int valyrianSwordPosition, int ravenPosition, CommanderDeck commnders){;}
-
-    public short getBarrelSupply() {
+    public int getBarrelSupply() {
         return barrelSupply;
     }
 
@@ -42,7 +38,7 @@ public class Player extends Message {
         this.barrelSupply = barrelSupply;
     }
 
-    public short getNumberOfCastles() {
+    public int getNumberOfCastles() {
         return numberOfCastles;
     }
 
@@ -50,7 +46,7 @@ public class Player extends Message {
         this.numberOfCastles = numberOfCastles;
     }
 
-    public short getIronThronePosition() {
+    public int getIronThronePosition() {
         return ironThronePosition;
     }
 
@@ -58,7 +54,7 @@ public class Player extends Message {
         this.ironThronePosition = ironThronePosition;
     }
 
-    public short getValyrianSwordPosition() {
+    public int getValyrianSwordPosition() {
         return valyrianSwordPosition;
     }
 
@@ -66,7 +62,7 @@ public class Player extends Message {
         this.valyrianSwordPosition = valyrianSwordPosition;
     }
 
-    public short getRavenPosition() {
+    public int getRavenPosition() {
         return ravenPosition;
     }
 
@@ -82,7 +78,7 @@ public class Player extends Message {
         return commaders;
     }
 
-    public short getStarNumber() {
+    public int getStarNumber() {
         return starNumber;
     }
 

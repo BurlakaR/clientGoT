@@ -6,42 +6,39 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+
+import java.util.ArrayList;
 
 
 public class ViewMap {
     Group root;
-    ImageBuilder imageBuilder;
-    BiMap<MapNode, ViewNodeMap> nodeMap;
-    BiMap<MapNode, ImageView> mapView;
+    ArrayList<ViewNodeMap> nodes;
 
-    public ViewMap(ImageBuilder imageBuilder, Group root, Map map){
-        this.imageBuilder=imageBuilder;
+    public ViewMap(Group root){
         this.root = root;
 
-        nodeMap = HashBiMap.create();
-        mapView = HashBiMap.create();
-        for (MapNode node:
-             map.getNodes()) {
-            nodeMap.put(node, new ViewNodeMap(node, imageBuilder));
-            ImageView buf = imageBuilder.createView(node);
-            mapView.put(node, buf);
-            root.getChildren().add(buf);
+        nodes = new ArrayList<>();
+
+    }
+
+
+    public void addNodeView(ImageView nodeImage, Pane nodePane){
+        nodes.add(new ViewNodeMap(nodeImage, nodePane));
+        root.getChildren().add(nodeImage);
+    }
+
+    public ViewNodeMap getNodeView(int i){
+        return nodes.get(i);
+    }
+
+    public ViewNodeMap getNodeView(ImageView nodeImage){
+        for (ViewNodeMap view:
+             nodes) {
+            if(view.getNodeImage().equals(nodeImage)){
+                return view;
+            }
         }
-    }
-
-    public ImageView getNodeView(MapNode node){
-        return mapView.get(node);
-    }
-
-    public MapNode getNodeOfView(ImageView imageView){
-        return mapView.inverse().get(imageView);
-    }
-
-    public ImageView getNodeViewAt(int index){
-        return (ImageView)mapView.values().toArray()[index];
-    }
-
-    public MapNode getNodeAt(int index){
-        return (MapNode) mapView.inverse().values().toArray()[index];
+        return null;
     }
 }

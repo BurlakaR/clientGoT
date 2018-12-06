@@ -7,6 +7,10 @@ import com.common.model.Decks.WesterosDeck;
 import com.common.model.Decks.WildDeck;
 import com.common.model.Map.Map;
 import com.common.model.Orders.*;
+import com.common.model.Units.Squad;
+import com.common.model.Units.UnitTypes.Knight;
+import com.common.model.Units.UnitTypes.Soldier;
+import com.common.model.Units.UnitTypes.Vessel;
 import com.common.model.utils.Auction;
 import com.common.model.utils.ComparePlayerRaven;
 import com.common.model.utils.ComparePlayersIron;
@@ -26,6 +30,7 @@ public class Game extends Message {
     private WesterosDeck SecondEventsDeck;
     private WesterosDeck ThirdEventsDeck;
     private ArrayList<Player> players = new ArrayList<Player>();
+    private Player currentPlayer;
     private ArrayList<Player> ironThrone = new ArrayList<>();
     private ArrayList<Player> valyrianSword = new ArrayList<>();
     private ArrayList<Player> raven = new ArrayList<>();
@@ -173,6 +178,17 @@ public class Game extends Message {
         Player Lannister = new Player("Lannister", 2, 1, 2, 6, 1, new CommanderDeck());
         Player Baratheon = new Player("Baratheon", 2, 1, 1, 5, 4, new CommanderDeck());
 
+        currentPlayer=Baratheon;//just because
+
+        Squad squad;
+        squad=new Squad(); squad.addUnit(new Soldier(Baratheon)); squad.addUnit(new Knight(Baratheon));
+        map.getNodes().get(12).setSquad(squad);
+        squad=new Squad(); squad.addUnit(new Soldier(Baratheon));
+        map.getNodes().get(24).setSquad(squad);
+        squad=new Squad(); squad.addUnit(new Vessel(Baratheon));
+        map.getNodes().get(5).setSquad(squad);
+
+
         players.add(Stark);
         players.add(Lannister);
         players.add(Baratheon);
@@ -188,6 +204,8 @@ public class Game extends Message {
                 }
             }
         }
+
+
 
 
 
@@ -239,5 +257,13 @@ public class Game extends Message {
 
     public void setAuction(Auction auction) {
         this.auction = auction;
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
     }
 }

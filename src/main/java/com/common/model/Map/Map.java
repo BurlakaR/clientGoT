@@ -107,6 +107,7 @@ public class Map extends Message {
             add(nodes.get(26));
             add(nodes.get(18));
         }});
+        nodes.get(0).setXYpane(365, 1449);
         //ChannelRedwin
         nodes.get(1).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(3));
@@ -118,6 +119,7 @@ public class Map extends Message {
             add(nodes.get(8));
             add(nodes.get(14));//закатное море
         }});
+        nodes.get(1).setXYpane(139, 2540);
         //WhiteHarbor
         nodes.get(2).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(34));
@@ -127,10 +129,12 @@ public class Map extends Message {
             add(nodes.get(13));
             add(nodes.get(37));
         }});
+        nodes.get(2).setXYpane(556, 880);
         //Arbor
         nodes.get(3).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(1));
         }});
+        nodes.get(3).setXYpane(-64, 2486);
         //Twins
         nodes.get(4).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(33));
@@ -139,6 +143,7 @@ public class Map extends Message {
             add(nodes.get(30));
             add(nodes.get(27));
         }});
+        nodes.get(4).setXYpane(451, 1280);
         //BayOfCrashedShips
         nodes.get(5).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(49));
@@ -152,12 +157,14 @@ public class Map extends Message {
             add(nodes.get(23));
             add(nodes.get(37));
         }});
+        nodes.get(5).setXYpane(900, 1871);
         //WidowTower
         nodes.get(6).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(37));
             add(nodes.get(2));
             add(nodes.get(13));
         }});
+        nodes.get(6).setXYpane(718, 852);
         //Winterfell
         nodes.get(7).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(46));
@@ -169,6 +176,7 @@ public class Map extends Message {
             add(nodes.get(2));
             add(nodes.get(34));
         }});
+        nodes.get(7).setXYpane(494, 597);
         //Summersea
         nodes.get(8).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(1));
@@ -178,6 +186,7 @@ public class Map extends Message {
             add(nodes.get(11));
             add(nodes.get(5));
         }});
+        nodes.get(8).setXYpane(896, 2543);
         //Dorn
         nodes.get(9).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(8));
@@ -187,6 +196,7 @@ public class Map extends Message {
             add(nodes.get(11));
             add(nodes.get(35));
         }});
+        nodes.get(9).setXYpane(544, 2363);
         //DornMarks
         nodes.get(10).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(17));
@@ -198,6 +208,7 @@ public class Map extends Message {
             add(nodes.get(38));
             add(nodes.get(36));
         }});
+        nodes.get(10).setXYpane(333, 2119);
         //DornSea
         nodes.get(11).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(5));
@@ -207,11 +218,13 @@ public class Map extends Message {
             add(nodes.get(10));
             add(nodes.get(43));
         }});
+        nodes.get(11).setXYpane(680, 2216);
         //DragonStone
         nodes.get(12).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(49));
             add(nodes.get(5));
         }});
+        nodes.get(12).setXYpane(938, 1635);
         //TremblingSea
         nodes.get(13).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(42));
@@ -221,6 +234,7 @@ public class Map extends Message {
             add(nodes.get(6));
             add(nodes.get(37));
         }});
+        nodes.get(13).setXYpane(933, 847);
         //SunsetSea
         nodes.get(14).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(16));
@@ -231,6 +245,7 @@ public class Map extends Message {
             add(nodes.get(38));
             add(nodes.get(1));
         }});
+        nodes.get(14).setXYpane(-67, 1869);
         //IronManBay
         nodes.get(15).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(47));
@@ -242,6 +257,7 @@ public class Map extends Message {
             add(nodes.get(33));
             add(nodes.get(0));
         }});
+        nodes.get(15).setXYpane(-64, 1481);
         //IceBay
         nodes.get(16).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(46));
@@ -252,12 +268,14 @@ public class Map extends Message {
             add(nodes.get(7));
             add(nodes.get(42));
         }});
+        nodes.get(16).setXYpane(-63, 626);
         //Starfall
         nodes.get(17).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(1));
             add(nodes.get(9));
             add(nodes.get(10));
         }});
+        nodes.get(17).setXYpane(330, 2414);
         //GoldBay
         nodes.get(18).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(31));
@@ -266,6 +284,7 @@ public class Map extends Message {
             add(nodes.get(48));
             add(nodes.get(26));
         }});
+        nodes.get(18).setXYpane(-63, 1698);
         //StoneChurch
         nodes.get(19).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(26));
@@ -274,17 +293,20 @@ public class Map extends Message {
             add(nodes.get(40));
             add(nodes.get(31));
         }});
+        nodes.get(19).setXYpane(326, 1656);
         //StoneShore
         nodes.get(20).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(7));
             add(nodes.get(16));
         }});
+        nodes.get(20).setXYpane(118, 861);
         //Karhold
         nodes.get(21).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(42));
             add(nodes.get(13));
             add(nodes.get(7));
         }});
+        nodes.get(21).setXYpane(773, 531);
         //KingBay
         nodes.get(22).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(32));
@@ -293,6 +315,7 @@ public class Map extends Message {
             add(nodes.get(41));
             add(nodes.get(24));
         }});
+        nodes.get(22).setXYpane(619, 1776);
         //KingRoad
         nodes.get(23).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(37));
@@ -303,6 +326,7 @@ public class Map extends Message {
             add(nodes.get(39));
             add(nodes.get(27));
         }});
+        nodes.get(23).setXYpane(648, 1622);
         //KingForest
         nodes.get(24).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(32));
@@ -312,6 +336,7 @@ public class Map extends Message {
             add(nodes.get(43));
             add(nodes.get(10));
         }});
+        nodes.get(24).setXYpane(635, 1925);
         //StoneFingers
         nodes.get(25).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(15));
@@ -319,6 +344,7 @@ public class Map extends Message {
             add(nodes.get(16));
             add(nodes.get(29));
         }});
+        nodes.get(25).setXYpane(56, 1134);
         //Lannisport
         nodes.get(26).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(48));
@@ -327,6 +353,7 @@ public class Map extends Message {
             add(nodes.get(19));
             add(nodes.get(31));
         }});
+        nodes.get(26).setXYpane(138, 1665);
         //MoonMountaints
         nodes.get(27).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(4));
@@ -335,11 +362,13 @@ public class Map extends Message {
             add(nodes.get(28));
             add(nodes.get(23));
         }});
+        nodes.get(27).setXYpane(576, 1380);
         //EagleNest
         nodes.get(28).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(27));
             add(nodes.get(37));
         }});
+        nodes.get(28).setXYpane(754, 1448);
         //Neck
         nodes.get(29).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(15));
@@ -348,12 +377,14 @@ public class Map extends Message {
             add(nodes.get(34));
             add(nodes.get(33));
         }});
+        nodes.get(29).setXYpane(250, 1111);
         //Fingers
         nodes.get(30).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(4));
             add(nodes.get(37));
             add(nodes.get(27));
         }});
+        nodes.get(30).setXYpane(649, 1234);
         //SeaRoad
         nodes.get(31).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(14));
@@ -364,6 +395,7 @@ public class Map extends Message {
             add(nodes.get(32));
             add(nodes.get(38));
         }});
+        nodes.get(31).setXYpane(116, 1819);
         //Reach
         nodes.get(32).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(38));

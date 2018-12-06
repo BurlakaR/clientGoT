@@ -6,25 +6,15 @@ import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 
 public class View {
-    ImageBuilder imageBuilder;
     Group root;
-
-    Game game;
-
     ViewMap viewMap;
 
-    OrderPane orderPane;
 
 
-
-    public View(Game game, Group root){
-        this.game=game;
+    public View(Group root){
 
         this.root=root;
-        imageBuilder = new ImageBuilder();
-
-        viewMap=new ViewMap(imageBuilder, root, this.game.getMap());
-        orderPane = new OrderPane(this.game.getOrders(), imageBuilder);
+        viewMap=new ViewMap(root);
 
     }
 
@@ -33,15 +23,8 @@ public class View {
         return viewMap;
     }
 
-    public Parent getRoot() {
+    public Group getRoot() {
         return root;
     }
 
-    public Pane getOrderPane() {
-        return orderPane.getOrderPane();
-    }
-
-    public Pane getOrderPane(double x, double y){
-        return orderPane.redisclocate(x, y);
-    }
 }

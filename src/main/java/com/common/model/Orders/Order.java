@@ -12,7 +12,7 @@ public abstract class Order extends ForImage {
     int power;
 
     public Order( String imgName, boolean star, int power) {
-        super(0, 0, 80, 80, imgName);
+        super(125, 0, 80, 80, imgName);
         if(star) this.setImgName(this.getImgName()+"Star");
         this.star=star;
         this.power=power;

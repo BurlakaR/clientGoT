@@ -2,6 +2,7 @@ package com.client.ui;
 
 import com.client.communication.SocketManager;
 import com.common.Game;
+import com.common.model.Map.MapNodes.MapNode;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
@@ -10,17 +11,12 @@ import javafx.scene.layout.Pane;
 
 public class GameWindowController {
 
-    View view;
+
     ControllerViewMap controllerViewMap;
-    Game game;
 
     @FXML
     Group imageGroup;
 
-    @FXML
-    ScrollPane scrollPane;
-
-    Pane pane;
 
     SocketManager socketManager;
 
@@ -38,11 +34,14 @@ public class GameWindowController {
         //game=(Game)socketManager.receive();
 
         //Next 2 Strings comment for work with server
-        game=new Game();
+        Game game=new Game();
         game.setNumberOfPlayers((short)3);
 
-        view=new View(game, imageGroup);
-        controllerViewMap= new ControllerViewMap(view,  imageGroup, scrollPane);
+        View view=new View(imageGroup);
+        ImageBuilder imageBuilder=new ImageBuilder();
+        ModelViewBinding modelViewBinding = new ModelViewBinding(game, view, imageBuilder);
+
+        controllerViewMap= new ControllerViewMap(modelViewBinding);
         controllerViewMap.ableAllNodes();
     }
 }

@@ -13,4 +13,12 @@ public class Squad {
         squad.remove(unit);
         return unit;
     }
+
+    public Unit get(int index){
+        return squad.get(index);
+    }
+
+    public int size(){
+        return squad.size();
+    }
 }
