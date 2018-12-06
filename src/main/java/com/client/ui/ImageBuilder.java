@@ -43,11 +43,11 @@ public class ImageBuilder {
         pane.setLayoutX(forNode.getXpane());
         pane.setLayoutY(forNode.getYpane());
         Group group = new Group();
-        Rectangle rectangle = new Rectangle();
+        /*Rectangle rectangle = new Rectangle();
         rectangle.setHeight(90);
         rectangle.setWidth(215);
         rectangle.setFill(Paint.valueOf("1e90ff"));
-        group.getChildren().add(rectangle);
+        group.getChildren().add(rectangle);*/
 
         for(int i=0; i<forNode.getSquad().size();i++){
             ImageView warrior=createView(forNode.getSquad().get(i));

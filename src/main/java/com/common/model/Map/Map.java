@@ -405,6 +405,7 @@ public class Map extends Message {
             add(nodes.get(24));
             add(nodes.get(10));
         }});
+        nodes.get(32).setXYpane(379, 1965);
         //Sigard
         nodes.get(33).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(15));
@@ -413,6 +414,7 @@ public class Map extends Message {
             add(nodes.get(4));
             add(nodes.get(0));
         }});
+        nodes.get(33).setXYpane(303, 1343);
         //Keilin
         nodes.get(34).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(37));
@@ -422,6 +424,7 @@ public class Map extends Message {
             add(nodes.get(7));
             add(nodes.get(2));
         }});
+        nodes.get(34).setXYpane(405, 1102);
         //SunSpear
         nodes.get(35).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(9));
@@ -429,6 +432,7 @@ public class Map extends Message {
             add(nodes.get(51));
             add(nodes.get(8));
         }});
+        nodes.get(35).setXYpane(116, 1819);
         //OldTown
         nodes.get(36).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(1));
@@ -436,6 +440,7 @@ public class Map extends Message {
             add(nodes.get(38));
             add(nodes.get(10));
         }});
+        nodes.get(36).setXYpane(110, 2234);
         //NarrowSea
         nodes.get(37).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(13));
@@ -450,6 +455,7 @@ public class Map extends Message {
             add(nodes.get(23));
             add(nodes.get(5));
         }});
+        nodes.get(37).setXYpane(932, 1026);
         //Highgarden
         nodes.get(38).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(1));
@@ -459,6 +465,7 @@ public class Map extends Message {
             add(nodes.get(10));
             add(nodes.get(36));
         }});
+        nodes.get(38).setXYpane(174, 2023);
         //Harrenhall
         nodes.get(39).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(23));
@@ -466,6 +473,7 @@ public class Map extends Message {
             add(nodes.get(19));
             add(nodes.get(0));
         }});
+        nodes.get(39).setXYpane(478, 1565);
         //Blackwater
         nodes.get(40).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(31));
@@ -475,6 +483,7 @@ public class Map extends Message {
             add(nodes.get(22));
             add(nodes.get(32));
         }});
+        nodes.get(40).setXYpane(368, 1799);
         //BlackBay
         nodes.get(41).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(24));
@@ -482,6 +491,7 @@ public class Map extends Message {
             add(nodes.get(23));
             add(nodes.get(5));
         }});
+        nodes.get(41).setXYpane(767, 1707);
         //BlackCastle
         nodes.get(42).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(16));
@@ -489,6 +499,7 @@ public class Map extends Message {
             add(nodes.get(21));
             add(nodes.get(13));
         }});
+        nodes.get(42).setXYpane(492, 412);
         //StormEnd
         nodes.get(43).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(50));
@@ -497,50 +508,60 @@ public class Map extends Message {
             add(nodes.get(24));
             add(nodes.get(5));
         }});
+        nodes.get(43).setXYpane(741, 2110);
         //Pike
         nodes.get(44).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(47));
             add(nodes.get(15));
         }});
+        nodes.get(44).setXYpane(51, 1391);
         //WhiteHarbor port
         nodes.get(45).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(37));
             add(nodes.get(2));
         }});
-        //Winterfell
+        nodes.get(45).setXYpane(592, 1053);
+        //Winterfell port
         nodes.get(46).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(7));
             add(nodes.get(16));
         }});
+        nodes.get(46).setXYpane(168, 505);
         //Iron port
         nodes.get(47).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(15));
             add(nodes.get(44));
         }});
+        nodes.get(47).setXYpane(98, 1252);
         //Lannis port
         nodes.get(48).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(18));
             add(nodes.get(26));
         }});
+        nodes.get(48).setXYpane(39, 1549);
         //Dragon port
         nodes.get(49).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(12));
             add(nodes.get(5));
         }});
+        nodes.get(49).setXYpane(961, 1765);
         //Storm port
         nodes.get(50).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(43));
             add(nodes.get(5));
         }});
+        nodes.get(50).setXYpane(834, 2005);
         //Dorn port
         nodes.get(51).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(35));
             add(nodes.get(8));
         }});
+        nodes.get(51).setXYpane(960, 2361);
         //Reach port
         nodes.get(52).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(1));
             add(nodes.get(36));
         }});
+        nodes.get(52).setXYpane(-14, 2122);
     }
 }

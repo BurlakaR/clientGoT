@@ -41,4 +41,14 @@ public class ViewMap {
         }
         return null;
     }
+
+    public ViewNodeMap getNodeView(Pane nodePane){
+        for (ViewNodeMap view:
+                nodes) {
+            if(view.getNodePane().equals(nodePane)){
+                return view;
+            }
+        }
+        return null;
+    }
 }
