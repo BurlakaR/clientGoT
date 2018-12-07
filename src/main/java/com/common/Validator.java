@@ -15,7 +15,6 @@ public class Validator {
     public static ArrayList<MapNode> getNodesWithCastlesOwnedByPlayer(){return null;}
 
     public static boolean nodeContainsForeignSquad(MapNode node){
-
         return false;
     }
 }

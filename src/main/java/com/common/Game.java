@@ -1,5 +1,6 @@
 package com.common;
 
+import com.common.model.Cards.CardTypes.WesterosEvents.*;
 import com.common.model.Cards.CardTypes.Wilds.*;
 import com.common.model.Decks.CommanderDeck;
 import com.common.model.Decks.WesterosDeck;
@@ -24,9 +25,9 @@ public class Game extends Message {
     private static int numberOfPlayers = 0;
     private WildDeck wilds;
     private ArrayList<Order> orders;//a list of possible orders
-    private WesterosDeck FirstEventsDeck;
-    private WesterosDeck SecondEventsDeck;
-    private WesterosDeck ThirdEventsDeck;
+    private WesterosDeck firstEventsDeck;
+    private WesterosDeck secondEventsDeck;
+    private WesterosDeck thirdEventsDeck;
     private ArrayList<Player> players = new ArrayList<Player>();
     private Player currentPlayer;
     private ArrayList<Player> ironThrone = new ArrayList<>();
@@ -63,25 +64,44 @@ public class Game extends Message {
                 .add(new Vanguard())
                 .add(new WerewolfScout()).shuffle();
 
-        FirstEventsDeck = new WesterosDeck();
-        SecondEventsDeck = new WesterosDeck();
-        SecondEventsDeck = new WesterosDeck();
-        /*
-        cards.add(new ArmyGathering());
-        cards.add(new BattleOfKings());
-        cards.add(new BlackWingsBlackWords());
-        cards.add(new FeastForRavens());
-        cards.add(new GameOfThrones());
-        cards.add(new InvasionOfWilds());
-        cards.add(new LastDaysOfSummer());
-        cards.add(new LoyalToTheSword());
-        cards.add(new RainsOfTheAutumn());
-        cards.add(new SeaOfStorms());
-        cards.add(new StormOfSwords());
-        cards.add(new SupplyRecount());
-        cards.add(new ThroneOfBlades());
-        cards.add(new WebOfLies());
-        cards.add(new WinterIsClose());*/
+        firstEventsDeck = new WesterosDeck();
+        secondEventsDeck = new WesterosDeck();
+        secondEventsDeck = new WesterosDeck();
+
+        firstEventsDeck.add(new ArmyGathering());
+        firstEventsDeck.add(new WinterIsClose());
+        firstEventsDeck.add(new ThroneOfBlades());
+        firstEventsDeck.add(new SupplyRecount());
+        firstEventsDeck.add(new LastDaysOfSummer());
+        firstEventsDeck.add(new ArmyGathering());
+        firstEventsDeck.add(new WinterIsClose());
+        firstEventsDeck.add(new ThroneOfBlades());
+        firstEventsDeck.add(new SupplyRecount());
+        firstEventsDeck.add(new LastDaysOfSummer());
+        secondEventsDeck.add(new WinterIsClose());
+        secondEventsDeck.add(new LastDaysOfSummer());
+        secondEventsDeck.add(new GameOfThrones());
+        secondEventsDeck.add(new BattleOfKings());
+        secondEventsDeck.add(new BlackWingsBlackWords());
+        secondEventsDeck.add(new WinterIsClose());
+        secondEventsDeck.add(new LastDaysOfSummer());
+        secondEventsDeck.add(new GameOfThrones());
+        secondEventsDeck.add(new BattleOfKings());
+        secondEventsDeck.add(new BlackWingsBlackWords());
+        thirdEventsDeck.add(new InvasionOfWilds());
+        thirdEventsDeck.add(new InvasionOfWilds());
+        thirdEventsDeck.add(new InvasionOfWilds());
+        thirdEventsDeck.add(new LoyalToTheSword());
+        thirdEventsDeck.add(new LoyalToTheSword());
+        thirdEventsDeck.add(new RainsOfTheAutumn());
+        thirdEventsDeck.add(new StormOfSwords());
+        thirdEventsDeck.add(new SeaOfStorms());
+        thirdEventsDeck.add(new FeastForRavens());
+        thirdEventsDeck.add(new WebOfLies());
+
+        firstEventsDeck.shuffle();
+        secondEventsDeck.shuffle();
+        thirdEventsDeck.shuffle();
     }
 
     //should be called before getting an instance
