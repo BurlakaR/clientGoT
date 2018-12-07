@@ -1,18 +1,15 @@
 package com.common.model.Map.MapNodes;
 
-import com.client.communication.SocketManager;
-import com.common.ClientController;
-import com.common.Game;
-import com.common.Message;
+import com.common.*;
 import com.common.model.Orders.EmptyOrder;
 import com.common.model.Orders.Order;
 import com.common.model.Units.Squad;
-import com.common.model.Units.Unit;
 import com.common.model.utils.*;
 
 import java.util.ArrayList;
 
 public class MapNode extends ForNode {
+    private Player owner;
     private Squad squad = new Squad();
     private Order order = new EmptyOrder();
     private Logo logo = new EmptyLogo();
@@ -42,6 +39,7 @@ public class MapNode extends ForNode {
 
     public void setSquad(Squad squad) {
         this.squad = squad;
+        owner=squad.get(0).getPlayer();
     }
 
     public Order getOrder() {
@@ -58,16 +56,21 @@ public class MapNode extends ForNode {
 
     public void setLogo(Logo logo) {
         this.logo = logo;
+        owner=logo.getPlayer();
+    }
+
+    public Player getOwner(){
+        return owner;
     }
 
     //one more erally bad plays for those guys
     @Override
-    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
+    public void executeOnClient(Game game, SocketManagerCommon socketManager, ClientController controller) {
 
     }
 
     @Override
-    public Message executeOnServer(Game game, SocketManager socketManager) {
+    public Message executeOnServer(Game game, SocketManagerCommon socketManager) {
         return null;
     }
 }

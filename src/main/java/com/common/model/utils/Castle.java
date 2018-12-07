@@ -1,6 +1,8 @@
 package com.common.model.utils;
 
-public class Castle {
+import java.io.Serializable;
+
+public class Castle implements Serializable{
     private int garrison;
     private int power; //either 1 or 2, unexpected shit on other values, no time for exceptions
 

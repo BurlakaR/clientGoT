@@ -1,9 +1,5 @@
 package com.client.ui;
 
-import com.common.model.Map.Map;
-import com.common.model.Map.MapNodes.MapNode;
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -23,9 +19,10 @@ public class ViewMap {
     }
 
 
-    public void addNodeView(ImageView nodeImage, Pane nodePane){
+    public void addNodeView(ImageView nodeImage, ViewNodePane nodePane){
         nodes.add(new ViewNodeMap(nodeImage, nodePane));
         root.getChildren().add(nodeImage);
+        root.getChildren().add(nodePane.getCoin());
     }
 
     public ViewNodeMap getNodeView(int i){
@@ -50,5 +47,9 @@ public class ViewMap {
             }
         }
         return null;
+    }
+
+    public int size(){
+        return nodes.size();
     }
 }

@@ -1,8 +1,9 @@
 package com.common.model.Units;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Squad {
+public class Squad implements Serializable{
     private ArrayList<Unit> squad = new ArrayList<Unit>();
 
     public void addUnit(Unit unit){

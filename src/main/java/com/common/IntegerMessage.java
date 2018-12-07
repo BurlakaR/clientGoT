@@ -1,8 +1,6 @@
 package com.common;
 
 
-import com.client.communication.SocketManager;
-
 public class IntegerMessage extends Message {
     int message;
 
@@ -19,12 +17,12 @@ public class IntegerMessage extends Message {
     }
 
     @Override
-    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
+    public void executeOnClient(Game game, SocketManagerCommon socketManager, ClientController controller) {
 
     }
 
     @Override
-    public Message executeOnServer(Game game, SocketManager socketManager) {
+    public Message executeOnServer(Game game, SocketManagerCommon socketManager) {
         return null;
     }
 }

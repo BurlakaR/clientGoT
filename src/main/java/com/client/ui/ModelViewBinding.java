@@ -43,4 +43,8 @@ public class ModelViewBinding {
     public int getNodeCount(){
         return nodeCount;
     }
+
+    public MapNode getNode(ImageView view){
+        return (MapNode) mapView.inverse().get(view);
+    }
 }

@@ -1,11 +1,10 @@
 package com.common.model.Cards.CardTypes.Commanders.Barateons;
 
-import com.client.communication.SocketManager;
 import com.common.ClientController;
 import com.common.Game;
 import com.common.Message;
+import com.common.SocketManagerCommon;
 import com.common.model.Cards.CardTypes.Commander;
-import com.common.model.utils.Battle;
 
 public class Stannis extends Commander {
     public Stannis() {
@@ -13,12 +12,12 @@ public class Stannis extends Commander {
     }
 
     @Override
-    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
+    public void executeOnClient(Game game, SocketManagerCommon socketManager, ClientController controller) {
 
     }
 
     @Override
-    public Message executeOnServer(Game game, SocketManager socketManager) {
+    public Message executeOnServer(Game game, SocketManagerCommon socketManager) {
         return null;
     }
 }

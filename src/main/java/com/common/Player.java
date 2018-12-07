@@ -1,6 +1,5 @@
 package com.common;
 
-import com.client.communication.SocketManager;
 import com.common.model.Decks.CommanderDeck;
 import com.common.model.Map.MapNodes.MapNode;
 
@@ -87,12 +86,12 @@ public class Player extends Message {
     }
 
     @Override
-    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
+    public void executeOnClient(Game game, SocketManagerCommon socketManager, ClientController controller) {
 
     }
 
     @Override
-    public Message executeOnServer(Game game, SocketManager socketManager) {
+    public Message executeOnServer(Game game, SocketManagerCommon socketManager) {
         return null;
     }
 }

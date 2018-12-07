@@ -1,6 +1,5 @@
 package com.common;
 
-import com.client.communication.SocketManager;
 import com.common.model.Cards.CardTypes.Wilds.*;
 import com.common.model.Decks.CommanderDeck;
 import com.common.model.Decks.WesterosDeck;
@@ -209,21 +208,12 @@ public class Game extends Message {
 
 
 
-        players.sort(new ComparePlayersIron());
         ironThrone.addAll(players);
-        players.sort(new ComparePlayersSword());
+        ironThrone.sort(new ComparePlayersIron());
         valyrianSword.addAll(players);
-        players.sort(new ComparePlayerRaven());
+        valyrianSword.sort(new ComparePlayersSword());
         raven.addAll(players);
-
-        ArrayList<Player> buf = new ArrayList<>();
-        int randindex;
-        while(!players.isEmpty()){
-            randindex=(int) (Math.random() * players.size());
-            buf.add(players.get(randindex));
-            players.remove(randindex);
-        }
-        players=buf;
+        raven.sort(new ComparePlayerRaven());
     }
 
     public void starRecount(){
@@ -242,12 +232,12 @@ public class Game extends Message {
 
     //for now those two are fucking useless...
     @Override
-    public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
+    public void executeOnClient(Game game, SocketManagerCommon socketManager, ClientController controller) {
 
     }
 
     @Override
-    public Message executeOnServer(Game game, SocketManager socketManager) {
+    public Message executeOnServer(Game game, SocketManagerCommon socketManager) {
         return null;
     }
 
@@ -265,5 +255,13 @@ public class Game extends Message {
 
     public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
+    }
+
+    public Player getPlayer(int index){
+        return players.get(index);
+    }
+
+    public ArrayList<Player> getPlayers(){
+        return players;
     }
 }
