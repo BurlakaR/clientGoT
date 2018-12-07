@@ -66,7 +66,7 @@ public class Game extends Message {
 
         firstEventsDeck = new WesterosDeck();
         secondEventsDeck = new WesterosDeck();
-        secondEventsDeck = new WesterosDeck();
+        thirdEventsDeck = new WesterosDeck();
 
         firstEventsDeck.add(new ArmyGathering());
         firstEventsDeck.add(new WinterIsClose());
