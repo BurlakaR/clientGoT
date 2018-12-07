@@ -208,12 +208,12 @@ public class Game extends Message {
 
 
 
-        players.sort(new ComparePlayersIron());
         ironThrone.addAll(players);
-        players.sort(new ComparePlayersSword());
+        ironThrone.sort(new ComparePlayersIron());
         valyrianSword.addAll(players);
-        players.sort(new ComparePlayerRaven());
+        valyrianSword.sort(new ComparePlayersSword());
         raven.addAll(players);
+        raven.sort(new ComparePlayerRaven());
     }
 
     public void starRecount(){
@@ -259,5 +259,9 @@ public class Game extends Message {
 
     public Player getPlayer(int index){
         return players.get(index);
+    }
+
+    public ArrayList<Player> getPlayers(){
+        return players;
     }
 }

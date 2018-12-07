@@ -1,6 +1,5 @@
 package com.common.model.Cards.CardTypes.Commanders.Greyjoys;
 
-import com.client.communication.SocketManager;
 import com.common.ClientController;
 import com.common.Game;
 import com.common.Message;

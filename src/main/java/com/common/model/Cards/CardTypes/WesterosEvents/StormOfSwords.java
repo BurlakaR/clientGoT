@@ -1,6 +1,5 @@
 package com.common.model.Cards.CardTypes.WesterosEvents;
 
-import com.client.communication.SocketManager;
 import com.common.ClientController;
 import com.common.Message;
 import com.common.SocketManagerCommon;

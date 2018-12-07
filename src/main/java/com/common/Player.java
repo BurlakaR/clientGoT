@@ -1,6 +1,5 @@
 package com.common;
 
-import com.client.communication.SocketManager;
 import com.common.model.Decks.CommanderDeck;
 import com.common.model.Map.MapNodes.MapNode;
 

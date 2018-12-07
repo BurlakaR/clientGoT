@@ -1,6 +1,5 @@
 package com.common.model.Cards.CardTypes.Commanders.Martells;
 
-import com.client.communication.SocketManager;
 import com.common.ClientController;
 import com.common.Game;
 import com.common.Message;

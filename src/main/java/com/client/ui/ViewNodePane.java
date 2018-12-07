@@ -9,13 +9,6 @@ public class ViewNodePane {
     ImageView order;
     ImageView coin;
 
-    public ArrayList<ImageView> getNodePane(){
-        ArrayList<ImageView> buf = new ArrayList<>();
-        buf.addAll(units);
-        buf.add(order);
-        buf.add(coin);
-        return buf;
-    }
 
     public ArrayList<ImageView> getUnits() {
         return units;

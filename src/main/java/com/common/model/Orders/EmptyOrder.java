@@ -1,6 +1,5 @@
 package com.common.model.Orders;
 
-import com.client.communication.SocketManager;
 import com.common.ClientController;
 import com.common.Game;
 import com.common.Message;

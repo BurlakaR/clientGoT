@@ -21,8 +21,8 @@ public class ViewNodeMap {
         return nodeImage;
     }
 
-    public ArrayList<ImageView> getNodePane() {
-        return nodePane.getNodePane();
+    public ViewNodePane getNodePane() {
+        return nodePane;
     }
 
     public void setNodePane(ViewNodePane nodePane) {

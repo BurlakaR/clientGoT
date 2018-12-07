@@ -1,6 +1,5 @@
 package com.common.model.Cards.CardTypes.Wilds;
 
-import com.client.communication.SocketManager;
 import com.common.*;
 import com.common.model.Cards.CardTypes.WildVictory;
 import com.common.model.utils.Auction;

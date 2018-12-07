@@ -1,8 +1,6 @@
 package com.common;
 
 
-import com.client.communication.SocketManager;
-
 public class IntegerMessage extends Message {
     int message;
 

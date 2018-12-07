@@ -1,5 +1,6 @@
 package com.client.ui;
 
+import com.common.Player;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -13,23 +14,27 @@ import java.util.ArrayList;
 public class HandlerBuilder {
     ModelViewBinding modelViewBinding;
     Group root;
+    Colors colors;
 
     EventHandler nodeEnter, nodeExit, nodeClicked, nodeAnotherClicked;
-    ColorAdjust bright, usual, curentNode;
 
     public HandlerBuilder(ModelViewBinding modelViewBinding, Group root){
         this.modelViewBinding=modelViewBinding;
         this.root=root;
+        colors = new Colors(this.modelViewBinding.game.getPlayers());
 
-        bright = new ColorAdjust(); usual= new ColorAdjust(); curentNode = new ColorAdjust();
-        bright.setBrightness(0.3); usual.setBrightness(0.0);
-        curentNode.setHue(0.7);
+        for(int i =0; i<modelViewBinding.view.getViewMap().size(); i++){
+            ImageView buf =modelViewBinding.view.getViewMap().getNodeView(i).getNodeImage();
+            buf.setEffect(colors.getColor(modelViewBinding.getNode(buf).getOwner()));
+        }
 
         nodeEnter=new EventHandler<MouseEvent>()  {
             @Override
             public void handle(MouseEvent event) {
                 ImageView source =(ImageView)event.getSource();
-                source.setEffect(bright);
+                Player owner = modelViewBinding.getNode(source).getOwner();
+                if(owner!=null)
+                source.setEffect(colors.setBright(colors.getColor(owner)));
 
             }
         };
@@ -38,7 +43,9 @@ public class HandlerBuilder {
             @Override
             public void handle(MouseEvent event) {
                 ImageView source =(ImageView)event.getSource();
-                source.setEffect(usual);
+                Player owner = modelViewBinding.getNode(source).getOwner();
+                if(owner!=null)
+                source.setEffect(colors.setUsual(colors.getColor(owner)));
 
             }
         };
@@ -50,10 +57,8 @@ public class HandlerBuilder {
                 source.setOnMouseEntered(null);
                 source.setOnMouseExited(null);
                 source.setOnMouseClicked(nodeAnotherClicked);
-                source.setEffect(curentNode);
-                ArrayList<ImageView> pane= modelViewBinding.view.getViewMap().getNodeView(source).getNodePane();
-
-                root.getChildren().addAll(pane);
+                root.getChildren().remove(modelViewBinding.view.getViewMap().getNodeView(source).getNodePane().getCoin());
+                root.getChildren().addAll(modelViewBinding.view.getViewMap().getNodeView(source).getNodePane().getUnits());
             }
         };
 
@@ -64,8 +69,8 @@ public class HandlerBuilder {
                 source.setOnMouseEntered(nodeEnter);
                 source.setOnMouseExited(nodeExit);
                 source.setOnMouseClicked(nodeClicked);
-                source.setEffect(bright);
-                root.getChildren().removeAll(modelViewBinding.view.getViewMap().getNodeView(source).getNodePane());
+                root.getChildren().removeAll(modelViewBinding.view.getViewMap().getNodeView(source).getNodePane().getUnits());
+                root.getChildren().add(modelViewBinding.view.getViewMap().getNodeView(source).getNodePane().getCoin());
             }
         };
     }

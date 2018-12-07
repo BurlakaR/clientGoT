@@ -1,6 +1,5 @@
 package com.common.model.utils;
 
-import com.client.communication.SocketManager;
 import com.common.*;
 
 import java.util.ArrayList;
