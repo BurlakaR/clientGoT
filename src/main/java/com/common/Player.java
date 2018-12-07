@@ -86,7 +86,7 @@ public class Player extends Message {
     }
 
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 

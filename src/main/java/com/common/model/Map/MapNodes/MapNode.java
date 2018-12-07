@@ -65,7 +65,7 @@ public class MapNode extends ForNode {
 
     //one more really bad place for those guys
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 

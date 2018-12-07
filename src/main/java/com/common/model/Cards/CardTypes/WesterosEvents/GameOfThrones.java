@@ -1,5 +1,6 @@
 package com.common.model.Cards.CardTypes.WesterosEvents;
 
+import com.common.ClientController;
 import com.common.model.Cards.CardTypes.WesterosEvent;
 
 public class GameOfThrones extends WesterosEvent {
@@ -11,7 +12,7 @@ public class GameOfThrones extends WesterosEvent {
     }
 
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 

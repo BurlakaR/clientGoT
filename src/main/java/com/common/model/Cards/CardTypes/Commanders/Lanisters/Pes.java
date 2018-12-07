@@ -1,5 +1,6 @@
 package com.common.model.Cards.CardTypes.Commanders.Lanisters;
 
+import com.common.ClientController;
 import com.common.model.Cards.CardTypes.Commander;
 
 public class Pes extends Commander {
@@ -7,7 +8,7 @@ public class Pes extends Commander {
         super("", 2);
     }
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 

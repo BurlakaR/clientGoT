@@ -1,5 +1,6 @@
 package com.common.model.Cards.CardTypes.Commanders.Tirells;
 
+import com.common.ClientController;
 import com.common.model.Cards.CardTypes.Commander;
 
 public class QueenOfThorns extends Commander {
@@ -8,7 +9,7 @@ public class QueenOfThorns extends Commander {
     }
 
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 

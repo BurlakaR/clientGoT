@@ -5,8 +5,8 @@ import com.common.*;
 public class GatheringOrders extends Message {
 
     @Override
-    public void executeOnClient() {
-        //controller.putOrders(Game.getInstance().getMap());
+    public void executeOnClient(ClientController controller) {
+        controller.putOrders();
     }
 
     @Override

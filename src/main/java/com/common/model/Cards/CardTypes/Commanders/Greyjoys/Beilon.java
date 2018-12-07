@@ -1,5 +1,6 @@
 package com.common.model.Cards.CardTypes.Commanders.Greyjoys;
 
+import com.common.ClientController;
 import com.common.model.Cards.CardTypes.Commander;
 
 public class Beilon extends Commander {
@@ -7,7 +8,7 @@ public class Beilon extends Commander {
         super("", 2);
     }
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 

@@ -1,5 +1,6 @@
 package com.common.model.Decks;
 
+import com.common.ClientController;
 import com.common.model.Cards.Card;
 import com.common.model.Cards.CardTypes.WildVictory;
 
@@ -47,7 +48,7 @@ public class WildDeck extends Deck {
     }
 
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 

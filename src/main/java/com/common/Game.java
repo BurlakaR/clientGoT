@@ -248,7 +248,7 @@ public class Game extends Message {
     }
 
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
         //here client should renew its game object and also render it to gui
     }
 

@@ -1,11 +1,12 @@
 package com.common.model.GameEvents;
 
+import com.common.ClientController;
 import com.common.Message;
 
 //provokes user to execute his next order
 public class Turn extends Message {
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
         //provokes client to configure and send orders for execution
     }
 

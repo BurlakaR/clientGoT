@@ -14,7 +14,7 @@ public class Logo extends ForImage {
     }
 
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 

@@ -1,5 +1,7 @@
 package com.common.model.Orders;
 
+import com.common.ClientController;
+
 public class EmptyOrder extends Order {
     public EmptyOrder() {
         super("Empty", false, 0);
@@ -7,7 +9,7 @@ public class EmptyOrder extends Order {
     }
 
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 

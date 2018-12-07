@@ -1,5 +1,6 @@
 package com.common.model.Cards.CardTypes.WesterosEvents;
 
+import com.common.ClientController;
 import com.common.model.Cards.CardTypes.WesterosEvent;
 
 public class WinterIsClose extends WesterosEvent {
@@ -9,7 +10,7 @@ public class WinterIsClose extends WesterosEvent {
         message = "";
     }
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 

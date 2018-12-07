@@ -30,7 +30,7 @@ public class RobbersOfRattlingShirt extends WildVictory {
     }
 
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 

@@ -13,7 +13,7 @@ public class Knight extends Unit {
     }
 
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 

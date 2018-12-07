@@ -31,7 +31,7 @@ public class HordeAssault extends WildVictory {
     }
 
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
         Auction auction = Game.getInstance().getAuction();
         applyForHighestStake(auction.getHighestStake());
         applyForLowestStake(auction.getLowestStake());

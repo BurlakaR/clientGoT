@@ -31,7 +31,7 @@ public class KingBehindTheWall extends WildVictory {
     }
 
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 

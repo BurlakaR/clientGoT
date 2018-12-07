@@ -1,5 +1,6 @@
 package com.common.model.Orders;
 
+import com.common.ClientController;
 import com.common.model.Units.Squad;
 
 public class OrderAttack extends Order {
@@ -13,7 +14,7 @@ public class OrderAttack extends Order {
     }
 
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 

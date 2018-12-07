@@ -1,5 +1,6 @@
 package com.common.model.Decks;
 
+import com.common.ClientController;
 import com.common.model.Cards.Card;
 import com.common.model.Cards.CardTypes.WesterosEvent;
 
@@ -46,7 +47,7 @@ public class WesterosDeck extends Deck {
     }
 
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 

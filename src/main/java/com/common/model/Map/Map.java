@@ -1,5 +1,6 @@
 package com.common.model.Map;
 
+import com.common.ClientController;
 import com.common.Message;
 import com.common.model.Map.MapNodes.Land;
 import com.common.model.Map.MapNodes.MapNode;
@@ -19,7 +20,7 @@ public class Map extends Message {
 
 
     @Override
-    public void executeOnClient() {
+    public void executeOnClient(ClientController controller) {
 
     }
 
