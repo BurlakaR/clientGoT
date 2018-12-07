@@ -8,22 +8,22 @@ import javafx.scene.Group;
 
 
 public class GameWindowController {
-
+    private static Game INSTANCE;
 
     ControllerViewMap controllerViewMap;
 
     @FXML
     Group imageGroup;
-
-
     SocketManager socketManager;
+
+    public static Game getGameInstance() {
+        return INSTANCE;
+    }
 
     public void setSocketManager(SocketManager socketManager) {
         this.socketManager = socketManager;
         start();
     }
-
-
 
     public void start(){
         //Look at FirstWindowController
@@ -31,6 +31,7 @@ public class GameWindowController {
         Game game=(Game)socketManager.receive();
         game.setCurrentPlayer(((Player) socketManager.receive()));
         System.out.println(game.getCurrentPlayer().getName());
+        GameWindowController.INSTANCE = game;
 
         //Next 2 Strings comment for work with server
         //Game game=new Game();

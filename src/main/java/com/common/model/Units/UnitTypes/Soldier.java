@@ -1,6 +1,6 @@
 package com.common.model.Units.UnitTypes;
 
-import com.common.Player;
+import com.common.*;
 import com.common.model.Units.Unit;
 
 public class Soldier extends Unit {
@@ -13,4 +13,12 @@ public class Soldier extends Unit {
     }
 
 
+    @Override
+    public void executeOnClient() {
+
+    }
+
+    @Override
+    public void executeOnServer() {
+    }
 }

@@ -14,7 +14,7 @@ public class Player extends Message {
     private int ravenPosition;
     private int starNumber;
     private CommanderDeck commaders;
-    private ArrayList<MapNode> ownedNodes = new ArrayList<MapNode>();
+    private ArrayList<MapNode> ownedNodes = new ArrayList<MapNode>(); //do we need it?
 
 
     public Player(String name, int barrelSupply, int numberOfCastles, int ironThronePosition,
@@ -86,12 +86,11 @@ public class Player extends Message {
     }
 
     @Override
-    public void executeOnClient(Game game, SocketManagerCommon socketManager, ClientController controller) {
+    public void executeOnClient() {
 
     }
 
     @Override
-    public Message executeOnServer(Game game, SocketManagerCommon socketManager) {
-        return null;
+    public void executeOnServer() {
     }
 }

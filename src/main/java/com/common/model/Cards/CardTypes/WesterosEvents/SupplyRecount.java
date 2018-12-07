@@ -1,10 +1,6 @@
 package com.common.model.Cards.CardTypes.WesterosEvents;
 
-import com.common.ClientController;
-import com.common.Message;
-import com.common.SocketManagerCommon;
 import com.common.model.Cards.CardTypes.WesterosEvent;
-import com.common.Game;
 
 public class SupplyRecount extends WesterosEvent {
     public SupplyRecount(){
@@ -13,12 +9,11 @@ public class SupplyRecount extends WesterosEvent {
                 "уменьшает численность войск соответственно";
     }
     @Override
-    public void executeOnClient(Game game, SocketManagerCommon socketManager, ClientController controller) {
+    public void executeOnClient() {
 
     }
 
     @Override
-    public Message executeOnServer(Game game, SocketManagerCommon socketManager) {
-        return null;
+    public void executeOnServer() {
     }
 }

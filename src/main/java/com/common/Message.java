@@ -18,6 +18,6 @@ public abstract class Message implements Serializable {
 
     public void print(){};
 
-    public abstract void executeOnClient(Game game, SocketManagerCommon socketManager, ClientController controller);
-    public abstract Message executeOnServer(Game game, SocketManagerCommon socketManager);
+    public abstract void executeOnClient();
+    public abstract void executeOnServer();
 }

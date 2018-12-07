@@ -1,6 +1,6 @@
 package com.common.model.Units.UnitTypes;
 
-import com.common.Player;
+import com.common.*;
 import com.common.model.Units.Unit;
 
 public class Tower extends Unit {
@@ -10,5 +10,14 @@ public class Tower extends Unit {
         cost = 2;
         damage = 0;
         damageToCastles = 4;
+    }
+
+    @Override
+    public void executeOnClient() {
+
+    }
+
+    @Override
+    public void executeOnServer() {
     }
 }

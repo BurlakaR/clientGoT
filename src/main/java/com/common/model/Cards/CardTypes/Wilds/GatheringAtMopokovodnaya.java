@@ -1,15 +1,12 @@
 package com.common.model.Cards.CardTypes.Wilds;
 
 import com.common.*;
-import com.common.model.Cards.CardTypes.Commander;
 import com.common.model.Cards.CardTypes.WildVictory;
-import com.common.model.Decks.CommanderDeck;
 import com.common.model.utils.Auction;
 
 import java.util.ArrayList;
 
 public class GatheringAtMopokovodnaya extends WildVictory {
-    private ClientController controller;
     public GatheringAtMopokovodnaya() {
         super("");
         this.message = "Высшая ставка забирает на руку весь сброс своих карт дома\n" +
@@ -53,16 +50,14 @@ public class GatheringAtMopokovodnaya extends WildVictory {
     }
 
     @Override
-    public void executeOnClient(Game game, SocketManagerCommon socketManager, ClientController controller) {
-        this.controller = controller;
-        Auction auction = game.getAuction();
+    public void executeOnClient() {
+        Auction auction = Game.getInstance().getAuction();
         applyForHighestStake(auction.getHighestStake());
         applyForLowestStake(auction.getLowestStake());
         applyForEveryoneElse(auction.getEverybodyExceptHighestAndLowestStake());
     }
 
     @Override
-    public Message executeOnServer(Game game, SocketManagerCommon socketManager) {
-        return null;
+    public void executeOnServer() {
     }
 }

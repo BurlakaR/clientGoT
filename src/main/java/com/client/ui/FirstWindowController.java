@@ -17,7 +17,7 @@ import java.io.IOException;
 
 public class FirstWindowController {
     Stage stage;
-    Scene game;
+    Scene game;//nice naming, bro)
 
 
     @Autowired

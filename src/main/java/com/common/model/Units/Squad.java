@@ -6,6 +6,12 @@ import java.util.ArrayList;
 public class Squad implements Serializable{
     private ArrayList<Unit> squad = new ArrayList<Unit>();
 
+    public Squad(){}
+
+    public Squad(ArrayList<Unit> draftees){
+        squad = draftees;
+    }
+
     public void addUnit(Unit unit){
         squad.add(unit);
     }

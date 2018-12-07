@@ -1,9 +1,6 @@
 package com.common.model.Map;
 
-import com.common.ClientController;
-import com.common.Game;
 import com.common.Message;
-import com.common.SocketManagerCommon;
 import com.common.model.Map.MapNodes.Land;
 import com.common.model.Map.MapNodes.MapNode;
 import com.common.model.Map.MapNodes.Port;
@@ -13,27 +10,21 @@ import com.common.model.utils.Castle;
 import java.util.ArrayList;
 
 public class Map extends Message {
-    private short numberOfPlayers;
-    //dictionary of nodes here "field name" -> "instance of a node"
     ArrayList<MapNode> nodes = new ArrayList<MapNode>();;
 
-    public Map(short numberOfPlayers)
+    public Map()
     {
-        this.numberOfPlayers = numberOfPlayers;
         addAllNodes();
-
-        //full standart init here
     }
 
 
     @Override
-    public void executeOnClient(Game game, SocketManagerCommon socketManager, ClientController controller) {
+    public void executeOnClient() {
 
     }
 
     @Override
-    public Message executeOnServer(Game game, SocketManagerCommon socketManager) {
-        return null;
+    public void executeOnServer() {
     }
 
     public ArrayList<MapNode> getNodes() {

@@ -1,9 +1,6 @@
 package com.common.model.utils;
 
-import com.common.ClientController;
-import com.common.Game;
 import com.common.Message;
-import com.common.SocketManagerCommon;
 
 public abstract class ForImage extends Message {
 
@@ -57,16 +54,5 @@ public abstract class ForImage extends Message {
 
     public void setH(int h) {
         this.h = h;
-    }
-
-
-    @Override
-    public void executeOnClient(Game game, SocketManagerCommon socketManager, ClientController controller) {
-
-    }
-
-    @Override
-    public Message executeOnServer(Game game, SocketManagerCommon socketManager) {
-        return null;
     }
 }

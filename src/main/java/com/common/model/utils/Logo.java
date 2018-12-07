@@ -1,6 +1,6 @@
 package com.common.model.utils;
 
-import com.common.Player;
+import com.common.*;
 
 public class Logo extends ForImage {
     Player player;
@@ -11,5 +11,14 @@ public class Logo extends ForImage {
 
     public Player getPlayer(){
         return player;
+    }
+
+    @Override
+    public void executeOnClient() {
+
+    }
+
+    @Override
+    public void executeOnServer() {
     }
 }
