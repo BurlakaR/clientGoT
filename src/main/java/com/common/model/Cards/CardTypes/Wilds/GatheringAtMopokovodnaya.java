@@ -28,7 +28,7 @@ public class GatheringAtMopokovodnaya extends WildVictory {
 
     @Override
     public void applyForLowestStake(Player player) {
-        CommanderDeck commanders = player.getCommaders();
+        /*CommanderDeck commanders = player.getCommaders();
 
         int minForce = 4, tForce;
         for (Commander commander : commanders.getCommanders())
@@ -45,14 +45,14 @@ public class GatheringAtMopokovodnaya extends WildVictory {
             {
                 commanders.remove(commander);
             }
-        }
+        }*/
     }
 
     @Override
     public void applyForEveryoneElse(ArrayList<Player> players) {
         for (Player player : players){
-            Commander commanderToBeRemoved = controller.getCommander(player);
-            player.getCommaders().remove(commanderToBeRemoved);
+           /* Commander commanderToBeRemoved = controller.getCommander(player);
+            player.getCommaders().remove(commanderToBeRemoved);*/
         }
     }
 

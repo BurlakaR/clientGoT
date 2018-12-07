@@ -11,7 +11,7 @@ public class Stake extends Message {
 
     @Override
     public void executeOnClient(Game game, SocketManager socketManager, ClientController controller) {
-        stake = controller.getStake();
+        controller.getStake();
     }
 
     @Override
