@@ -1,5 +1,6 @@
 package com.common.model.Map.MapNodes;
 
+import com.client.ui.GameWindowController;
 import com.common.ClientController;
 import com.common.Game;
 import com.common.Player;
@@ -16,7 +17,7 @@ public class MapNode extends ForNode {
     private Player owner;
     private Squad squad = new Squad();
     private Order order = new EmptyOrder();
-    private Logo logo = new EmptyLogo();
+    private Logo logo;
     private ArrayList<MapNode> neighbors = new ArrayList<MapNode>();
     private String name;
     private Boolean hasPowerCoin;
@@ -24,7 +25,8 @@ public class MapNode extends ForNode {
     public MapNode(int x, int y, int w, int h, String name) {
         super(x, y, w, h, name);
         this.name = name;
-
+        logo = new EmptyLogo();
+        logo.setX(86); logo.setY(0);
     }
 
     public String getName() {
