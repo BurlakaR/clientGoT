@@ -1,6 +1,7 @@
 package com.common.model.utils;
 
 import com.common.ClientController;
+import com.common.Game;
 import com.common.Message;
 
 //this one would just help get and int stake from every player
@@ -9,12 +10,12 @@ public class Stake extends Message {
 
     @Override
 
-    public void executeOnClient(ClientController controller) {
+    public void executeOnClient(ClientController controller, Game game) {
         controller.getStake();
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
     }
 
     public int getStake() {

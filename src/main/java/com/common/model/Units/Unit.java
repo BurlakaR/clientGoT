@@ -3,7 +3,7 @@ package com.common.model.Units;
 import com.common.Player;
 import com.common.model.utils.ForImage;
 
-public abstract class Unit extends ForImage{
+public abstract class Unit extends ForImage {
     private Player player;
     protected short cost;
     protected short damage;

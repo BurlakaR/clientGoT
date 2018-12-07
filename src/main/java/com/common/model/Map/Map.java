@@ -1,6 +1,7 @@
 package com.common.model.Map;
 
 import com.common.ClientController;
+import com.common.Game;
 import com.common.Message;
 import com.common.model.Map.MapNodes.Land;
 import com.common.model.Map.MapNodes.MapNode;
@@ -20,12 +21,12 @@ public class Map extends Message {
 
 
     @Override
-    public void executeOnClient(ClientController controller) {
+    public void executeOnClient(ClientController controller, Game game) {
 
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
     }
 
     public ArrayList<MapNode> getNodes() {

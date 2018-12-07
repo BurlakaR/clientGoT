@@ -1,6 +1,8 @@
 package com.common.model.Cards.CardTypes.Wilds;
 
-import com.common.*;
+import com.common.ClientController;
+import com.common.Game;
+import com.common.Player;
 import com.common.model.Cards.CardTypes.WildVictory;
 
 import java.util.ArrayList;
@@ -30,11 +32,11 @@ public class MammothRiders extends WildVictory {
     }
 
     @Override
-    public void executeOnClient(ClientController controller) {
+    public void executeOnClient(ClientController controller, Game game) {
 
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
     }
 }

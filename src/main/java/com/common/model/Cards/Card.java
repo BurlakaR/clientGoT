@@ -1,6 +1,5 @@
 package com.common.model.Cards;
 
-import com.common.Message;
 import com.common.model.utils.ForImage;
 
 public abstract class Card extends ForImage {

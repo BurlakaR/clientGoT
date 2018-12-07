@@ -1,6 +1,8 @@
 package com.common.model.Units.UnitTypes;
 
-import com.common.*;
+import com.common.ClientController;
+import com.common.Game;
+import com.common.Player;
 import com.common.model.Units.Unit;
 
 public class Soldier extends Unit {
@@ -14,11 +16,11 @@ public class Soldier extends Unit {
 
 
     @Override
-    public void executeOnClient(ClientController controller) {
+    public void executeOnClient(ClientController controller, Game game) {
 
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
     }
 }

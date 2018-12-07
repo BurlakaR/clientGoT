@@ -1,6 +1,6 @@
 package com.common.model.utils;
 
-public abstract class ForNode extends ForImage{
+public abstract class ForNode extends ForImage {
     int xpane, ypane;
 
 

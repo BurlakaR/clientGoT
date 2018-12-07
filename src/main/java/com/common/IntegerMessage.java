@@ -17,11 +17,11 @@ public class IntegerMessage extends Message {
     }
 
     @Override
-    public void executeOnClient(ClientController controller) {
+    public void executeOnClient(ClientController controller, Game game) {
 
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
     }
 }

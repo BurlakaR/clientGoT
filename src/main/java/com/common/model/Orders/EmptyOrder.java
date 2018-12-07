@@ -1,6 +1,7 @@
 package com.common.model.Orders;
 
 import com.common.ClientController;
+import com.common.Game;
 
 public class EmptyOrder extends Order {
     public EmptyOrder() {
@@ -9,11 +10,11 @@ public class EmptyOrder extends Order {
     }
 
     @Override
-    public void executeOnClient(ClientController controller) {
+    public void executeOnClient(ClientController controller, Game game) {
 
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
     }
 }

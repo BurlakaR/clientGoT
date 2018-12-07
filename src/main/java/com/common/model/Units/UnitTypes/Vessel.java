@@ -1,6 +1,8 @@
 package com.common.model.Units.UnitTypes;
 
-import com.common.*;
+import com.common.ClientController;
+import com.common.Game;
+import com.common.Player;
 import com.common.model.Units.Unit;
 
 public class Vessel extends Unit {
@@ -13,11 +15,11 @@ public class Vessel extends Unit {
     }
 
     @Override
-    public void executeOnClient(ClientController controller) {
+    public void executeOnClient(ClientController controller, Game game) {
 
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
     }
 }

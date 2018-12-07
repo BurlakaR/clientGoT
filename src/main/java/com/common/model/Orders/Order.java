@@ -1,6 +1,7 @@
 package com.common.model.Orders;
 
 import com.common.ClientController;
+import com.common.Game;
 import com.common.model.Map.MapNodes.MapNode;
 import com.common.model.utils.ForImage;
 
@@ -20,12 +21,12 @@ public abstract class Order extends ForImage {
     }
 
     @Override
-    public void executeOnClient(ClientController controller){
+    public void executeOnClient(ClientController controller, Game game){
         setUsed(true);
     }
 
     @Override
-    public void executeOnServer(){
+    public void executeOnServer(Game game){
         setUsed(true);
     }
 

@@ -1,6 +1,8 @@
 package com.common.model.utils;
 
-import com.common.*;
+import com.common.ClientController;
+import com.common.Game;
+import com.common.Player;
 
 public class Logo extends ForImage {
     Player player;
@@ -14,11 +16,11 @@ public class Logo extends ForImage {
     }
 
     @Override
-    public void executeOnClient(ClientController controller) {
+    public void executeOnClient(ClientController controller, Game game) {
 
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
     }
 }

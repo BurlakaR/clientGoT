@@ -1,7 +1,7 @@
 package com.common.model.Cards.CardTypes;
 
-import com.common.model.Cards.Card;
 import com.common.Player;
+import com.common.model.Cards.Card;
 
 import java.util.ArrayList;
 

@@ -18,7 +18,6 @@ import com.common.model.utils.ComparePlayersSword;
 import java.util.ArrayList;
 
 public class Game extends Message {
-    private static Game INSTANCE;
     private Map map;
     private int moveNumber = 1;
     private int currentWildForce = 0;
@@ -33,9 +32,9 @@ public class Game extends Message {
     private ArrayList<Player> ironThrone = new ArrayList<>();
     private ArrayList<Player> valyrianSword = new ArrayList<>();
     private ArrayList<Player> raven = new ArrayList<>();
-    private Auction auction; //I really don't like it here...
+    private Auction auction = null; //I really don't like it here...
 
-    private Game(){
+    public Game(){
         orders=new ArrayList<>();
         orders.add(new OrderFire(true));
         orders.add(new OrderFire(false));
@@ -100,14 +99,6 @@ public class Game extends Message {
             //throw new Exception("Number of players should be between 3 and 6");
         }
 
-    }
-
-    public static Game getInstance() {
-        if(INSTANCE == null)
-        {
-            INSTANCE = new Game();
-        }
-        return INSTANCE;
     }
 
     public void RecountSupply()
@@ -196,10 +187,6 @@ public class Game extends Message {
             }
         }
 
-
-
-
-
         ironThrone.addAll(players);
         ironThrone.sort(new ComparePlayersIron());
         valyrianSword.addAll(players);
@@ -221,7 +208,6 @@ public class Game extends Message {
             }
         }
     }
-
 
     public Auction getAuction() {
         return auction;
@@ -248,12 +234,12 @@ public class Game extends Message {
     }
 
     @Override
-    public void executeOnClient(ClientController controller) {
+    public void executeOnClient(ClientController controller, Game game) {
         //here client should renew its game object and also render it to gui
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
         //server renews its game object and sends a new version to everybody
     }
 }

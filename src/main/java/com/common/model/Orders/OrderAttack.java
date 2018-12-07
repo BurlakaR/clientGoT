@@ -1,6 +1,7 @@
 package com.common.model.Orders;
 
 import com.common.ClientController;
+import com.common.Game;
 import com.common.model.Units.Squad;
 
 public class OrderAttack extends Order {
@@ -14,12 +15,12 @@ public class OrderAttack extends Order {
     }
 
     @Override
-    public void executeOnClient(ClientController controller) {
+    public void executeOnClient(ClientController controller, Game game) {
 
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
     }
 
     public boolean isLeavePowerCoinOnPreviousNode() {

@@ -1,6 +1,7 @@
 package com.common.model.Cards.CardTypes.Commanders.Barateons;
 
 import com.common.ClientController;
+import com.common.Game;
 import com.common.model.Cards.CardTypes.Commander;
 
 public class SalladorSaan extends Commander {
@@ -9,11 +10,11 @@ public class SalladorSaan extends Commander {
     }
 
     @Override
-    public void executeOnClient(ClientController controller) {
+    public void executeOnClient(ClientController controller, Game game) {
 
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
     }
 }

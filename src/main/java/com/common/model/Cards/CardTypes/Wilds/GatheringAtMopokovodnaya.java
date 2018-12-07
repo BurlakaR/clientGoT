@@ -1,6 +1,8 @@
 package com.common.model.Cards.CardTypes.Wilds;
 
-import com.common.*;
+import com.common.ClientController;
+import com.common.Game;
+import com.common.Player;
 import com.common.model.Cards.CardTypes.WildVictory;
 import com.common.model.utils.Auction;
 
@@ -50,14 +52,14 @@ public class GatheringAtMopokovodnaya extends WildVictory {
     }
 
     @Override
-    public void executeOnClient(ClientController controller) {
-        Auction auction = Game.getInstance().getAuction();
+    public void executeOnClient(ClientController controller, Game game) {
+        Auction auction = game.getAuction();
         applyForHighestStake(auction.getHighestStake());
         applyForLowestStake(auction.getLowestStake());
         applyForEveryoneElse(auction.getEverybodyExceptHighestAndLowestStake());
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
     }
 }

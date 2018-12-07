@@ -1,6 +1,9 @@
 package com.common.model.utils;
 
-import com.common.*;
+import com.common.ClientController;
+import com.common.Game;
+import com.common.Message;
+import com.common.Player;
 
 import java.util.ArrayList;
 
@@ -24,12 +27,12 @@ public class Auction extends Message {
     }
 
     @Override
-    public void executeOnClient(ClientController controller) {
+    public void executeOnClient(ClientController controller, Game game) {
 
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
         //multiple send of Stake objects. Then convert to Stake and get ints;
     }
 }

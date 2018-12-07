@@ -1,10 +1,14 @@
 package com.common.model.Map.MapNodes;
 
-import com.common.*;
+import com.common.ClientController;
+import com.common.Game;
+import com.common.Player;
 import com.common.model.Orders.EmptyOrder;
 import com.common.model.Orders.Order;
 import com.common.model.Units.Squad;
-import com.common.model.utils.*;
+import com.common.model.utils.EmptyLogo;
+import com.common.model.utils.ForNode;
+import com.common.model.utils.Logo;
 
 import java.util.ArrayList;
 
@@ -65,12 +69,12 @@ public class MapNode extends ForNode {
 
     //one more really bad place for those guys
     @Override
-    public void executeOnClient(ClientController controller) {
+    public void executeOnClient(ClientController controller, Game game) {
 
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
     }
 
     public Boolean getHasPowerCoin() {

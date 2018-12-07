@@ -1,6 +1,7 @@
 package com.common.model.Cards.CardTypes.Commanders.Greyjoys;
 
 import com.common.ClientController;
+import com.common.Game;
 import com.common.model.Cards.CardTypes.Commander;
 
 public class DagmerDented extends Commander {
@@ -8,11 +9,11 @@ public class DagmerDented extends Commander {
         super("", 1);
     }
     @Override
-    public void executeOnClient(ClientController controller) {
+    public void executeOnClient(ClientController controller, Game game) {
 
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
     }
 }

@@ -17,6 +17,6 @@ public interface ClientController {
     //gets stake for auctions and sends it
     void getStake();//Stake
 
-    //puts a game into respective mode, player give orders and confirms.
+    //puts a game into respective mode, player give orders and confirms. Map is filled with orders.
     void putOrders();//Map
 }

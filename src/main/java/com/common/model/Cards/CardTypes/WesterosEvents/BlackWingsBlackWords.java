@@ -1,6 +1,7 @@
 package com.common.model.Cards.CardTypes.WesterosEvents;
 
 import com.common.ClientController;
+import com.common.Game;
 import com.common.model.Cards.CardTypes.WesterosEvent;
 
 public class BlackWingsBlackWords extends WesterosEvent {
@@ -13,11 +14,11 @@ public class BlackWingsBlackWords extends WesterosEvent {
     }
 
     @Override
-    public void executeOnClient(ClientController controller) {
+    public void executeOnClient(ClientController controller, Game game) {
 
     }
 
     @Override
-    public void executeOnServer() {
+    public void executeOnServer(Game game) {
     }
 }
