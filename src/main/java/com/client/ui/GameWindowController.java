@@ -28,18 +28,19 @@ public class GameWindowController {
     public void start(){
         //Look at FirstWindowController
         //Next 2 Strings comment for work without server
-        Game game=(Game)socketManager.receive();
-        game.setCurrentPlayer(((Player) socketManager.receive()));
-        System.out.println(game.getCurrentPlayer().getName());
-        GameWindowController.INSTANCE = game;
+        //Game game=(Game)socketManager.receive();
+        //game.setCurrentPlayer(((Player) socketManager.receive()));
+        //System.out.println(game.getCurrentPlayer().getName());
+        //GameWindowController.INSTANCE = game;
 
         //Next 2 Strings comment for work with server
-        //Game game=new Game();
-        //game.setNumberOfPlayers((short)3);
+        INSTANCE=new Game();
+        INSTANCE.setNumberOfPlayers((short)3);
+
 
         View view=new View(imageGroup);
         ImageBuilder imageBuilder=new ImageBuilder();
-        ModelViewBinding modelViewBinding = new ModelViewBinding(game, view, imageBuilder);
+        ModelViewBinding modelViewBinding = new ModelViewBinding(INSTANCE, view, imageBuilder);
 
         controllerViewMap= new ControllerViewMap(modelViewBinding);
         controllerViewMap.ableAllNodes();

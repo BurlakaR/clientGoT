@@ -88,10 +88,11 @@ public class Game extends Message {
     public void setNumberOfPlayers(int numberOfPlayers) {
         if(numberOfPlayers >= 0 && numberOfPlayers <= 6)//zero is for tests
         {
-            numberOfPlayers = numberOfPlayers;
-            this.map = new Map();
+            this.numberOfPlayers = numberOfPlayers;
 
+            this.map = new Map();
             addPlayers(numberOfPlayers);
+
             starRecount();
         }
         else
