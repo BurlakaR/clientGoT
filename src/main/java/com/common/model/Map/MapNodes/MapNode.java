@@ -14,6 +14,7 @@ import com.common.model.utils.Logo;
 import java.util.ArrayList;
 
 public class MapNode extends ForNode {
+    private boolean isAble=true;
     private Player owner;
     private Squad squad = new Squad();
     private Order order = new EmptyOrder();
@@ -26,7 +27,6 @@ public class MapNode extends ForNode {
         super(x, y, w, h, name);
         this.name = name;
         logo = new EmptyLogo();
-        logo.setX(86); logo.setY(0);
     }
 
     public String getName() {
@@ -85,5 +85,13 @@ public class MapNode extends ForNode {
 
     public void setHasPowerCoin(Boolean hasPowerCoin) {
         this.hasPowerCoin = hasPowerCoin;
+    }
+
+    public boolean isAble() {
+        return isAble;
+    }
+
+    public void setAble(boolean able) {
+        isAble = able;
     }
 }

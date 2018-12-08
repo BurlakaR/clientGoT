@@ -1,5 +1,6 @@
 package com.common;
 
+import com.common.model.Map.Map;
 import com.common.model.Map.MapNodes.MapNode;
 
 //A comment after the method says what would be sent by GUI handlers to the server as a result of execution
@@ -19,4 +20,8 @@ public interface ClientController {
 
     //puts a game into respective mode, player give orders and confirms. Map is filled with orders.
     void putOrders();//Map
+
+    void render(Game game);
+
+    void render(Map map);
 }

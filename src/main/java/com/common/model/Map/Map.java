@@ -22,7 +22,7 @@ public class Map extends Message {
 
     @Override
     public void executeOnClient(ClientController controller, Game game) {
-
+        controller.render(this);
     }
 
     @Override
@@ -425,7 +425,7 @@ public class Map extends Message {
             add(nodes.get(51));
             add(nodes.get(8));
         }});
-        nodes.get(35).setXYpane(116, 1819);
+        nodes.get(35).setXYpane(792, 2326);
         //OldTown
         nodes.get(36).setNeighbors(new ArrayList<MapNode>(){{
             add(nodes.get(1));

@@ -8,9 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Colors {
-    public Map<Player, ColorAdjust> colorAdjustMap;
+    static public Map<Player, ColorAdjust> colorAdjustMap;
 
-    public Colors(ArrayList <Player> players){
+    static public void Colors(ArrayList <Player> players){
         colorAdjustMap = new HashMap<>();
         ArrayList<ColorAdjust> colors = new ArrayList<>();
         ColorAdjust buf = new ColorAdjust(); buf.setHue(0.7); colors.add(buf);
@@ -27,28 +27,34 @@ public class Colors {
         }
     }
 
-    public ColorAdjust getColor(Player player){
+    static public ColorAdjust getColor(Player player){
         return colorAdjustMap.get(player);
     }
 
-    public ColorAdjust setBright(ColorAdjust colorAdjust){
+    static public ColorAdjust setBright(ColorAdjust colorAdjust){
         ColorAdjust buf = clone(colorAdjust);
         buf.setBrightness(0.3);
         return buf;
     }
 
-    public ColorAdjust setUsual(ColorAdjust colorAdjust){
+    static public ColorAdjust setUsual(ColorAdjust colorAdjust){
         ColorAdjust buf = clone(colorAdjust);
         buf.setBrightness(0);
         return buf;
     }
 
-    private ColorAdjust clone(ColorAdjust colorAdjust){
+    static private ColorAdjust clone(ColorAdjust colorAdjust){
         ColorAdjust clone = new ColorAdjust();
         clone.setHue(colorAdjust.getHue());
         clone.setBrightness(colorAdjust.getBrightness());
         clone.setSaturation(colorAdjust.getSaturation());
         clone.setContrast(colorAdjust.getContrast());
         return clone;
+    }
+
+    static public ColorAdjust setBlack(ColorAdjust colorAdjust){
+        ColorAdjust buf = clone(colorAdjust);
+        buf.setBrightness(-0.9);
+        return buf;
     }
 }

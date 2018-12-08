@@ -12,15 +12,17 @@ public class View {
 
 
     public View(Group root){
-
         this.root=root;
         viewMap=new ViewMap(root);
-
     }
 
 
     public ViewMap getViewMap() {
         return viewMap;
+    }
+
+    public void rerender(){
+        viewMap=new ViewMap(root);
     }
 
     public Group getRoot() {

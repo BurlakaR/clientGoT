@@ -9,6 +9,9 @@ import javafx.scene.Group;
 
 public class GameWindowController {
     private static Game INSTANCE;
+    private static View INSTANCE_VIEW;
+    private static ImageBuilder INSTANCE_IMG_BUILDER;
+    private static ControllerImplementation INSTANCE_CONTROLLER;
 
     ControllerViewMap controllerViewMap;
 
@@ -18,6 +21,18 @@ public class GameWindowController {
 
     public static Game getGameInstance() {
         return INSTANCE;
+    }
+
+    public static View getInstanceView() {
+        return INSTANCE_VIEW;
+    }
+
+    public static ImageBuilder getInstanceImgBuilder() {
+        return INSTANCE_IMG_BUILDER;
+    }
+
+    public static void setINSTANCE(Game INSTANCE) {
+        GameWindowController.INSTANCE = INSTANCE;
     }
 
     public void setSocketManager(SocketManager socketManager) {
@@ -35,14 +50,14 @@ public class GameWindowController {
 
         //Next 2 Strings comment for work with server
         INSTANCE=new Game();
-        INSTANCE.setNumberOfPlayers((short)3);
+        INSTANCE.setNumberOfPlayers((short)6);
+        Colors.Colors(getGameInstance().getPlayers());
 
 
-        View view=new View(imageGroup);
-        ImageBuilder imageBuilder=new ImageBuilder();
-        ModelViewBinding modelViewBinding = new ModelViewBinding(INSTANCE, view, imageBuilder);
+        INSTANCE_VIEW=new View(imageGroup);
+        INSTANCE_IMG_BUILDER=new ImageBuilder();
+        INSTANCE_CONTROLLER=new ControllerImplementation();
 
-        controllerViewMap= new ControllerViewMap(modelViewBinding);
-        controllerViewMap.ableAllNodes();
+        INSTANCE.getMap().executeOnClient(INSTANCE_CONTROLLER, INSTANCE);
     }
 }

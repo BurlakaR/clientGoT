@@ -5,35 +5,39 @@ import com.common.model.Map.MapNodes.MapNode;
 import com.common.model.utils.ForImage;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 
 public class ModelViewBinding {
     BiMap<ForImage, ImageView> mapView;
     int nodeCount=0;
 
-    Game game;
-    View view;
-    ImageBuilder imageBuilder;
+    public ModelViewBinding(){
 
-    public ModelViewBinding(Game game, View view, ImageBuilder imageBuilder){
-        mapView = HashBiMap.create();
-        this.game=game;
-        this.view=view;
-        this.imageBuilder=imageBuilder;
-        initializeNodes();
+        rerender(GameWindowController.getGameInstance());
+
     }
 
-    private void initializeNodes(){
-        for(int i=0; i<game.getMap().getNodes().size();i++){
-            createNode(game.getMap().getNodes().get(i));
+    public void rerender(Game game){
+        nodeCount=0;
+        mapView = HashBiMap.create();
+        GameWindowController.getInstanceView().rerender();
+        ImageView toSave=(ImageView) GameWindowController.getInstanceView().getRoot().lookup("#save");
+        GameWindowController.getInstanceView().getRoot().getChildren().removeAll(GameWindowController.getInstanceView().getRoot().getChildren());
+        GameWindowController.getInstanceView().getRoot().getChildren().add(toSave);
+        for(int i=0; i<GameWindowController.getGameInstance().getMap().getNodes().size();i++){
+            createNode(GameWindowController.getGameInstance().getMap().getNodes().get(i));
         }
     }
 
     private void createNode(MapNode forImage){
-        ImageView buf = imageBuilder.createView(forImage);
+        ImageView buf = GameWindowController.getInstanceImgBuilder().createView(forImage);
+        if(!forImage.isAble()){
+            buf.setEffect(Colors.setBlack(new ColorAdjust()));
+        }
         nodeCount++;
         mapView.put(forImage, buf);
-        view.getViewMap().addNodeView(buf, imageBuilder.createNodePane(forImage));
+        GameWindowController.getInstanceView().getViewMap().addNodeView(buf, GameWindowController.getInstanceImgBuilder().createNodePane(forImage));
     }
 
     public ImageView getNodeView(MapNode mapNode){

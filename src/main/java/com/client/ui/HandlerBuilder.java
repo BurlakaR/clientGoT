@@ -14,18 +14,18 @@ import java.util.ArrayList;
 public class HandlerBuilder {
     ModelViewBinding modelViewBinding;
     Group root;
-    Colors colors;
 
     EventHandler nodeEnter, nodeExit, nodeClicked, nodeAnotherClicked;
 
     public HandlerBuilder(ModelViewBinding modelViewBinding, Group root){
         this.modelViewBinding=modelViewBinding;
         this.root=root;
-        colors = new Colors(this.modelViewBinding.game.getPlayers());
 
-        for(int i =0; i<modelViewBinding.view.getViewMap().size(); i++){
-            ImageView buf =modelViewBinding.view.getViewMap().getNodeView(i).getNodeImage();
-            buf.setEffect(colors.getColor(modelViewBinding.getNode(buf).getOwner()));
+
+        for(int i =0; i<GameWindowController.getInstanceView().getViewMap().size(); i++){
+            ImageView buf =GameWindowController.getInstanceView().getViewMap().getNodeView(i).getNodeImage();
+            if(modelViewBinding.getNode(buf).isAble())buf.setEffect(Colors.getColor(modelViewBinding.getNode(buf).getOwner()));
+
         }
 
         nodeEnter=new EventHandler<MouseEvent>()  {
@@ -34,7 +34,7 @@ public class HandlerBuilder {
                 ImageView source =(ImageView)event.getSource();
                 Player owner = modelViewBinding.getNode(source).getOwner();
                 if(owner!=null)
-                source.setEffect(colors.setBright(colors.getColor(owner)));
+                source.setEffect(Colors.setBright(Colors.getColor(owner)));
 
             }
         };
@@ -45,7 +45,7 @@ public class HandlerBuilder {
                 ImageView source =(ImageView)event.getSource();
                 Player owner = modelViewBinding.getNode(source).getOwner();
                 if(owner!=null)
-                source.setEffect(colors.setUsual(colors.getColor(owner)));
+                source.setEffect(Colors.setUsual(Colors.getColor(owner)));
 
             }
         };
@@ -57,8 +57,8 @@ public class HandlerBuilder {
                 source.setOnMouseEntered(null);
                 source.setOnMouseExited(null);
                 source.setOnMouseClicked(nodeAnotherClicked);
-                root.getChildren().remove(modelViewBinding.view.getViewMap().getNodeView(source).getNodePane().getCoin());
-                root.getChildren().addAll(modelViewBinding.view.getViewMap().getNodeView(source).getNodePane().getUnits());
+                root.getChildren().remove(GameWindowController.getInstanceView().getViewMap().getNodeView(source).getNodePane().getCoin());
+                root.getChildren().addAll(GameWindowController.getInstanceView().getViewMap().getNodeView(source).getNodePane().getUnits());
             }
         };
 
@@ -69,8 +69,8 @@ public class HandlerBuilder {
                 source.setOnMouseEntered(nodeEnter);
                 source.setOnMouseExited(nodeExit);
                 source.setOnMouseClicked(nodeClicked);
-                root.getChildren().removeAll(modelViewBinding.view.getViewMap().getNodeView(source).getNodePane().getUnits());
-                root.getChildren().add(modelViewBinding.view.getViewMap().getNodeView(source).getNodePane().getCoin());
+                root.getChildren().removeAll(GameWindowController.getInstanceView().getViewMap().getNodeView(source).getNodePane().getUnits());
+                root.getChildren().add(GameWindowController.getInstanceView().getViewMap().getNodeView(source).getNodePane().getCoin());
             }
         };
     }

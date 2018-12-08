@@ -188,8 +188,22 @@ public class Game extends Message {
         map.getNodes().get(12).setSquad(squad);
         squad=new Squad(); squad.addUnit(new Soldier(Baratheon));
         map.getNodes().get(24).setSquad(squad);
-        squad=new Squad(); squad.addUnit(new Vessel(Baratheon));
+        squad=new Squad(); squad.addUnit(new Vessel(Baratheon)); squad.addUnit(new Vessel(Baratheon));
         map.getNodes().get(5).setSquad(squad);
+
+        squad=new Squad(); squad.addUnit(new Soldier(Stark)); squad.addUnit(new Knight(Stark));
+        map.getNodes().get(7).setSquad(squad);
+        squad=new Squad(); squad.addUnit(new Soldier(Stark));
+        map.getNodes().get(2).setSquad(squad);
+        squad=new Squad(); squad.addUnit(new Vessel(Stark));
+        map.getNodes().get(13).setSquad(squad);
+
+        squad=new Squad(); squad.addUnit(new Soldier(Lannister)); squad.addUnit(new Knight(Lannister));
+        map.getNodes().get(26).setSquad(squad);
+        squad=new Squad(); squad.addUnit(new Soldier(Lannister));
+        map.getNodes().get(19).setSquad(squad);
+        squad=new Squad(); squad.addUnit(new Vessel(Lannister));
+        map.getNodes().get(18).setSquad(squad);
 
 
         players.add(Stark);
@@ -198,12 +212,55 @@ public class Game extends Message {
         if(numberOfPlayers>3){
             Player Greyjoy = new Player("Greyjoy", 2, 1, 5, 1, 6, new CommanderDeck());
             players.add(Greyjoy);
+
+            squad=new Squad(); squad.addUnit(new Soldier(Greyjoy)); squad.addUnit(new Knight(Greyjoy));
+            map.getNodes().get(44).setSquad(squad);
+            squad=new Squad(); squad.addUnit(new Soldier(Greyjoy));
+            map.getNodes().get(29).setSquad(squad);
+            squad=new Squad(); squad.addUnit(new Vessel(Greyjoy));
+            map.getNodes().get(15).setSquad(squad);
+            squad=new Squad(); squad.addUnit(new Vessel(Greyjoy));
+            map.getNodes().get(47).setSquad(squad);
+
             if(numberOfPlayers>4){
                 Player Tyrell = new Player("Tyrell", 2, 1, 6, 2, 5, new CommanderDeck());
                 players.add(Tyrell);
+
+                squad=new Squad(); squad.addUnit(new Soldier(Tyrell)); squad.addUnit(new Knight(Tyrell));
+                map.getNodes().get(38).setSquad(squad);
+                squad=new Squad(); squad.addUnit(new Soldier(Tyrell));
+                map.getNodes().get(10).setSquad(squad);
+                squad=new Squad(); squad.addUnit(new Vessel(Tyrell));
+                map.getNodes().get(1).setSquad(squad);
+
                 if(numberOfPlayers>5){
                     Player Martell = new Player("Martell", 2, 1, 4, 3, 3, new CommanderDeck());
                     players.add(Martell);
+
+                    squad=new Squad(); squad.addUnit(new Soldier(Martell)); squad.addUnit(new Knight(Martell));
+                    map.getNodes().get(35).setSquad(squad);
+                    squad=new Squad(); squad.addUnit(new Soldier(Martell));
+                    map.getNodes().get(9).setSquad(squad);
+                    squad=new Squad(); squad.addUnit(new Vessel(Martell));
+                    map.getNodes().get(11).setSquad(squad);
+                }
+            }
+        }
+
+        if(numberOfPlayers<6){
+            map.getNodes().get(17).setAble(false);
+            map.getNodes().get(51).setAble(false);
+            map.getNodes().get(9).setAble(false);
+            map.getNodes().get(35).setAble(false);
+            if(numberOfPlayers<5){
+                map.getNodes().get(36).setAble(false);
+                map.getNodes().get(10).setAble(false);
+                map.getNodes().get(52).setAble(false);
+                if(numberOfPlayers<4){
+                    map.getNodes().get(44).setAble(false);
+                    map.getNodes().get(47).setAble(false);
+                    map.getNodes().get(43).setAble(false);
+                    map.getNodes().get(50).setAble(false);
                 }
             }
         }
@@ -257,6 +314,7 @@ public class Game extends Message {
     @Override
     public void executeOnClient(ClientController controller, Game game) {
         //here client should renew its game object and also render it to gui
+        controller.render(this);
     }
 
     @Override

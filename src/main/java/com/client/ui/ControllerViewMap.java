@@ -12,21 +12,22 @@ public class ControllerViewMap {
 
     public ControllerViewMap(ModelViewBinding modelViewBinding){
         this.modelViewBinding=modelViewBinding;
-        this.root=modelViewBinding.view.getRoot();
+        this.root=GameWindowController.getInstanceView().getRoot();
         this.handlerBuilder=new HandlerBuilder(modelViewBinding, root);
+        ableAllNodes();
 
     }
 
 
     public void ableAllNodes(){
         for(int i=0; i<modelViewBinding.getNodeCount(); i++){
-            ableChoose(modelViewBinding.getNodeView(modelViewBinding.game.getMap().getNodes().get(i)));
+            ableChoose(modelViewBinding.getNodeView(GameWindowController.getGameInstance().getMap().getNodes().get(i)));
         }
     }
 
     public void disableAllNodes(){
         for(int i=0; i<modelViewBinding.getNodeCount(); i++){
-            disableChoose(modelViewBinding.getNodeView(modelViewBinding.game.getMap().getNodes().get(i)));
+            disableChoose(modelViewBinding.getNodeView(GameWindowController.getGameInstance().getMap().getNodes().get(i)));
         }
     }
 
