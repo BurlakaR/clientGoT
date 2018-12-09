@@ -1,7 +1,8 @@
 package com.common.model.Map.MapNodes;
 
-import com.common.ClientController;
 import com.common.Game;
+import com.common.IClientController;
+import com.common.ISocketManager;
 import com.common.Player;
 import com.common.model.Orders.EmptyOrder;
 import com.common.model.Orders.Order;
@@ -70,12 +71,12 @@ public class MapNode extends ForNode {
 
     //one more really bad place for those guys
     @Override
-    public void executeOnClient(ClientController controller, Game game) {
+    public void executeOnClient(IClientController controller, Game game) {
 
     }
 
     @Override
-    public void executeOnServer(Game game) {
+    public void executeOnServer(Game game, ISocketManager socketManager) {
     }
 
     public Boolean getHasPowerCoin() {

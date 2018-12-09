@@ -4,7 +4,7 @@ import com.common.model.Map.Map;
 import com.common.model.Map.MapNodes.MapNode;
 
 //A comment after the method says what would be sent by GUI handlers to the server as a result of execution
-public interface ClientController {
+public interface IClientController {
     //shows user a list of available commanders and asks to choose between them, sends a choice.
     void getCommander();//Commander
 

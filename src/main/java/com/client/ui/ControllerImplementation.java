@@ -1,12 +1,12 @@
 package com.client.ui;
 
-import com.common.ClientController;
 import com.common.Game;
+import com.common.IClientController;
 import com.common.model.Map.Map;
 import com.common.model.Map.MapNodes.MapNode;
 
 
-public class ControllerImplementation implements ClientController {
+public class ControllerImplementation implements IClientController {
     ModelViewBinding modelViewBinding = new ModelViewBinding();
 
     ControllerViewMap controllerViewMap= new ControllerViewMap(modelViewBinding);
