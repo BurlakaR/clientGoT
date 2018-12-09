@@ -27,6 +27,8 @@ public class HandlerBuilder {
     EventHandler<MouseEvent> nodeClicked;
     EventHandler<MouseEvent> nodeAnotherClicked;
     EventHandler<MouseEvent> orderClicked;
+    EventHandler<MouseEvent> nodeClickedWithOrder;
+    EventHandler<MouseEvent> nodeAnotherClickedWithOrder;
 
     public HandlerBuilder(ModelViewBinding modelViewBinding, Group root){
         this.modelViewBinding=modelViewBinding;
@@ -90,25 +92,25 @@ public class HandlerBuilder {
         orders.addAll(GWC.getGameInstance().getOrders());
 
 
-        nodeClicked=new EventHandler<MouseEvent>() {
+        nodeClickedWithOrder=new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 ImageView source =(ImageView)event.getSource();
                 source.setOnMouseEntered(null);
                 source.setOnMouseExited(null);
-                source.setOnMouseClicked(nodeAnotherClicked);
+                source.setOnMouseClicked(nodeAnotherClickedWithOrder);
                 root.getChildren().remove(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getOrder());
                 root.getChildren().addAll(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getUnits());
             }
         };
 
-        nodeAnotherClicked=new EventHandler<MouseEvent>() {
+        nodeAnotherClickedWithOrder=new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 ImageView source =(ImageView)event.getSource();
                 source.setOnMouseEntered(nodeEnter);
                 source.setOnMouseExited(nodeExit);
-                source.setOnMouseClicked(nodeClicked);
+                source.setOnMouseClicked(nodeClickedWithOrder);
                 root.getChildren().removeAll(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getUnits());
                 root.getChildren().add(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getOrder());
             }

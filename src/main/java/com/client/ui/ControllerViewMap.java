@@ -55,7 +55,7 @@ public class ControllerViewMap {
             node = modelViewBinding.getNode(buf);
             viewNodeMap = GWC.getInstanceView().getViewMap().getNodeView(buf);
             if(node.getOwner()!=null&&node.getOwner().equals(GWC.getGameInstance().getCurrentPlayer())&&node.getSquad().size()>0){
-                buf.setOnMouseClicked(handlerBuilder.nodeClicked);
+                buf.setOnMouseClicked(handlerBuilder.nodeClickedWithOrder);
                 root.getChildren().remove(viewNodeMap.getNodePane().getCoin());
                 order = viewNodeMap.getNodePane().getOrder();
                 order.setLayoutX(viewNodeMap.getNodePane().getCoin().getLayoutX());
