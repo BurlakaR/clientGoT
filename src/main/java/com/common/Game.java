@@ -312,13 +312,13 @@ public class Game extends Message {
     }
 
     @Override
-    public void executeOnClient(ClientController controller, Game game) {
+    public void executeOnClient(IClientController controller, Game game) {
         //here client should renew its game object and also render it to gui
         controller.render(this);
     }
 
     @Override
-    public void executeOnServer(Game game) {
+    public void executeOnServer(Game game, ISocketManager socketManager) {
         //server renews its game object and sends a new version to everybody
     }
 }

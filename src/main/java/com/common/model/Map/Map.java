@@ -1,7 +1,8 @@
 package com.common.model.Map;
 
-import com.common.ClientController;
 import com.common.Game;
+import com.common.IClientController;
+import com.common.ISocketManager;
 import com.common.Message;
 import com.common.model.Map.MapNodes.Land;
 import com.common.model.Map.MapNodes.MapNode;
@@ -21,12 +22,20 @@ public class Map extends Message {
 
 
     @Override
-    public void executeOnClient(ClientController controller, Game game) {
+    public void executeOnClient(IClientController controller, Game game) {
         controller.render(this);
     }
 
     @Override
-    public void executeOnServer(Game game) {
+    public void executeOnServer(Game game, ISocketManager socketManager) {
+    }
+
+    public void addOrders(Map m){
+        for(int i = 0; i < m.nodes.size(); i++){
+            if(!m.nodes.get(i).getOrder().orderIsEmpty()){
+                this.getNodes().get(i).setOrder(m.nodes.get(i).getOrder());
+            }
+        }
     }
 
     public ArrayList<MapNode> getNodes() {
@@ -62,7 +71,7 @@ public class Map extends Message {
         nodes.add(new Land(705, 1561, 340, 360, "KingForest", null, 0, 1));//24
         nodes.add(new Land(138, 911, 216, 145, "StoneFingers", new Castle(1, 0), 0, 0));//25
         nodes.add(new Land(160, 1333, 281, 266, "Lannisport", new Castle(2, 2), 2 , 0));//26
-        nodes.add(new Land (618, 1090, 479, 332, "MoonMountaints", null, 1 , 0));//27
+        nodes.add(new Land(618, 1090, 479, 332, "MoonMountaints", null, 1 , 0));//27
         nodes.add(new Land(796, 1250, 331, 152, "EagleNest", new Castle(1, 6), 1 ,1));//28
         nodes.add(new Land(338, 890, 180, 200, "Neck", null, 1 , 0));//29
         nodes.add(new Land(706, 983, 372, 212, "Fingers", null, 1, 0));//30

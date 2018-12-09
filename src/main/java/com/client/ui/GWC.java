@@ -14,7 +14,7 @@ public class GWC {
     private static Game INSTANCE;
     private static View INSTANCE_VIEW;
     private static ImageBuilder INSTANCE_IMG_BUILDER;
-    private static ControllerImplementation INSTANCE_CONTROLLER;
+    private static Player.ControllerImplementation INSTANCE_CONTROLLER;
     private static SocketManager socketManager;
 
 
@@ -36,7 +36,7 @@ public class GWC {
 
     public static SocketManager getInstanceSockets(){ return socketManager;}
 
-    public static ControllerImplementation getInstanceController() {return INSTANCE_CONTROLLER;}
+    public static Player.ControllerImplementation getInstanceController() {return INSTANCE_CONTROLLER;}
 
     public static void setINSTANCE(Game INSTANCE) {
         GWC.INSTANCE = INSTANCE;
