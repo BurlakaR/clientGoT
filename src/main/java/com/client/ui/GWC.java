@@ -4,7 +4,9 @@ import com.client.ui.view.View;
 import com.common.Game;
 import com.client.communication.*;
 import com.common.IntegerMessage;
+import com.common.Message;
 import com.common.Player;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 
@@ -70,7 +72,13 @@ public class GWC {
 
         new Thread(()->{
             while(true){
-                socketManager.receive().executeOnClient(getInstanceController(), getGameInstance());
+                Message mes = socketManager.receive();
+                Platform.runLater(
+                        () -> {
+                            mes.executeOnClient(getInstanceController(), getGameInstance());
+                        }
+                );
+
             }
         }).start();
 

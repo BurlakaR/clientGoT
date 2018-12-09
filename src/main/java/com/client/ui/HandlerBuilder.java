@@ -68,7 +68,7 @@ public class HandlerBuilder {
                 source.setOnMouseEntered(null);
                 source.setOnMouseExited(null);
                 source.setOnMouseClicked(nodeAnotherClicked);
-                root.getChildren().remove(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getCoin());
+                root.getChildren().remove(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getOrder());
                 root.getChildren().addAll(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getUnits());
             }
         };
@@ -81,7 +81,7 @@ public class HandlerBuilder {
                 source.setOnMouseExited(nodeExit);
                 source.setOnMouseClicked(nodeClicked);
                 root.getChildren().removeAll(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getUnits());
-                root.getChildren().add(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getCoin());
+                root.getChildren().add(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getOrder());
             }
         };
     }

@@ -39,6 +39,7 @@ public class ControllerImplementation implements IClientController {
     @Override
     public void render(Game game) {
         GWC.setINSTANCE(game);
+        Colors.Colors(GWC.getGameInstance().getPlayers());
         modelViewBinding.rerender(GWC.getGameInstance());
         controllerViewMap.ableAllNodes();
         controllerViewMap.switchForAll();
@@ -47,6 +48,7 @@ public class ControllerImplementation implements IClientController {
     @Override
     public void render(Map map) {
         GWC.getGameInstance().setMap(map);
+        Colors.Colors(GWC.getGameInstance().getPlayers());
         modelViewBinding.rerender(GWC.getGameInstance());
         controllerViewMap.ableAllNodes();
         controllerViewMap.switchForAll();

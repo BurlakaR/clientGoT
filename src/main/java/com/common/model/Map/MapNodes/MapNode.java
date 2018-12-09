@@ -5,6 +5,7 @@ import com.common.IClientController;
 import com.common.ISocketManager;
 import com.common.Player;
 import com.common.model.Orders.EmptyOrder;
+import com.common.model.Orders.NoOrder;
 import com.common.model.Orders.Order;
 import com.common.model.Units.Squad;
 import com.common.model.utils.EmptyLogo;
@@ -17,7 +18,7 @@ public class MapNode extends ForNode {
     private boolean isAble=true;
     private Player owner;
     private Squad squad = new Squad();
-    private Order order = new EmptyOrder();
+    private Order order = new NoOrder();
     private Logo logo;
     private ArrayList<MapNode> neighbors = new ArrayList<MapNode>();
     private String name;

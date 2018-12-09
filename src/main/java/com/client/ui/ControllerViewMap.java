@@ -2,6 +2,7 @@ package com.client.ui;
 
 import com.client.ui.view.ViewNodeMap;
 import com.common.model.Map.MapNodes.MapNode;
+import com.common.model.Orders.EmptyOrder;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
@@ -38,7 +39,7 @@ public class ControllerViewMap {
         for(int i = 0; i< GWC.getGameInstance().getMap().getNodes().size(); i++){
             if(!GWC.getGameInstance().getMap().getNodes().get(i).getOrder().orderIsEmpty()){
                 ViewNodeMap buf=GWC.getInstanceView().getViewMap().getNodeView(modelViewBinding.getNodeView(GWC.getGameInstance().getMap().getNodes().get(i)));
-                switchToOrder(buf);
+                buf.getNodePane().getOrder().toFront();
             }
         }
     }
@@ -56,23 +57,19 @@ public class ControllerViewMap {
             viewNodeMap = GWC.getInstanceView().getViewMap().getNodeView(buf);
             if(node.getOwner()!=null&&node.getOwner().equals(GWC.getGameInstance().getCurrentPlayer())&&node.getSquad().size()>0){
                 buf.setOnMouseClicked(handlerBuilder.nodeClickedWithOrder);
-                root.getChildren().remove(viewNodeMap.getNodePane().getCoin());
-                order = viewNodeMap.getNodePane().getOrder();
-                order.setLayoutX(viewNodeMap.getNodePane().getCoin().getLayoutX());
-                order.setOnMouseClicked(handlerBuilder.orderClicked);
-                root.getChildren().add(order);
+                if(node.getOrder().orderIsEmpty()) {
+                    root.getChildren().remove(viewNodeMap.getNodePane().getOrder());
+                    order=GWC.getInstanceImgBuilder().createView(new EmptyOrder());
+                    order.setLayoutX(viewNodeMap.getNodePane().getOrder().getLayoutX());
+                    order.setLayoutY(viewNodeMap.getNodePane().getOrder().getLayoutY());
+                    viewNodeMap.getNodePane().setOrder(order);
+                    order.setOnMouseClicked(handlerBuilder.orderClicked);
+                    root.getChildren().add(order);
+                }
             }
         }
     }
 
-    private void switchToOrder(ViewNodeMap viewNodeMap){
-        ImageView order;
-        root.getChildren().remove(viewNodeMap.getNodePane().getCoin());
-        order = viewNodeMap.getNodePane().getOrder();
-        order.setLayoutX(viewNodeMap.getNodePane().getCoin().getLayoutX());
-        order.setOnMouseClicked(handlerBuilder.orderClicked);
-        root.getChildren().add(order);
-    }
 
 
     public void ableChoose(ImageView img){

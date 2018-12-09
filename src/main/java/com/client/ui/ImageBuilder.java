@@ -35,12 +35,7 @@ public class ImageBuilder {
 
     public ViewNodePane createNodePane(MapNode forNode){
         ViewNodePane pane = new ViewNodePane();
-        ForImage buf = forNode.getLogo();
-        buf.setX(86+forNode.getXpane());
-        buf.setY(forNode.getYpane());
-        pane.setCoin(createView(buf));
-
-        buf = forNode.getOrder();
+        ForImage buf = forNode.getOrder();
         buf.setX(86+forNode.getXpane());
         buf.setY(forNode.getYpane());
         pane.setOrder(createView(buf));
