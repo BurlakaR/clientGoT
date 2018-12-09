@@ -1,32 +1,41 @@
 package com.client.ui;
 
+import com.client.ui.view.ViewNodeMap;
 import com.common.Player;
-import javafx.event.Event;
+import com.common.model.Map.MapNodes.MapNode;
+import com.common.model.Orders.Order;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.effect.ColorAdjust;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
-import java.util.ArrayList;
+import java.util.ArrayDeque;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class HandlerBuilder {
     ModelViewBinding modelViewBinding;
     Group root;
 
-    EventHandler nodeEnter, nodeExit, nodeClicked, nodeAnotherClicked;
+    EventHandler<MouseEvent> nodeEnter;
+    EventHandler<MouseEvent> nodeExit;
+    EventHandler<MouseEvent> nodeClicked;
+    EventHandler<MouseEvent> nodeAnotherClicked;
+    EventHandler<MouseEvent> orderClicked;
 
     public HandlerBuilder(ModelViewBinding modelViewBinding, Group root){
         this.modelViewBinding=modelViewBinding;
         this.root=root;
 
+    }
 
-        for(int i =0; i<GameWindowController.getInstanceView().getViewMap().size(); i++){
-            ImageView buf =GameWindowController.getInstanceView().getViewMap().getNodeView(i).getNodeImage();
-            if(modelViewBinding.getNode(buf).isAble())buf.setEffect(Colors.getColor(modelViewBinding.getNode(buf).getOwner()));
 
-        }
+    public void standartHandlers(){
 
         nodeEnter=new EventHandler<MouseEvent>()  {
             @Override
@@ -34,7 +43,7 @@ public class HandlerBuilder {
                 ImageView source =(ImageView)event.getSource();
                 Player owner = modelViewBinding.getNode(source).getOwner();
                 if(owner!=null)
-                source.setEffect(Colors.setBright(Colors.getColor(owner)));
+                    source.setEffect(Colors.setBright(Colors.getColor(owner)));
 
             }
         };
@@ -45,7 +54,7 @@ public class HandlerBuilder {
                 ImageView source =(ImageView)event.getSource();
                 Player owner = modelViewBinding.getNode(source).getOwner();
                 if(owner!=null)
-                source.setEffect(Colors.setUsual(Colors.getColor(owner)));
+                    source.setEffect(Colors.setUsual(Colors.getColor(owner)));
 
             }
         };
@@ -57,8 +66,8 @@ public class HandlerBuilder {
                 source.setOnMouseEntered(null);
                 source.setOnMouseExited(null);
                 source.setOnMouseClicked(nodeAnotherClicked);
-                root.getChildren().remove(GameWindowController.getInstanceView().getViewMap().getNodeView(source).getNodePane().getCoin());
-                root.getChildren().addAll(GameWindowController.getInstanceView().getViewMap().getNodeView(source).getNodePane().getUnits());
+                root.getChildren().remove(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getCoin());
+                root.getChildren().addAll(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getUnits());
             }
         };
 
@@ -69,11 +78,132 @@ public class HandlerBuilder {
                 source.setOnMouseEntered(nodeEnter);
                 source.setOnMouseExited(nodeExit);
                 source.setOnMouseClicked(nodeClicked);
-                root.getChildren().removeAll(GameWindowController.getInstanceView().getViewMap().getNodeView(source).getNodePane().getUnits());
-                root.getChildren().add(GameWindowController.getInstanceView().getViewMap().getNodeView(source).getNodePane().getCoin());
+                root.getChildren().removeAll(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getUnits());
+                root.getChildren().add(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getCoin());
             }
         };
     }
 
+    public void orderHandlers(){
+        Queue<Order> orders = new LinkedBlockingQueue<>();
+        final int[] stars = {0};
+        orders.addAll(GWC.getGameInstance().getOrders());
 
+
+        nodeClicked=new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                ImageView source =(ImageView)event.getSource();
+                source.setOnMouseEntered(null);
+                source.setOnMouseExited(null);
+                source.setOnMouseClicked(nodeAnotherClicked);
+                root.getChildren().remove(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getOrder());
+                root.getChildren().addAll(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getUnits());
+            }
+        };
+
+        nodeAnotherClicked=new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                ImageView source =(ImageView)event.getSource();
+                source.setOnMouseEntered(nodeEnter);
+                source.setOnMouseExited(nodeExit);
+                source.setOnMouseClicked(nodeClicked);
+                root.getChildren().removeAll(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getUnits());
+                root.getChildren().add(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getOrder());
+            }
+        };
+
+        orderClicked=new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getButton().equals(MouseButton.SECONDARY)){
+                    Stage confirm = new Stage();
+                    Group group = new Group();
+                    Button Conf = new Button();
+                    Conf.setPrefHeight(40); Conf.setPrefWidth(170);
+                    Conf.setText("Confirm");
+                    Conf.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            GWC.getInstanceSockets().send(GWC.getGameInstance().getMap());
+                            GWC.getInstanceController().render(GWC.getGameInstance().getMap());
+                        }
+                    });
+                    group.getChildren().add(Conf);
+                    Scene conf = new Scene(group);
+                    confirm.setScene(conf);
+                    confirm.show();
+                }
+                else{
+                    ImageView source =(ImageView)event.getSource();
+                    ViewNodeMap viewNodeMap = GWC.getInstanceView().getViewMap().getNodeViewByOrder(source);
+                    MapNode mapNode = modelViewBinding.getNode(viewNodeMap.getNodeImage());
+                    Order current = mapNode.getOrder();
+                    if(!current.getImgName().equals("EmptyOrder")){
+                        if(current.isStar()) stars[0]--;
+
+                        current.setUsed(false);
+                        orders.add(current);
+                    }
+
+                    do {
+
+                        current = orders.poll();
+                        if(current.isUsed()){
+                            orders.add(current);
+                            continue;
+                        }
+                        if (current.isStar()){
+                            stars[0]++;
+                            if(stars[0]>GWC.getGameInstance().getCurrentPlayer().getStarNumber()){
+                                stars[0]--;
+                                orders.add(current);
+                                continue;
+                            }
+                        }
+                        if(!mapNode.forRule()&&current.getImgName().contains("Rule")){
+                            if(current.isStar()) stars[0]--;
+                            current.setUsed(false);
+                            orders.add(current);
+                            continue;
+                        }
+                        mapNode.setOrder(current);
+                        current.setUsed(true);
+                        break;
+                    }while(true);
+
+
+
+                    current.setX((int) source.getLayoutX()); current.setY((int) source.getLayoutY());
+                    viewNodeMap.getNodePane().setOrder(GWC.getInstanceImgBuilder().createView(current));
+                    root.getChildren().remove(source);
+                    source= viewNodeMap.getNodePane().getOrder();
+                    source.setOnMouseClicked(orderClicked);
+                    root.getChildren().add(source);
+                }
+
+            }
+        };
+    }
+
+    public EventHandler<MouseEvent> getNodeEnter() {
+        return nodeEnter;
+    }
+
+    public EventHandler<MouseEvent> getNodeExit() {
+        return nodeExit;
+    }
+
+    public EventHandler<MouseEvent> getNodeClicked() {
+        return nodeClicked;
+    }
+
+    public EventHandler<MouseEvent> getNodeAnotherClicked() {
+        return nodeAnotherClicked;
+    }
+
+    public EventHandler<MouseEvent> getOrderClicked() {
+        return orderClicked;
+    }
 }

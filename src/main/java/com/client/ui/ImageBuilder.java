@@ -1,15 +1,10 @@
 package com.client.ui;
 
+import com.client.ui.view.ViewNodePane;
 import com.common.model.Map.MapNodes.MapNode;
-import com.common.model.Units.Unit;
 import com.common.model.utils.ForImage;
-import com.common.model.utils.ForNode;
-import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
@@ -46,8 +41,8 @@ public class ImageBuilder {
         pane.setCoin(createView(buf));
 
         buf = forNode.getOrder();
-        buf.setX(buf.getX()+forNode.getXpane());
-        buf.setY(buf.getY()+forNode.getYpane());
+        buf.setX(86+forNode.getXpane());
+        buf.setY(forNode.getYpane());
         pane.setOrder(createView(buf));
 
         ArrayList<ImageView> bufy = new ArrayList<>();

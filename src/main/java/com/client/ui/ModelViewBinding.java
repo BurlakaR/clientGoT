@@ -13,31 +13,35 @@ public class ModelViewBinding {
     int nodeCount=0;
 
     public ModelViewBinding(){
-
-        rerender(GameWindowController.getGameInstance());
-
     }
 
     public void rerender(Game game){
         nodeCount=0;
         mapView = HashBiMap.create();
-        GameWindowController.getInstanceView().rerender();
-        ImageView toSave=(ImageView) GameWindowController.getInstanceView().getRoot().lookup("#save");
-        GameWindowController.getInstanceView().getRoot().getChildren().removeAll(GameWindowController.getInstanceView().getRoot().getChildren());
-        GameWindowController.getInstanceView().getRoot().getChildren().add(toSave);
-        for(int i=0; i<GameWindowController.getGameInstance().getMap().getNodes().size();i++){
-            createNode(GameWindowController.getGameInstance().getMap().getNodes().get(i));
+        GWC.getInstanceView().rerender();
+        ImageView toSave=(ImageView) GWC.getInstanceView().getRoot().lookup("#save");
+        GWC.getInstanceView().getRoot().getChildren().removeAll(GWC.getInstanceView().getRoot().getChildren());
+        GWC.getInstanceView().getRoot().getChildren().add(toSave);
+        for(int i = 0; i< GWC.getGameInstance().getMap().getNodes().size(); i++){
+            createNode(GWC.getGameInstance().getMap().getNodes().get(i));
         }
+        for(int i = 0; i< GWC.getInstanceView().getViewMap().size(); i++){
+            ImageView buf = GWC.getInstanceView().getViewMap().getNodeView(i).getNodeImage();
+            if(getNode(buf).isAble())buf.setEffect(Colors.getColor(getNode(buf).getOwner()));
+        }
+
     }
 
+
+
     private void createNode(MapNode forImage){
-        ImageView buf = GameWindowController.getInstanceImgBuilder().createView(forImage);
+        ImageView buf = GWC.getInstanceImgBuilder().createView(forImage);
         if(!forImage.isAble()){
             buf.setEffect(Colors.setBlack(new ColorAdjust()));
         }
         nodeCount++;
         mapView.put(forImage, buf);
-        GameWindowController.getInstanceView().getViewMap().addNodeView(buf, GameWindowController.getInstanceImgBuilder().createNodePane(forImage));
+        GWC.getInstanceView().getViewMap().addNodeView(buf, GWC.getInstanceImgBuilder().createNodePane(forImage));
     }
 
     public ImageView getNodeView(MapNode mapNode){

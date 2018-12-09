@@ -14,4 +14,9 @@ public class Land extends MapNode {
         this.barrels = barrels;
         this.crowns = crowns;
     }
+
+    @Override
+    public boolean forRule(){
+        return true;
+    }
 }

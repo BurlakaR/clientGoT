@@ -1,9 +1,6 @@
-package com.client.ui;
+package com.client.ui.view;
 
-import com.common.Game;
 import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.layout.Pane;
 
 public class View {
     Group root;

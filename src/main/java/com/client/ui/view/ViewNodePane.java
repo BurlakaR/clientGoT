@@ -1,4 +1,4 @@
-package com.client.ui;
+package com.client.ui.view;
 
 import javafx.scene.image.ImageView;
 

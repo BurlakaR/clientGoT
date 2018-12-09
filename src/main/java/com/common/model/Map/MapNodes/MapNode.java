@@ -1,6 +1,5 @@
 package com.common.model.Map.MapNodes;
 
-import com.client.ui.GameWindowController;
 import com.common.ClientController;
 import com.common.Game;
 import com.common.Player;
@@ -93,5 +92,9 @@ public class MapNode extends ForNode {
 
     public void setAble(boolean able) {
         isAble = able;
+    }
+
+    public boolean forRule() {
+        return false;
     }
 }

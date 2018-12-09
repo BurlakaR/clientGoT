@@ -35,7 +35,7 @@ public class FirstWindowController {
     @FXML
     void connectGameRoom(ActionEvent event) {
         if(ipserver.getText()!=null&&roomnumber.getText()!=null) {
-            //Look at GameWindowController
+            //Look at GWC
             //Next 2 Strings comment to work without server using ConnectButton
             //socketManager.setIp(ipserver.getText());
             //socketManager.connectGame(Integer.parseInt(roomnumber.getText()));
@@ -56,7 +56,7 @@ public class FirstWindowController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
             Parent p = fxmlLoader.load();
-            GameWindowController gameController = fxmlLoader.<GameWindowController>getController();
+            GWC gameController = fxmlLoader.<GWC>getController();
             gameController.setSocketManager(socketManager);
             game=new Scene(p);
             stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

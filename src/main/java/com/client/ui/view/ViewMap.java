@@ -1,7 +1,6 @@
-package com.client.ui;
+package com.client.ui.view;
 
 import javafx.scene.Group;
-import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
@@ -44,6 +43,16 @@ public class ViewMap {
         for (ViewNodeMap view:
                 nodes) {
             if(view.getNodePane().equals(nodePane)){
+                return view;
+            }
+        }
+        return null;
+    }
+
+    public ViewNodeMap getNodeViewByOrder(ImageView order){
+        for (ViewNodeMap view:
+                nodes) {
+            if(view.getNodePane().getOrder().equals(order)){
                 return view;
             }
         }

@@ -53,4 +53,8 @@ public abstract class Order extends ForImage {
     public void setUsed(boolean used) {
         this.used = used;
     }
+
+    public boolean isStar() {
+        return star;
+    }
 }

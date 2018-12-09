@@ -12,7 +12,9 @@ public class ControllerImplementation implements ClientController {
     ControllerViewMap controllerViewMap= new ControllerViewMap(modelViewBinding);
 
     public ControllerImplementation(){
-
+        modelViewBinding.rerender(GWC.getGameInstance());
+        controllerViewMap.ableAllNodes();
+        controllerViewMap.changeToOrders();
     }
 
     @Override
@@ -32,20 +34,20 @@ public class ControllerImplementation implements ClientController {
 
     @Override
     public void putOrders() {
-
+        controllerViewMap.changeToOrders();
     }
 
     @Override
     public void render(Game game) {
-        GameWindowController.setINSTANCE(game);
-        modelViewBinding.rerender(GameWindowController.getGameInstance());
-        controllerViewMap= new ControllerViewMap(modelViewBinding);
+        GWC.setINSTANCE(game);
+        modelViewBinding.rerender(GWC.getGameInstance());
+        controllerViewMap.ableAllNodes();
     }
 
     @Override
     public void render(Map map) {
-        GameWindowController.getGameInstance().setMap(map);
-        modelViewBinding.rerender(GameWindowController.getGameInstance());
-        controllerViewMap= new ControllerViewMap(modelViewBinding);
+        GWC.getGameInstance().setMap(map);
+        modelViewBinding.rerender(GWC.getGameInstance());
+        controllerViewMap.ableAllNodes();
     }
 }

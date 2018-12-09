@@ -1,12 +1,6 @@
-package com.client.ui;
+package com.client.ui.view;
 
-import com.common.model.Map.MapNodes.MapNode;
-import com.common.model.Units.Unit;
-import com.google.common.collect.BiMap;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-
-import java.util.ArrayList;
 
 public class ViewNodeMap {
     ImageView nodeImage;
