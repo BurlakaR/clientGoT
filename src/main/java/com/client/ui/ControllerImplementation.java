@@ -14,7 +14,6 @@ public class ControllerImplementation implements ClientController {
     public ControllerImplementation(){
         modelViewBinding.rerender(GWC.getGameInstance());
         controllerViewMap.ableAllNodes();
-        controllerViewMap.changeToOrders();
     }
 
     @Override
@@ -42,6 +41,7 @@ public class ControllerImplementation implements ClientController {
         GWC.setINSTANCE(game);
         modelViewBinding.rerender(GWC.getGameInstance());
         controllerViewMap.ableAllNodes();
+        controllerViewMap.switchForAll();
     }
 
     @Override
@@ -49,5 +49,6 @@ public class ControllerImplementation implements ClientController {
         GWC.getGameInstance().setMap(map);
         modelViewBinding.rerender(GWC.getGameInstance());
         controllerViewMap.ableAllNodes();
+        controllerViewMap.switchForAll();
     }
 }

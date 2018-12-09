@@ -30,6 +30,7 @@ public class ModelViewBinding {
             if(getNode(buf).isAble())buf.setEffect(Colors.getColor(getNode(buf).getOwner()));
         }
 
+
     }
 
 

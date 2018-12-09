@@ -7,7 +7,8 @@ import javafx.scene.image.ImageView;
 
 
 public class ControllerViewMap {
-    ModelViewBinding modelViewBinding;
+    static ModelViewBinding modelViewBinding;
+    static public ModelViewBinding getModelViewBinding(){return modelViewBinding;}
     Group root;
     HandlerBuilder handlerBuilder;
 
@@ -33,6 +34,15 @@ public class ControllerViewMap {
         }
     }
 
+    public void switchForAll(){
+        for(int i = 0; i< GWC.getGameInstance().getMap().getNodes().size(); i++){
+            if(!GWC.getGameInstance().getMap().getNodes().get(i).getOrder().orderIsEmpty()){
+                ViewNodeMap buf=GWC.getInstanceView().getViewMap().getNodeView(modelViewBinding.getNodeView(GWC.getGameInstance().getMap().getNodes().get(i)));
+                switchToOrder(buf);
+            }
+        }
+    }
+
 
 
     public void changeToOrders(){
@@ -53,6 +63,15 @@ public class ControllerViewMap {
                 root.getChildren().add(order);
             }
         }
+    }
+
+    private void switchToOrder(ViewNodeMap viewNodeMap){
+        ImageView order;
+        root.getChildren().remove(viewNodeMap.getNodePane().getCoin());
+        order = viewNodeMap.getNodePane().getOrder();
+        order.setLayoutX(viewNodeMap.getNodePane().getCoin().getLayoutX());
+        order.setOnMouseClicked(handlerBuilder.orderClicked);
+        root.getChildren().add(order);
     }
 
 

@@ -17,4 +17,9 @@ public class EmptyOrder extends Order {
     @Override
     public void executeOnServer(Game game) {
     }
+
+    @Override
+    public boolean orderIsEmpty(){
+        return true;
+    }
 }

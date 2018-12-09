@@ -57,4 +57,8 @@ public abstract class Order extends ForImage {
     public boolean isStar() {
         return star;
     }
+
+    public boolean orderIsEmpty(){
+        return false;
+    }
 }
