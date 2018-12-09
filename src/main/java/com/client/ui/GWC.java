@@ -3,8 +3,11 @@ package com.client.ui;
 import com.client.ui.view.View;
 import com.common.Game;
 import com.client.communication.*;
+import com.common.Player;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+
+import static java.lang.System.*;
 
 
 public class GWC {
@@ -47,20 +50,20 @@ public class GWC {
     public void start(){
         //Look at FirstWindowController
         //Next 2 Strings comment for work without server
-        //Game game=(Game)socketManager.receive();
-        //game.setCurrentPlayer(((Player) socketManager.receive()));
-        //System.out.println(game.getCurrentPlayer().getName());
-        //GWC.INSTANCE = game;
+        Game game=(Game)socketManager.receive();
+        game.setCurrentPlayer(((Player) socketManager.receive()));
+        out.println(game.getCurrentPlayer().getName());
+        GWC.INSTANCE = game;
 
         //Next 2 Strings comment for work with server
-        INSTANCE=new Game();
-        INSTANCE.setNumberOfPlayers((short)6);
-        Colors.Colors(getGameInstance().getPlayers());
+        //INSTANCE=new Game();
+        //INSTANCE.setNumberOfPlayers((short)6);
+        //Colors.Colors(getGameInstance().getPlayers());
 
 
-        INSTANCE_VIEW=new View(imageGroup);
-        INSTANCE_IMG_BUILDER=new ImageBuilder();
-        INSTANCE_CONTROLLER=new ControllerImplementation();
+        while(true){
+            socketManager.receive().executeOnClient(getInstanceController(), getGameInstance());
+        }
 
 
     }
