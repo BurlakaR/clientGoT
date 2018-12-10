@@ -11,7 +11,6 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
-import java.util.Observable;
 
 public class View {
     Group root;

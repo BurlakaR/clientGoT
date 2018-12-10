@@ -35,15 +35,6 @@ public class ControllerViewMap {
         }
     }
 
-    public void switchForAll(){
-        for(int i = 0; i< GWC.getGameInstance().getMap().getNodes().size(); i++){
-            if(!(GWC.getGameInstance().getMap().getNodes().get(i).getOrder().getOrderType()==OrderType.OrderEmpty)){
-                ViewNodeMap buf=GWC.getInstanceView().getViewMap().getNodeView(ControllerImplementation.getModelViewBinding().getNodeView(GWC.getGameInstance().getMap().getNodes().get(i)));
-                buf.getNodePane().getOrder().toFront();
-            }
-        }
-    }
-
 
 
     public void changeToOrders(){

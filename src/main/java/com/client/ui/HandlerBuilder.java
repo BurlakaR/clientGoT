@@ -27,8 +27,6 @@ public class HandlerBuilder {
     EventHandler<MouseEvent> nodeClicked;
     EventHandler<MouseEvent> nodeAnotherClicked;
     EventHandler<MouseEvent> orderClicked;
-    EventHandler<MouseEvent> nodeClickedWithOrder;
-    EventHandler<MouseEvent> nodeAnotherClickedWithOrder;
 
     public HandlerBuilder(Group root){
         this.root=root;
@@ -91,29 +89,7 @@ public class HandlerBuilder {
         orders.addAll(GWC.getGameInstance().getOrders());
 
 
-        nodeClickedWithOrder=new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                ImageView source =(ImageView)event.getSource();
-                source.setOnMouseEntered(null);
-                source.setOnMouseExited(null);
-                source.setOnMouseClicked(nodeAnotherClickedWithOrder);
-                root.getChildren().remove(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getOrder());
-                root.getChildren().addAll(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getUnits());
-            }
-        };
 
-        nodeAnotherClickedWithOrder=new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                ImageView source =(ImageView)event.getSource();
-                source.setOnMouseEntered(nodeEnter);
-                source.setOnMouseExited(nodeExit);
-                source.setOnMouseClicked(nodeClickedWithOrder);
-                root.getChildren().removeAll(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getUnits());
-                root.getChildren().add(GWC.getInstanceView().getViewMap().getNodeView(source).getNodePane().getOrder());
-            }
-        };
 
         orderClicked=new EventHandler<MouseEvent>() {
             @Override
@@ -129,6 +105,7 @@ public class HandlerBuilder {
                         public void handle(MouseEvent event) {
                             GWC.getInstanceSockets().send(GWC.getGameInstance().getMap());
                             GWC.getInstanceController().render(GWC.getGameInstance().getMap());
+                            confirm.close();
                         }
                     });
                     group.getChildren().add(Conf);

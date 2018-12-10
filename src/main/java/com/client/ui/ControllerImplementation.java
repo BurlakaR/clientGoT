@@ -24,7 +24,6 @@ public class ControllerImplementation implements IClientController {
         GWC.getInstanceView().setColorsToNodes();
         GWC.getInstanceView().showNodes();
         GWC.getInstanceView().showNodesInfo();
-        putOrders();
     }
 
     @Override
@@ -49,19 +48,21 @@ public class ControllerImplementation implements IClientController {
 
     @Override
     public void render(Game game) {
-        GWC.setINSTANCE(game);
-        Colors.Colors(GWC.getGameInstance().getPlayers());
-        modelViewBinding.render();
+        GWC.getGameInstance().updateMapByMap(game.getMap());
+        GWC.getInstanceView().removeAllExceptNodes();
+        modelViewBinding.rerender();
         controllerViewMap.ableAllNodes();
-        controllerViewMap.switchForAll();
+        GWC.getInstanceView().setColorsToNodes();
+        GWC.getInstanceView().showNodesInfo();
     }
 
     @Override
     public void render(Map map) {
-        GWC.getGameInstance().setMap(map);
-        Colors.Colors(GWC.getGameInstance().getPlayers());
-        modelViewBinding.render();
+        GWC.getGameInstance().updateMapByMap(map);
+        GWC.getInstanceView().removeAllExceptNodes();
+        modelViewBinding.rerender();
         controllerViewMap.ableAllNodes();
-        controllerViewMap.switchForAll();
+        GWC.getInstanceView().setColorsToNodes();
+        GWC.getInstanceView().showNodesInfo();
     }
 }
