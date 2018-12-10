@@ -25,6 +25,7 @@ public class ControllerViewMap {
     public void ableAllNodes(){
         handlerBuilder.standartHandlers();
         for(int i=0; i<ControllerImplementation.getModelViewBinding().getNodeCount(); i++){
+            if(GWC.getGameInstance().getMap().getNodes().get(i).getOwner()!=null)
             ableChoose(ControllerImplementation.getModelViewBinding().getNodeView(GWC.getGameInstance().getMap().getNodes().get(i)));
         }
     }
@@ -68,5 +69,16 @@ public class ControllerViewMap {
         img.setOnMouseEntered(null);
         img.setOnMouseExited(null);
         img.setOnMouseClicked(null);
+    }
+
+    public void ableOrders(OrderType orderType){
+        ImageView order;
+        MapNode node;
+        handlerBuilder.orderMake(orderType);
+        for(int i=0;i<GWC.getInstanceView().getViewMap().size(); i++){
+            node = ControllerImplementation.getModelViewBinding().getNode(GWC.getInstanceView().getViewMap().getNodeView(i).getNodeImage());
+            if(node.getOrder().getOrderType()==orderType)
+            GWC.getInstanceView().getViewMap().getNodeView(i).getNodePane().getOrder().setOnMouseClicked(handlerBuilder.getOrderClicked());
+        }
     }
 }

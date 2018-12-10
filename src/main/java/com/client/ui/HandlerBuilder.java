@@ -2,19 +2,23 @@ package com.client.ui;
 
 import com.client.ui.view.ViewNodeMap;
 import com.common.Player;
+import com.common.Validator;
 import com.common.model.Map.MapNodes.MapNode;
 import com.common.model.Map.MapNodes.NodeType;
 import com.common.model.Orders.Order;
+import com.common.model.Orders.OrderType;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -41,7 +45,6 @@ public class HandlerBuilder {
             public void handle(MouseEvent event) {
                 ImageView source =(ImageView)event.getSource();
                 Player owner = ControllerImplementation.getModelViewBinding().getNode(source).getOwner();
-                if(owner!=null)
                     source.setEffect(Colors.setBright(Colors.getColor(owner)));
 
             }
@@ -52,7 +55,6 @@ public class HandlerBuilder {
             public void handle(MouseEvent event) {
                 ImageView source =(ImageView)event.getSource();
                 Player owner = ControllerImplementation.getModelViewBinding().getNode(source).getOwner();
-                if(owner!=null)
                     source.setEffect(Colors.setUsual(Colors.getColor(owner)));
 
             }
@@ -87,10 +89,6 @@ public class HandlerBuilder {
         Queue<Order> orders = new LinkedBlockingQueue<>();
         final int[] stars = {0};
         orders.addAll(GWC.getGameInstance().getOrders());
-
-
-
-
         orderClicked=new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -103,7 +101,7 @@ public class HandlerBuilder {
                     Conf.setOnMouseClicked(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
-                            GWC.getInstanceSockets().send(GWC.getGameInstance().getMap());
+                            //GWC.getInstanceSockets().send(GWC.getGameInstance().getMap());
                             GWC.getInstanceController().render(GWC.getGameInstance().getMap());
                             confirm.close();
                         }
@@ -164,6 +162,47 @@ public class HandlerBuilder {
             }
         };
     }
+
+    public void orderMake(OrderType orderType){
+        orderClicked=new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                ImageView source =(ImageView)event.getSource();
+                MapNode node =ControllerImplementation.getModelViewBinding().getNode(GWC.getInstanceView().getViewMap().getNodeViewByOrder(source).getNodeImage());
+
+                    ArrayList<MapNode> nodes=new ArrayList<>();
+                    switch (orderType) {
+                        case OrderFire:
+                            nodes= Validator.getNodesThatCouldBeFired(GWC.getGameInstance(), node);
+                            break;
+                        default:
+                            break;
+                    }
+                    for (MapNode no:
+                         nodes) {
+                        System.out.println(no);
+                    }
+                    ImageView nodeimg;
+                    Player owner;
+                    for(int i=0; i<GWC.getInstanceView().getViewMap().size();i++) {
+                        nodeimg = GWC.getInstanceView().getViewMap().getNodeView(i).getNodeImage();
+                        owner = ControllerImplementation.getModelViewBinding().getNode(nodeimg).getOwner();
+                        if(owner!=null)
+                        nodeimg.setEffect(Colors.setGray(Colors.getColor(owner)));
+                        else
+                            nodeimg.setEffect(Colors.setGray(new ColorAdjust()));
+                    }
+                    for (MapNode nod:
+                         nodes) {
+                        if(nod.getOwner()!=null)
+                        ControllerImplementation.getModelViewBinding().getNodeView(nod).setEffect(Colors.setUsual(Colors.getColor(nod.getOwner())));
+                        ControllerImplementation.getModelViewBinding().getNodeView(nod).setEffect(Colors.setUsual(new ColorAdjust()));
+                    }
+                }
+
+            };
+        }
+
 
     public EventHandler<MouseEvent> getNodeEnter() {
         return nodeEnter;

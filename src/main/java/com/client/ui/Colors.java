@@ -14,9 +14,9 @@ public class Colors {
         colorAdjustMap = new HashMap<>();
         ArrayList<ColorAdjust> colors = new ArrayList<>();
         ColorAdjust buf = new ColorAdjust(); buf.setHue(0.7); colors.add(buf);
-        buf = new ColorAdjust(); buf.setHue(-0.2); buf.setContrast(0.15); buf.setSaturation(0.15); colors.add(buf);
-        buf = new ColorAdjust(); buf.setHue(0.15); buf.setContrast(0.15); buf.setSaturation(0.25); colors.add(buf);
-        buf = new ColorAdjust(); buf.setContrast(0.3); buf.setSaturation(-1.0); colors.add(buf);
+        buf = new ColorAdjust(); buf.setHue(-0.2);  buf.setSaturation(0.15); colors.add(buf);
+        buf = new ColorAdjust(); buf.setHue(0.15);  buf.setSaturation(0.25); colors.add(buf);
+        buf = new ColorAdjust();  buf.setSaturation(-1.0); colors.add(buf);
         buf = new ColorAdjust(); buf.setHue(0.3); buf.setSaturation(0.3); colors.add(buf);
         buf = new ColorAdjust(); buf.setHue(-0.45); colors.add(buf);
         int index=0;
@@ -40,6 +40,7 @@ public class Colors {
     static public ColorAdjust setUsual(ColorAdjust colorAdjust){
         ColorAdjust buf = clone(colorAdjust);
         buf.setBrightness(0);
+        buf.setSaturation(0);
         return buf;
     }
 
@@ -55,6 +56,12 @@ public class Colors {
     static public ColorAdjust setBlack(ColorAdjust colorAdjust){
         ColorAdjust buf = clone(colorAdjust);
         buf.setBrightness(-0.9);
+        return buf;
+    }
+
+    static public ColorAdjust setGray(ColorAdjust colorAdjust){
+        ColorAdjust buf = clone(colorAdjust);
+        buf.setSaturation(-1.0);
         return buf;
     }
 }

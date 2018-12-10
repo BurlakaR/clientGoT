@@ -56,6 +56,7 @@ public class View {
                 if (ControllerImplementation.getModelViewBinding().getNode(buf).isAble())
                     buf.setEffect(Colors.getColor(owner));
             }
+            else if(!ControllerImplementation.getModelViewBinding().getNode(buf).isAble()) buf.setEffect(Colors.setBlack(new ColorAdjust()));
             else buf.setEffect(new ColorAdjust());
         }
     }
