@@ -15,22 +15,18 @@ public class ModelViewBinding {
     public ModelViewBinding(){
     }
 
-    public void rerender(Game game){
+    public void render(){
         nodeCount=0;
         mapView = HashBiMap.create();
-        GWC.getInstanceView().rerender();
-        ImageView toSave=(ImageView) GWC.getInstanceView().getRoot().lookup("#save");
-        GWC.getInstanceView().getRoot().getChildren().removeAll(GWC.getInstanceView().getRoot().getChildren());
-        GWC.getInstanceView().getRoot().getChildren().add(toSave);
         for(int i = 0; i< GWC.getGameInstance().getMap().getNodes().size(); i++){
             createNode(GWC.getGameInstance().getMap().getNodes().get(i));
         }
-        for(int i = 0; i< GWC.getInstanceView().getViewMap().size(); i++){
-            ImageView buf = GWC.getInstanceView().getViewMap().getNodeView(i).getNodeImage();
-            if(getNode(buf).isAble())buf.setEffect(Colors.getColor(getNode(buf).getOwner()));
+    }
+
+    public void rerender(){
+        for(int i = 0; i< GWC.getGameInstance().getMap().getNodes().size(); i++){
+            updateNode(GWC.getGameInstance().getMap().getNodes().get(i));
         }
-
-
     }
 
 
@@ -43,6 +39,10 @@ public class ModelViewBinding {
         nodeCount++;
         mapView.put(forImage, buf);
         GWC.getInstanceView().getViewMap().addNodeView(buf, GWC.getInstanceImgBuilder().createNodePane(forImage));
+    }
+
+    public void updateNode(MapNode forImage){
+        GWC.getInstanceView().getViewMap().getNodeView(ControllerImplementation.getModelViewBinding().getNodeView(forImage)).setNodePane(GWC.getInstanceImgBuilder().createNodePane(forImage));
     }
 
     public ImageView getNodeView(MapNode mapNode){

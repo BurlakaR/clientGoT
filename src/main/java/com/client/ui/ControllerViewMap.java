@@ -8,37 +8,35 @@ import javafx.scene.image.ImageView;
 
 
 public class ControllerViewMap {
-    static ModelViewBinding modelViewBinding;
-    static public ModelViewBinding getModelViewBinding(){return modelViewBinding;}
     Group root;
     HandlerBuilder handlerBuilder;
 
 
-    public ControllerViewMap(ModelViewBinding modelViewBinding){
-        this.modelViewBinding=modelViewBinding;
+    public ControllerViewMap(){
         this.root= GWC.getInstanceView().getRoot();
-        this.handlerBuilder=new HandlerBuilder(modelViewBinding, root);
-
+        this.handlerBuilder=new HandlerBuilder(root);
     }
+
+
 
 
     public void ableAllNodes(){
         handlerBuilder.standartHandlers();
-        for(int i=0; i<modelViewBinding.getNodeCount(); i++){
-            ableChoose(modelViewBinding.getNodeView(GWC.getGameInstance().getMap().getNodes().get(i)));
+        for(int i=0; i<ControllerImplementation.getModelViewBinding().getNodeCount(); i++){
+            ableChoose(ControllerImplementation.getModelViewBinding().getNodeView(GWC.getGameInstance().getMap().getNodes().get(i)));
         }
     }
 
     public void disableAllNodes(){
-        for(int i=0; i<modelViewBinding.getNodeCount(); i++){
-            disableChoose(modelViewBinding.getNodeView(GWC.getGameInstance().getMap().getNodes().get(i)));
+        for(int i=0; i<ControllerImplementation.getModelViewBinding().getNodeCount(); i++){
+            disableChoose(ControllerImplementation.getModelViewBinding().getNodeView(GWC.getGameInstance().getMap().getNodes().get(i)));
         }
     }
 
     public void switchForAll(){
         for(int i = 0; i< GWC.getGameInstance().getMap().getNodes().size(); i++){
             if(!GWC.getGameInstance().getMap().getNodes().get(i).getOrder().orderIsEmpty()){
-                ViewNodeMap buf=GWC.getInstanceView().getViewMap().getNodeView(modelViewBinding.getNodeView(GWC.getGameInstance().getMap().getNodes().get(i)));
+                ViewNodeMap buf=GWC.getInstanceView().getViewMap().getNodeView(ControllerImplementation.getModelViewBinding().getNodeView(GWC.getGameInstance().getMap().getNodes().get(i)));
                 buf.getNodePane().getOrder().toFront();
             }
         }
@@ -48,26 +46,21 @@ public class ControllerViewMap {
 
     public void changeToOrders(){
         handlerBuilder.orderHandlers();
-        ImageView buf, order;
         MapNode node;
-        ViewNodeMap viewNodeMap;
-        for(int i=0; i<modelViewBinding.getNodeCount(); i++){
-            buf=modelViewBinding.getNodeView(GWC.getGameInstance().getMap().getNodes().get(i));
-            node = modelViewBinding.getNode(buf);
-            viewNodeMap = GWC.getInstanceView().getViewMap().getNodeView(buf);
+        GWC.getInstanceView().removeAllExceptNodes();
+        for(int i=0; i<ControllerImplementation.getModelViewBinding().getNodeCount(); i++){
+            node = GWC.getGameInstance().getMap().getNodes().get(i);
             if(node.getOwner()!=null&&node.getOwner().equals(GWC.getGameInstance().getCurrentPlayer())&&node.getSquad().size()>0){
-                buf.setOnMouseClicked(handlerBuilder.nodeClickedWithOrder);
-                if(node.getOrder().orderIsEmpty()) {
-                    root.getChildren().remove(viewNodeMap.getNodePane().getOrder());
-                    order=GWC.getInstanceImgBuilder().createView(new EmptyOrder());
-                    order.setLayoutX(viewNodeMap.getNodePane().getOrder().getLayoutX());
-                    order.setLayoutY(viewNodeMap.getNodePane().getOrder().getLayoutY());
-                    viewNodeMap.getNodePane().setOrder(order);
-                    order.setOnMouseClicked(handlerBuilder.orderClicked);
-                    root.getChildren().add(order);
-                }
+                node.setOrder(new EmptyOrder());
             }
         }
+        ControllerImplementation.getModelViewBinding().rerender();
+        GWC.getInstanceView().showNodesInfo();
+        handlerBuilder.orderHandlers();
+        for(int i=0;i<GWC.getInstanceView().getViewMap().size(); i++){
+            GWC.getInstanceView().getViewMap().getNodeView(i).getNodePane().getOrder().setOnMouseClicked(handlerBuilder.getOrderClicked());
+        }
+
     }
 
 

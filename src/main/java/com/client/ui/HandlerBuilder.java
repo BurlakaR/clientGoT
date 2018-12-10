@@ -19,7 +19,6 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class HandlerBuilder {
-    ModelViewBinding modelViewBinding;
     Group root;
 
     EventHandler<MouseEvent> nodeEnter;
@@ -30,8 +29,7 @@ public class HandlerBuilder {
     EventHandler<MouseEvent> nodeClickedWithOrder;
     EventHandler<MouseEvent> nodeAnotherClickedWithOrder;
 
-    public HandlerBuilder(ModelViewBinding modelViewBinding, Group root){
-        this.modelViewBinding=modelViewBinding;
+    public HandlerBuilder(Group root){
         this.root=root;
 
     }
@@ -43,7 +41,7 @@ public class HandlerBuilder {
             @Override
             public void handle(MouseEvent event) {
                 ImageView source =(ImageView)event.getSource();
-                Player owner = modelViewBinding.getNode(source).getOwner();
+                Player owner = ControllerImplementation.getModelViewBinding().getNode(source).getOwner();
                 if(owner!=null)
                     source.setEffect(Colors.setBright(Colors.getColor(owner)));
 
@@ -54,7 +52,7 @@ public class HandlerBuilder {
             @Override
             public void handle(MouseEvent event) {
                 ImageView source =(ImageView)event.getSource();
-                Player owner = modelViewBinding.getNode(source).getOwner();
+                Player owner = ControllerImplementation.getModelViewBinding().getNode(source).getOwner();
                 if(owner!=null)
                     source.setEffect(Colors.setUsual(Colors.getColor(owner)));
 
@@ -140,7 +138,7 @@ public class HandlerBuilder {
                 else{
                     ImageView source =(ImageView)event.getSource();
                     ViewNodeMap viewNodeMap = GWC.getInstanceView().getViewMap().getNodeViewByOrder(source);
-                    MapNode mapNode = modelViewBinding.getNode(viewNodeMap.getNodeImage());
+                    MapNode mapNode = ControllerImplementation.getModelViewBinding().getNode(viewNodeMap.getNodeImage());
                     Order current = mapNode.getOrder();
                     if(!current.getImgName().equals("EmptyOrder")){
                         if(current.isStar()) stars[0]--;

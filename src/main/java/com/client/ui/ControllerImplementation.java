@@ -7,13 +7,24 @@ import com.common.model.Map.MapNodes.MapNode;
 
 
 public class ControllerImplementation implements IClientController {
-    ModelViewBinding modelViewBinding = new ModelViewBinding();
+    static ModelViewBinding modelViewBinding = new ModelViewBinding();
+    static ControllerViewMap controllerViewMap= new ControllerViewMap();
 
-    ControllerViewMap controllerViewMap= new ControllerViewMap(modelViewBinding);
+    public static ModelViewBinding getModelViewBinding() {
+        return modelViewBinding;
+    }
+
+    public static ControllerViewMap getControllerViewMap() {
+        return controllerViewMap;
+    }
 
     public ControllerImplementation(){
-        modelViewBinding.rerender(GWC.getGameInstance());
+        modelViewBinding.render();
         controllerViewMap.ableAllNodes();
+        GWC.getInstanceView().setColorsToNodes();
+        GWC.getInstanceView().showNodes();
+        GWC.getInstanceView().showNodesInfo();
+        putOrders();
     }
 
     @Override
@@ -40,7 +51,7 @@ public class ControllerImplementation implements IClientController {
     public void render(Game game) {
         GWC.setINSTANCE(game);
         Colors.Colors(GWC.getGameInstance().getPlayers());
-        modelViewBinding.rerender(GWC.getGameInstance());
+        modelViewBinding.render();
         controllerViewMap.ableAllNodes();
         controllerViewMap.switchForAll();
     }
@@ -49,7 +60,7 @@ public class ControllerImplementation implements IClientController {
     public void render(Map map) {
         GWC.getGameInstance().setMap(map);
         Colors.Colors(GWC.getGameInstance().getPlayers());
-        modelViewBinding.rerender(GWC.getGameInstance());
+        modelViewBinding.render();
         controllerViewMap.ableAllNodes();
         controllerViewMap.switchForAll();
     }

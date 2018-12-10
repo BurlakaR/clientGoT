@@ -98,50 +98,5 @@ public class Player extends Message {
     public void executeOnServer(Game game, ISocketManager socketManager) {
     }
 
-    public static class ControllerImplementation implements IClientController {
-        ModelViewBinding modelViewBinding = new ModelViewBinding();
 
-        ControllerViewMap controllerViewMap= new ControllerViewMap(modelViewBinding);
-
-        public ControllerImplementation(){
-            modelViewBinding.rerender(GWC.getGameInstance());
-            controllerViewMap.ableAllNodes();
-        }
-
-        @Override
-        public void getCommander() {
-
-        }
-
-        @Override
-        public void chooseSquadComposition(MapNode node) {
-
-        }
-
-        @Override
-        public void getStake() {
-
-        }
-
-        @Override
-        public void putOrders() {
-            controllerViewMap.changeToOrders();
-        }
-
-        @Override
-        public void render(Game game) {
-            GWC.setINSTANCE(game);
-            modelViewBinding.rerender(GWC.getGameInstance());
-            controllerViewMap.ableAllNodes();
-            controllerViewMap.switchForAll();
-        }
-
-        @Override
-        public void render(Map map) {
-            GWC.getGameInstance().setMap(map);
-            modelViewBinding.rerender(GWC.getGameInstance());
-            controllerViewMap.ableAllNodes();
-            controllerViewMap.switchForAll();
-        }
-    }
 }

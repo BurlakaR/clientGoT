@@ -21,8 +21,6 @@ public class ViewMap {
 
     public void addNodeView(ImageView nodeImage, ViewNodePane nodePane){
         nodes.add(new ViewNodeMap(nodeImage, nodePane));
-        root.getChildren().add(nodeImage);
-        root.getChildren().add(nodePane.getOrder());
     }
 
     public ViewNodeMap getNodeView(int i){
