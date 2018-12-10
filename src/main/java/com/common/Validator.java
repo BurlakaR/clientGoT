@@ -21,16 +21,18 @@ public class Validator {
     }
 
     //returns an array of nodes which could be effected by the fire order, including the source node
-    public static ArrayList<MapNode> getNodesThatCouldBeFired(Game game, MapNode node){
+    public static ArrayList<MapNode> getNodesThatCouldBeFired(MapNode node){
         ArrayList<MapNode> res = new ArrayList<MapNode>();
         if(node.getOrder().getOrderType() == OrderType.OrderFire){
             ArrayList<MapNode> neighbors = node.getNeighbors();
             res.add(node);
             for (MapNode n : neighbors){
-                OrderType ot = n.getOrder().getOrderType();
-                if(ot == OrderType.OrderFire || ot == OrderType.OrderHelp
-                        || (ot == OrderType.OrderDefence && n.getOrder().isStar())){
-                    res.add(n);
+                if(!n.isOwnedBy(node.getOwner())){
+                    OrderType ot = n.getOrder().getOrderType();
+                    if(ot == OrderType.OrderFire || ot == OrderType.OrderHelp
+                            || (ot == OrderType.OrderDefence && n.getOrder().isStar())){
+                        res.add(n);
+                    }
                 }
             }
         }
