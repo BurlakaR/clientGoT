@@ -13,6 +13,7 @@ public class OrderFire extends Order {
     public void executeOnClient(IClientController controller, Game game) {
         super.executeOnClient(controller, game);
         target.setOrder(new EmptyOrder());
+        orderType = OrderType.OrderFire;
     }
 
     @Override

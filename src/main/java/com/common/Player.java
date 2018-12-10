@@ -1,8 +1,4 @@
 package com.common;
-
-import com.client.ui.ControllerViewMap;
-import com.client.ui.GWC;
-import com.client.ui.ModelViewBinding;
 import com.common.model.Decks.CommanderDeck;
 import com.common.model.Map.Map;
 import com.common.model.Map.MapNodes.MapNode;
@@ -97,6 +93,5 @@ public class Player extends Message {
     @Override
     public void executeOnServer(Game game, ISocketManager socketManager) {
     }
-
 
 }

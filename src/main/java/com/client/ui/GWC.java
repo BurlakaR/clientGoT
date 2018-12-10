@@ -1,16 +1,13 @@
 package com.client.ui;
 
+import com.client.communication.*;
 import com.client.ui.view.View;
 import com.common.Game;
-import com.client.communication.*;
 import com.common.IntegerMessage;
 import com.common.Message;
-import com.common.Player;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
-
-import static java.lang.System.*;
 
 
 public class GWC {
@@ -80,9 +77,10 @@ public class GWC {
                             mes.executeOnClient(getInstanceController(), getGameInstance());
                         }
                 );
-
             }
+
         }).start();*/
+
 
 
 

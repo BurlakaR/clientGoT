@@ -13,10 +13,6 @@ public class Land extends MapNode {
         this.castle = castle;
         this.barrels = barrels;
         this.crowns = crowns;
-    }
-
-    @Override
-    public boolean forRule(){
-        return true;
+        nodeType = NodeType.Land;
     }
 }

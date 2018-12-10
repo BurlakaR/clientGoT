@@ -3,6 +3,8 @@ package com.client.ui;
 import com.client.ui.view.ViewNodeMap;
 import com.common.model.Map.MapNodes.MapNode;
 import com.common.model.Orders.EmptyOrder;
+import com.common.model.Orders.Order;
+import com.common.model.Orders.OrderType;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
@@ -35,7 +37,7 @@ public class ControllerViewMap {
 
     public void switchForAll(){
         for(int i = 0; i< GWC.getGameInstance().getMap().getNodes().size(); i++){
-            if(!GWC.getGameInstance().getMap().getNodes().get(i).getOrder().orderIsEmpty()){
+            if(!(GWC.getGameInstance().getMap().getNodes().get(i).getOrder().getOrderType()==OrderType.OrderEmpty)){
                 ViewNodeMap buf=GWC.getInstanceView().getViewMap().getNodeView(ControllerImplementation.getModelViewBinding().getNodeView(GWC.getGameInstance().getMap().getNodes().get(i)));
                 buf.getNodePane().getOrder().toFront();
             }

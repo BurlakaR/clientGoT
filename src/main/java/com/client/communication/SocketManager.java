@@ -31,6 +31,7 @@ public class SocketManager {
             send(new IntegerMessage(numberPlayers));
             int room=((IntegerMessage) receive()).getMessage();
             System.out.println("Number of created room:"+room);//delete this later
+            System.out.println("ip: " + serverSocket.getLocalAddress() + "\nport: " + serverSocket.getLocalPort());
             connectGame(room);
         } catch (IOException e) {
             e.printStackTrace();

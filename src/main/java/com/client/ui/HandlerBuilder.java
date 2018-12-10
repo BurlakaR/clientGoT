@@ -3,6 +3,7 @@ package com.client.ui;
 import com.client.ui.view.ViewNodeMap;
 import com.common.Player;
 import com.common.model.Map.MapNodes.MapNode;
+import com.common.model.Map.MapNodes.NodeType;
 import com.common.model.Orders.Order;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -140,7 +141,7 @@ public class HandlerBuilder {
                     ViewNodeMap viewNodeMap = GWC.getInstanceView().getViewMap().getNodeViewByOrder(source);
                     MapNode mapNode = ControllerImplementation.getModelViewBinding().getNode(viewNodeMap.getNodeImage());
                     Order current = mapNode.getOrder();
-                    if(!current.getImgName().equals("EmptyOrder")){
+                    if(!current.getImgName().equals("OrderEmpty")){
                         if(current.isStar()) stars[0]--;
 
                         current.setUsed(false);
@@ -162,7 +163,7 @@ public class HandlerBuilder {
                                 continue;
                             }
                         }
-                        if(!mapNode.forRule()&&current.getImgName().contains("Rule")){
+                        if(!(mapNode.getNodeType() == NodeType.Land) && current.getImgName().contains("Rule")){
                             if(current.isStar()) stars[0]--;
                             current.setUsed(false);
                             orders.add(current);
