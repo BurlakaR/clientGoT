@@ -11,14 +11,11 @@ public class OrderFire extends Order {
 
     @Override
     public void executeOnClient(IClientController controller, Game game) {
-        super.executeOnClient(controller, game);
-        target.setOrder(new EmptyOrder());
-        orderType = OrderType.OrderFire;
+        controller.configureFireOrder(this);
     }
 
     @Override
     public void executeOnServer(Game game, ISocketManager socketManager) {
-        super.executeOnServer(game, socketManager);
-        target.setOrder(new EmptyOrder());
+
     }
 }

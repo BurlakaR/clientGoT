@@ -18,7 +18,7 @@ public class OrderAttack extends Order {
 
     @Override
     public void executeOnClient(IClientController controller, Game game) {
-
+        controller.configureAttackOrder(this);
     }
 
     @Override

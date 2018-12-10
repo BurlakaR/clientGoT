@@ -2,6 +2,10 @@ package com.common;
 
 import com.common.model.Map.Map;
 import com.common.model.Map.MapNodes.MapNode;
+import com.common.model.Orders.Order;
+import com.common.model.Orders.OrderAttack;
+import com.common.model.Orders.OrderFire;
+import com.common.model.Orders.OrderRule;
 
 //A comment after the method says what would be sent by GUI handlers to the server as a result of execution
 public interface IClientController {
@@ -24,4 +28,10 @@ public interface IClientController {
     void render(Game game);
 
     void render(Map map);
+
+    void configureFireOrder(OrderFire of);//OrderFire
+
+    void configureAttackOrder(OrderAttack oa);//OrderAttack
+
+    void configureRuleOrder(OrderRule or);//OrderRule
 }

@@ -25,14 +25,10 @@ public abstract class Order extends ForImage {
     }
 
     @Override
-    public void executeOnClient(IClientController controller, Game game){
-        setUsed(true);
-    }
+    public abstract void executeOnClient(IClientController controller, Game game);
 
     @Override
-    public void executeOnServer(Game game, ISocketManager socketManager){
-        setUsed(true);
-    }
+    public abstract void executeOnServer(Game game, ISocketManager socketManager);
 
     public MapNode getSource() {
         return source;

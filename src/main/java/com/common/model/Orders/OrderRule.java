@@ -12,7 +12,7 @@ public class OrderRule extends Order {
 
     @Override
     public void executeOnClient(IClientController controller, Game game) {
-
+        controller.configureRuleOrder(this);
     }
 
     @Override
