@@ -3,6 +3,8 @@ package com.client.ui;
 import com.client.ui.view.ViewNodeMap;
 import com.common.model.Map.MapNodes.MapNode;
 import com.common.model.Orders.EmptyOrder;
+import com.common.model.Orders.Order;
+import com.common.model.Orders.OrderType;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
@@ -37,7 +39,7 @@ public class ControllerViewMap {
 
     public void switchForAll(){
         for(int i = 0; i< GWC.getGameInstance().getMap().getNodes().size(); i++){
-            if(!GWC.getGameInstance().getMap().getNodes().get(i).getOrder().orderIsEmpty()){
+            if(!(GWC.getGameInstance().getMap().getNodes().get(i).getOrder().getOrderType() == OrderType.OrderEmpty)){
                 ViewNodeMap buf=GWC.getInstanceView().getViewMap().getNodeView(modelViewBinding.getNodeView(GWC.getGameInstance().getMap().getNodes().get(i)));
                 buf.getNodePane().getOrder().toFront();
             }
@@ -57,7 +59,7 @@ public class ControllerViewMap {
             viewNodeMap = GWC.getInstanceView().getViewMap().getNodeView(buf);
             if(node.getOwner()!=null&&node.getOwner().equals(GWC.getGameInstance().getCurrentPlayer())&&node.getSquad().size()>0){
                 buf.setOnMouseClicked(handlerBuilder.nodeClickedWithOrder);
-                if(node.getOrder().orderIsEmpty()) {
+                if(node.getOrder().getOrderType() == OrderType.OrderEmpty) {
                     root.getChildren().remove(viewNodeMap.getNodePane().getOrder());
                     order=GWC.getInstanceImgBuilder().createView(new EmptyOrder());
                     order.setLayoutX(viewNodeMap.getNodePane().getOrder().getLayoutX());

@@ -8,6 +8,8 @@ import com.common.model.Map.MapNodes.Land;
 import com.common.model.Map.MapNodes.MapNode;
 import com.common.model.Map.MapNodes.Port;
 import com.common.model.Map.MapNodes.Sea;
+import com.common.model.Orders.Order;
+import com.common.model.Orders.OrderType;
 import com.common.model.utils.Castle;
 
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class Map extends Message {
 
     public void addOrders(Map m){
         for(int i = 0; i < m.nodes.size(); i++){
-            if(!m.nodes.get(i).getOrder().orderIsEmpty()){
+            if(!(m.nodes.get(i).getOrder().getOrderType() == OrderType.OrderEmpty)){
                 this.getNodes().get(i).setOrder(m.nodes.get(i).getOrder());
             }
         }

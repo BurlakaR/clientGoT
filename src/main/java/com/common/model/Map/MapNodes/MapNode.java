@@ -15,8 +15,9 @@ import com.common.model.utils.Logo;
 import java.util.ArrayList;
 
 public class MapNode extends ForNode {
+    protected NodeType nodeType;
     private boolean isAble=true;
-    private Player owner;
+    private Player owner = null;
     private Squad squad = new Squad();
     private Order order = new NoOrder();
     private Logo logo;
@@ -66,8 +67,19 @@ public class MapNode extends ForNode {
         owner=logo.getPlayer();
     }
 
-    public Player getOwner(){
-        return owner;
+    public void setOwner(Player p){
+        owner = p;
+    }
+
+    public boolean isFreeOrOwnedBy(Player p){
+        return (owner.getName() == p.getName()) || owner == null;
+    }
+
+    public boolean isOwnedBy(Player p){
+        if(owner == null){
+            return false;
+        }
+        return owner.getName() == p.getName();
     }
 
     //one more really bad place for those guys
@@ -96,7 +108,11 @@ public class MapNode extends ForNode {
         isAble = able;
     }
 
-    public boolean forRule() {
-        return false;
+    public NodeType getNodeType() {
+        return nodeType;
+    }
+
+    public Player getOwner() {
+        return owner;
     }
 }

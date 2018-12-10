@@ -7,12 +7,15 @@ import com.common.model.Map.MapNodes.MapNode;
 import com.common.model.utils.ForImage;
 
 public abstract class Order extends ForImage {
-    protected boolean available;
-    protected boolean used = false;
-    protected boolean star;
-    protected int power;
+    //Fuck Liskov
+    protected OrderType orderType;
+    private boolean available;
+    private boolean used = false;
+    private boolean star;
+    private int power;
     protected MapNode source;
     protected MapNode target;
+
 
     public Order( String imgName, boolean star, int power) {
         super(125, 0, 80, 80, imgName);
@@ -63,5 +66,7 @@ public abstract class Order extends ForImage {
         return available;
     }
 
-    public boolean orderIsEmpty(){return  false;}
+    public OrderType getOrderType() {
+        return orderType;
+    }
 }

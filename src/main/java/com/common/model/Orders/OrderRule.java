@@ -7,6 +7,7 @@ import com.common.ISocketManager;
 public class OrderRule extends Order {
     public OrderRule(boolean star) {
         super("OrderRule", star,0);
+        orderType = OrderType.OrderRule;
     }
 
     @Override
