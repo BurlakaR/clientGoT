@@ -6,6 +6,7 @@ import com.common.model.Decks.CommanderDeck;
 import com.common.model.Decks.WesterosDeck;
 import com.common.model.Decks.WildDeck;
 import com.common.model.Map.Map;
+import com.common.model.Map.MapNodes.MapNode;
 import com.common.model.Orders.*;
 import com.common.model.Units.Squad;
 import com.common.model.Units.UnitTypes.Knight;
@@ -309,6 +310,22 @@ public class Game extends Message {
 
     public ArrayList<Player> getPlayers(){
         return players;
+    }
+
+    public Player getPlayerByName(String name){
+        for (Player p : players){
+            if(p.getName() == name){
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public void updateMapByMap(Map map){
+        ArrayList<MapNode> newNodes = map.getNodes();
+        for(int i = 0; i < map.getNodes().size(); i++){
+            this.map.getNodes().get(i).updateNodeByNode(this, newNodes.get(i));
+        }
     }
 
     @Override

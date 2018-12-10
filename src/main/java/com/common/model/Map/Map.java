@@ -22,7 +22,6 @@ public class Map extends Message {
         addAllNodes();
     }
 
-
     @Override
     public void executeOnClient(IClientController controller, Game game) {
         controller.render(this);

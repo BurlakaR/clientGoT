@@ -28,4 +28,8 @@ public class Squad implements Serializable{
     public int size(){
         return squad.size();
     }
+
+    public ArrayList<Unit> getSquad() {
+        return squad;
+    }
 }
