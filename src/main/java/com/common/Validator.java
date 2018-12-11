@@ -147,12 +147,12 @@ public class Validator {
     //returns squads that could be build in target node
     //Order source and target should be set. Rule order should be with a star.
     //After build, built squad should be added to order
-    private static ArrayList<Squad> getSquadsPossibleToBuild(OrderRule order){
+    public static ArrayList<Squad> getSquadsPossibleToBuild(OrderRule order){
         return null;
     }
 
     //order source should be set. Rule order should be with a star.
-    private static ArrayList<MapNode> getNodesAvailableForBuilding(OrderRule order){
+    public static ArrayList<MapNode> getNodesAvailableForBuilding(OrderRule order){
         return null;
     }
 }

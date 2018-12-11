@@ -7,7 +7,10 @@ import com.common.model.Map.Map;
 import com.common.model.Map.MapNodes.MapNode;
 import com.common.model.Map.MapNodes.NodeType;
 import com.common.model.Orders.Order;
+import com.common.model.Orders.OrderRule;
 import com.common.model.Orders.OrderType;
+import com.common.model.Units.Squad;
+import com.common.model.Units.Unit;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -20,6 +23,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -105,7 +109,7 @@ public class HandlerBuilder {
                     Conf.setOnMouseClicked(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
-                            //GWC.getInstanceSockets().send(GWC.getGameInstance().getMap());
+                            GWC.getInstanceSockets().send(GWC.getGameInstance().getMap());
                             GWC.getInstanceController().render(GWC.getGameInstance().getMap());
                             confirm.close();
                         }
@@ -201,7 +205,7 @@ public class HandlerBuilder {
                 ImageView source = (ImageView) event.getSource();
                 prevOrder = source;
                 MapNode node = ControllerImplementation.getModelViewBinding().getNode(GWC.getInstanceView().getViewMap().getNodeViewByOrder(source).getNodeImage());
-
+                Order order=ControllerImplementation.getModelViewBinding().getNode(GWC.getInstanceView().getViewMap().getNodeViewByOrder(source).getNodeImage()).getOrder();
 
                 switch (orderType) {
                     case OrderFire:
@@ -209,6 +213,8 @@ public class HandlerBuilder {
                         break;
                     case OrderAttack:
                         nodes = Validator.getNodesForCrusade(node);
+                    case OrderRule:
+                        nodes = Validator.getNodesAvailableForBuilding((OrderRule)order);
                     default:
                         break;
                 }
@@ -220,6 +226,7 @@ public class HandlerBuilder {
                     if (nod.isAble()) {
                         vn = ControllerImplementation.getModelViewBinding().getNodeView(nod);
 
+                            if(orderType!=OrderType.OrderRule)
                             GWC.getInstanceView().getViewMap().getNodeView(vn).getNodeImage().setOnMouseClicked(new EventHandler<MouseEvent>() {
                                 @Override
                                 public void handle(MouseEvent event) {
@@ -237,7 +244,7 @@ public class HandlerBuilder {
                                         public void handle(MouseEvent event) {
                                             node.getOrder().setSource(node);
                                             //System.out.println(node.getOrder().getSource().getName() + node.getOrder().getTarget().getName());
-                                            //GWC.getInstanceSockets().send(node.getOrder());
+                                            GWC.getInstanceSockets().send(node.getOrder());
                                             confirm.close();
                                             GWC.getInstanceController().render(GWC.getGameInstance());
                                         }
@@ -248,6 +255,46 @@ public class HandlerBuilder {
                                     confirm.show();
                                 }
                             });
+
+                            else
+                                GWC.getInstanceView().getViewMap().getNodeView(vn).getNodeImage().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                    @Override
+                                    public void handle(MouseEvent event) {
+                                        ImageView imgNode = (ImageView)event.getSource();
+                                        ViewNodeMap viewnode = GWC.getInstanceView().getViewMap().getNodeView(imgNode);
+                                        MapNode node = ControllerImplementation.getModelViewBinding().getNode(imgNode);
+                                        order.setTarget(node);
+                                        ArrayList<Squad> squads = Validator.getSquadsPossibleToBuild((OrderRule)order);
+                                        java.util.Map<Button, Squad> squadchoices = new HashMap<>();
+
+                                        Stage squadwindow = new Stage();
+                                        Group group = new Group();
+
+                                        for (Squad sq:
+                                             squads) {
+                                            String s="";
+                                            for (Unit u:
+                                                 sq.getSquad()) {
+                                                s+=u.getImgName()+" ";
+                                            }
+                                            Button b = new Button(); b.setText(s);
+                                            b.setPrefHeight(40);b.setPrefWidth(170);
+                                            b.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                                @Override
+                                                public void handle(MouseEvent event) {
+                                                    //System.out.println(node.getOrder().getSource().getName() + node.getOrder().getTarget().getName());
+                                                    //GWC.getInstanceSockets().send(node.getOrder());
+                                                    ((OrderRule) order).addBuiltSquad(squadchoices.get(b));
+                                                    squadwindow.close();
+                                                }
+                                            });
+                                            group.getChildren().add(b);
+                                        }
+                                        Scene conf = new Scene(group);
+                                        squadwindow.setScene(conf);
+                                        squadwindow.show();
+                                    }
+                                });
                         }
                     }
 

@@ -21,6 +21,7 @@ public class ControllerImplementation implements IClientController {
     }
 
     public ControllerImplementation(){
+        GWC.getGameInstance().getMap().getNodes().get(12).setOrder(new OrderRule(true));
         GWC.getGameInstance().getMap().getNodes().get(24).setOrder(new OrderAttack(true, 1 ));
         GWC.getGameInstance().getMap().getNodes().get(5).setOrder(new OrderAttack(true, 1 ));
         GWC.getGameInstance().getMap().getNodes().get(22).setOrder(new OrderFire(true));
@@ -91,6 +92,6 @@ public class ControllerImplementation implements IClientController {
 
     @Override
     public void configureRuleOrder(OrderRule or) {
-
+        controllerViewMap.ableOrders(or.getOrderType());
     }
 }
