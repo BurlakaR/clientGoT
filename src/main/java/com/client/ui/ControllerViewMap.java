@@ -6,6 +6,7 @@ import com.common.model.Orders.EmptyOrder;
 import com.common.model.Orders.Order;
 import com.common.model.Orders.OrderType;
 import javafx.scene.Group;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 
 
@@ -25,6 +26,7 @@ public class ControllerViewMap {
     public void ableAllNodes(){
         handlerBuilder.standartHandlers();
         for(int i=0; i<ControllerImplementation.getModelViewBinding().getNodeCount(); i++){
+            if(GWC.getGameInstance().getMap().getNodes().get(i).getOwner()!=null)
             ableChoose(ControllerImplementation.getModelViewBinding().getNodeView(GWC.getGameInstance().getMap().getNodes().get(i)));
         }
     }
@@ -59,14 +61,27 @@ public class ControllerViewMap {
 
 
     public void ableChoose(ImageView img){
-        img.setOnMouseEntered(handlerBuilder.nodeEnter);
-        img.setOnMouseExited(handlerBuilder.nodeExit);
-        img.setOnMouseClicked(handlerBuilder.nodeClicked);
+        img.setOnMouseEntered(handlerBuilder.getNodeEnter());
+        img.setOnMouseExited(handlerBuilder.getNodeExit());
+        img.setOnMouseClicked(handlerBuilder.getNodeClicked());
     }
 
     public void disableChoose(ImageView img){
         img.setOnMouseEntered(null);
         img.setOnMouseExited(null);
         img.setOnMouseClicked(null);
+    }
+
+    public void ableOrders(OrderType orderType){
+        ImageView order;
+        MapNode node;
+        handlerBuilder.orderMake(orderType);
+        for(int i=0;i<GWC.getInstanceView().getViewMap().size(); i++){
+            node = ControllerImplementation.getModelViewBinding().getNode(GWC.getInstanceView().getViewMap().getNodeView(i).getNodeImage());
+            if(node.getOrder().getOrderType()==orderType&&node.getOwner()==GWC.getGameInstance().getCurrentPlayer())
+            GWC.getInstanceView().getViewMap().getNodeView(i).getNodePane().getOrder().setOnMouseClicked(handlerBuilder.getOrderClicked());
+            else
+            GWC.getInstanceView().getViewMap().getNodeView(i).getNodePane().getOrder().setEffect(Colors.setGray(new ColorAdjust()));
+        }
     }
 }

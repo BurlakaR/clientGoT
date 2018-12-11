@@ -47,7 +47,7 @@ public class Validator {
     public static ArrayList<MapNode> getNodesForCrusade(MapNode source){
         ArrayList<MapNode> res = new ArrayList<MapNode>();
         if(source.getOrder().getOrderType() == OrderType.OrderAttack){
-            res.add(source);
+            //res.add(source);
             ArrayList<MapNode> neighbors = source.getNeighbors();
             for (MapNode targetNode : neighbors){
                 NodeType targetNodeType = targetNode.getNodeType();
@@ -56,7 +56,7 @@ public class Validator {
                             if(targetNodeType == NodeType.Land){
                                 res.add(targetNode);
                             }
-                            res.addAll(getNodesAccessibleThroughSea(source));
+                            //res.addAll(getNodesAccessibleThroughSea(source));
                         break;
                     case Sea:
                         if(targetNodeType == NodeType.Sea ||
