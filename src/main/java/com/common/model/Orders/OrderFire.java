@@ -8,6 +8,7 @@ public class OrderFire extends Order {
     public OrderFire(boolean star) {
         super("OrderFire", star, 0);
         orderType=OrderType.OrderFire;
+
     }
 
     @Override

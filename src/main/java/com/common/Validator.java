@@ -21,16 +21,18 @@ public class Validator {
     }
 
     //returns an array of nodes which could be effected by the fire order, including the source node
-    public static ArrayList<MapNode> getNodesThatCouldBeFired(Game game, MapNode node){
+    public static ArrayList<MapNode> getNodesThatCouldBeFired(MapNode node){
         ArrayList<MapNode> res = new ArrayList<MapNode>();
         if(node.getOrder().getOrderType() == OrderType.OrderFire){
             ArrayList<MapNode> neighbors = node.getNeighbors();
             res.add(node);
             for (MapNode n : neighbors){
-                OrderType ot = n.getOrder().getOrderType();
-                if(ot == OrderType.OrderFire || ot == OrderType.OrderHelp
-                        || (ot == OrderType.OrderDefence && n.getOrder().isStar())){
-                    res.add(n);
+                if(!n.isOwnedBy(node.getOwner())){
+                    OrderType ot = n.getOrder().getOrderType();
+                    if(ot == OrderType.OrderFire || ot == OrderType.OrderHelp
+                            || (ot == OrderType.OrderDefence && n.getOrder().isStar())){
+                        res.add(n);
+                    }
                 }
             }
         }
@@ -45,7 +47,7 @@ public class Validator {
     public static ArrayList<MapNode> getNodesForCrusade(MapNode source){
         ArrayList<MapNode> res = new ArrayList<MapNode>();
         if(source.getOrder().getOrderType() == OrderType.OrderAttack){
-            res.add(source);
+            //res.add(source);
             ArrayList<MapNode> neighbors = source.getNeighbors();
             for (MapNode targetNode : neighbors){
                 NodeType targetNodeType = targetNode.getNodeType();
@@ -54,7 +56,7 @@ public class Validator {
                             if(targetNodeType == NodeType.Land){
                                 res.add(targetNode);
                             }
-                            res.addAll(getNodesAccessibleThroughSea(source));
+                            //res.addAll(getNodesAccessibleThroughSea(source));
                         break;
                     case Sea:
                         if(targetNodeType == NodeType.Sea ||

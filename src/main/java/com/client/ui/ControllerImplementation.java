@@ -21,8 +21,8 @@ public class ControllerImplementation implements IClientController {
     }
 
     public ControllerImplementation(){
-        GWC.getGameInstance().getMap().getNodes().get(24).setOrder(new OrderFire(true));
-        GWC.getGameInstance().getMap().getNodes().get(5).setOrder(new OrderFire(false));
+        GWC.getGameInstance().getMap().getNodes().get(24).setOrder(new OrderAttack(true, 1 ));
+        GWC.getGameInstance().getMap().getNodes().get(5).setOrder(new OrderAttack(true, 1 ));
         GWC.getGameInstance().getMap().getNodes().get(22).setOrder(new OrderFire(true));
         GWC.getGameInstance().getMap().getNodes().get(32).setOrder(new OrderHelp(true, 1));
         GWC.getGameInstance().getMap().getNodes().get(41).setOrder(new OrderDefence(true, 1));
@@ -33,7 +33,7 @@ public class ControllerImplementation implements IClientController {
         GWC.getInstanceView().setColorsToNodes();
         GWC.getInstanceView().showNodes();
         GWC.getInstanceView().showNodesInfo();
-        configureFireOrder(new OrderFire(true));
+        configureAttackOrder(new OrderAttack(true, 1));
     }
 
     @Override
@@ -83,7 +83,7 @@ public class ControllerImplementation implements IClientController {
 
     @Override
     public void configureAttackOrder(OrderAttack oa) {
-
+        controllerViewMap.ableOrders(oa.getOrderType());
     }
 
     @Override

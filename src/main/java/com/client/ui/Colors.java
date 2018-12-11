@@ -64,4 +64,11 @@ public class Colors {
         buf.setSaturation(-1.0);
         return buf;
     }
+
+    static public ColorAdjust setAble(ColorAdjust colorAdjust){
+        ColorAdjust buf = clone(colorAdjust);
+        buf.setHue(0.5);
+        buf.setContrast(0.1);
+        return buf;
+    }
 }
