@@ -2,6 +2,7 @@ package com.common;
 
 import com.common.model.Map.MapNodes.MapNode;
 import com.common.model.Map.MapNodes.NodeType;
+import com.common.model.Orders.OrderRule;
 import com.common.model.Orders.OrderType;
 import com.common.model.Units.Squad;
 
@@ -143,7 +144,15 @@ public class Validator {
         return null;
     }
 
-    private static ArrayList<Squad> getSquadsPossibleToBuild(MapNode node){
+    //returns squads that could be build in target node
+    //Order source and target should be set. Rule order should be with a star.
+    //After build, built squad should be added to order
+    private static ArrayList<Squad> getSquadsPossibleToBuild(OrderRule order){
+        return null;
+    }
+
+    //order source should be set. Rule order should be with a star.
+    private static ArrayList<MapNode> getNodesAvailableForBuilding(OrderRule order){
         return null;
     }
 }
