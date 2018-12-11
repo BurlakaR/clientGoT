@@ -21,21 +21,12 @@ public class ControllerImplementation implements IClientController {
     }
 
     public ControllerImplementation(){
-        GWC.getGameInstance().getMap().getNodes().get(12).setOrder(new OrderRule(true));
-        GWC.getGameInstance().getMap().getNodes().get(24).setOrder(new OrderAttack(true, 1 ));
-        GWC.getGameInstance().getMap().getNodes().get(5).setOrder(new OrderAttack(true, 1 ));
-        GWC.getGameInstance().getMap().getNodes().get(22).setOrder(new OrderFire(true));
-        GWC.getGameInstance().getMap().getNodes().get(32).setOrder(new OrderHelp(true, 1));
-        GWC.getGameInstance().getMap().getNodes().get(41).setOrder(new OrderDefence(true, 1));
-        GWC.getGameInstance().getMap().getNodes().get(37).setOrder(new OrderAttack(true, 1 ));
-
         modelViewBinding.render();
         controllerViewMap.handlerBuilder.standartHandlers();
         controllerViewMap.ableAllNodes();
         GWC.getInstanceView().setColorsToNodes();
         GWC.getInstanceView().showNodes();
         GWC.getInstanceView().showNodesInfo();
-        configureAttackOrder(new OrderAttack(true, 1));
     }
 
     @Override
