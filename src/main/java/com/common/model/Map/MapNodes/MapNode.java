@@ -66,6 +66,7 @@ public class MapNode extends ForNode {
 
     public void setOrder(Order order) {
         this.order = order;
+        this.order.setSource(this);
     }
 
     public Logo getLogo() {

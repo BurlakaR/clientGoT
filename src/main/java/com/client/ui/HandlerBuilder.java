@@ -7,7 +7,10 @@ import com.common.model.Map.Map;
 import com.common.model.Map.MapNodes.MapNode;
 import com.common.model.Map.MapNodes.NodeType;
 import com.common.model.Orders.Order;
+import com.common.model.Orders.OrderRule;
 import com.common.model.Orders.OrderType;
+import com.common.model.Units.Squad;
+import com.common.model.Units.Unit;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -20,6 +23,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -105,7 +109,7 @@ public class HandlerBuilder {
                     Conf.setOnMouseClicked(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
-                            //GWC.getInstanceSockets().send(GWC.getGameInstance().getMap());
+                            GWC.getInstanceSockets().send(GWC.getGameInstance().getMap());
                             GWC.getInstanceController().render(GWC.getGameInstance().getMap());
                             confirm.close();
                         }
@@ -168,31 +172,40 @@ public class HandlerBuilder {
     }
 
     public void orderMake(OrderType orderType) {
+        nodeEnter=new EventHandler<MouseEvent>()  {
+            @Override
+            public void handle(MouseEvent event) {
+                ImageView source =(ImageView)event.getSource();
+                ColorAdjust colorAdjust = (ColorAdjust) source.getEffect();
+                source.setEffect(Colors.setBright(colorAdjust));
+
+            }
+        };
+
+        nodeExit=new EventHandler<MouseEvent>()  {
+            @Override
+            public void handle(MouseEvent event) {
+                ImageView source =(ImageView)event.getSource();
+                ColorAdjust colorAdjust = (ColorAdjust) source.getEffect();
+                source.setEffect(Colors.setUsual(colorAdjust));
+
+            }
+        };
 
 
         orderClicked = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                MapNode n;
-                for (MapNode nod :
-                        nodes) {
-                    ImageView vn = ControllerImplementation.getModelViewBinding().getNodeView(nod);
-                    GWC.getInstanceView().getViewMap().getNodeView(vn).getNodePane().getOrder().setOnMouseClicked(null);
-                }
-                for (int i = 0; i < GWC.getInstanceView().getViewMap().size(); i++) {
-                    n = GWC.getGameInstance().getMap().getNodes().get(i);
-                    if (n.getOwner() != null)
-                        ControllerImplementation.getModelViewBinding().getNodeView(n).setEffect(Colors.setUsual(Colors.getColor(n.getOwner())));
-                    if (n.isAble())
-                        ControllerImplementation.getModelViewBinding().getNodeView(n).setEffect(Colors.setUsual(new ColorAdjust()));
-                }
+                ControllerImplementation.getControllerViewMap().ableAllNodes();
+                ControllerImplementation.getControllerViewMap().disableOrders(nodes);
+                GWC.getInstanceView().setNoColorToNodes(GWC.getGameInstance().getMap().getNodes());
                 if (prevOrder != null) {
                     prevOrder.setOnMouseClicked(orderClicked);
                 }
                 ImageView source = (ImageView) event.getSource();
                 prevOrder = source;
                 MapNode node = ControllerImplementation.getModelViewBinding().getNode(GWC.getInstanceView().getViewMap().getNodeViewByOrder(source).getNodeImage());
-
+                Order order=ControllerImplementation.getModelViewBinding().getNode(GWC.getInstanceView().getViewMap().getNodeViewByOrder(source).getNodeImage()).getOrder();
 
                 switch (orderType) {
                     case OrderFire:
@@ -200,29 +213,20 @@ public class HandlerBuilder {
                         break;
                     case OrderAttack:
                         nodes = Validator.getNodesForCrusade(node);
+                    case OrderRule:
+                        nodes = Validator.getNodesAvailableForBuilding((OrderRule)order);
                     default:
                         break;
                 }
-                ImageView nodeimg;
-                Player owner;
-                for (int i = 0; i < GWC.getInstanceView().getViewMap().size(); i++) {
-                    nodeimg = GWC.getInstanceView().getViewMap().getNodeView(i).getNodeImage();
-                    owner = ControllerImplementation.getModelViewBinding().getNode(nodeimg).getOwner();
-                    if (owner != null)
-                        nodeimg.setEffect(Colors.setGray(Colors.getColor(owner)));
-                    else
-                        nodeimg.setEffect(Colors.setGray(new ColorAdjust()));
-                }
+                GWC.getInstanceView().setGreyColorToNodes(GWC.getGameInstance().getMap().getNodes());
                 ImageView vn;
+                GWC.getInstanceView().setNoColorToNodes(nodes);
                 for (MapNode nod :
                         nodes) {
                     if (nod.isAble()) {
                         vn = ControllerImplementation.getModelViewBinding().getNodeView(nod);
-                        if (nod.getOwner() != null)
-                            vn.setEffect(Colors.setUsual(Colors.getColor(nod.getOwner())));
-                        if (nod.isAble()) {
-                            vn.setEffect(Colors.setUsual(new ColorAdjust()));
 
+                            if(orderType!=OrderType.OrderRule)
                             GWC.getInstanceView().getViewMap().getNodeView(vn).getNodeImage().setOnMouseClicked(new EventHandler<MouseEvent>() {
                                 @Override
                                 public void handle(MouseEvent event) {
@@ -242,6 +246,7 @@ public class HandlerBuilder {
                                             //System.out.println(node.getOrder().getSource().getName() + node.getOrder().getTarget().getName());
                                             GWC.getInstanceSockets().send(node.getOrder());
                                             confirm.close();
+                                            GWC.getInstanceController().render(GWC.getGameInstance());
                                         }
                                     });
                                     group.getChildren().add(Conf);
@@ -250,13 +255,52 @@ public class HandlerBuilder {
                                     confirm.show();
                                 }
                             });
+
+                            else
+                                GWC.getInstanceView().getViewMap().getNodeView(vn).getNodeImage().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                    @Override
+                                    public void handle(MouseEvent event) {
+                                        ImageView imgNode = (ImageView)event.getSource();
+                                        ViewNodeMap viewnode = GWC.getInstanceView().getViewMap().getNodeView(imgNode);
+                                        MapNode node = ControllerImplementation.getModelViewBinding().getNode(imgNode);
+                                        order.setTarget(node);
+                                        ArrayList<Squad> squads = Validator.getSquadsPossibleToBuild((OrderRule)order);
+                                        java.util.Map<Button, Squad> squadchoices = new HashMap<>();
+
+                                        Stage squadwindow = new Stage();
+                                        Group group = new Group();
+
+                                        for (Squad sq:
+                                             squads) {
+                                            String s="";
+                                            for (Unit u:
+                                                 sq.getSquad()) {
+                                                s+=u.getImgName()+" ";
+                                            }
+                                            Button b = new Button(); b.setText(s);
+                                            b.setPrefHeight(40);b.setPrefWidth(170);
+                                            b.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                                @Override
+                                                public void handle(MouseEvent event) {
+                                                    //System.out.println(node.getOrder().getSource().getName() + node.getOrder().getTarget().getName());
+                                                    //GWC.getInstanceSockets().send(node.getOrder());
+                                                    ((OrderRule) order).addBuiltSquad(squadchoices.get(b));
+                                                    squadwindow.close();
+                                                }
+                                            });
+                                            group.getChildren().add(b);
+                                        }
+                                        Scene conf = new Scene(group);
+                                        squadwindow.setScene(conf);
+                                        squadwindow.show();
+                                    }
+                                });
                         }
                     }
 
                 }
-            }
-        };
-    }
+            };
+        }
 
 
     public EventHandler<MouseEvent> getNodeEnter() {

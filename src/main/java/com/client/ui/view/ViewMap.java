@@ -60,4 +60,8 @@ public class ViewMap {
     public int size(){
         return nodes.size();
     }
+
+    public ArrayList<ViewNodeMap> getNodes() {
+        return nodes;
+    }
 }

@@ -40,6 +40,11 @@ public class Colors {
     static public ColorAdjust setUsual(ColorAdjust colorAdjust){
         ColorAdjust buf = clone(colorAdjust);
         buf.setBrightness(0);
+        return buf;
+    }
+
+    static public ColorAdjust setUngrey(ColorAdjust colorAdjust){
+        ColorAdjust buf = clone(colorAdjust);
         buf.setSaturation(0);
         return buf;
     }

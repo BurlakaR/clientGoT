@@ -50,12 +50,12 @@ public class GWC {
     public void start(){
         //Look at FirstWindowController
         //Next 2 Strings comment for work without server
-       // Game game=(Game)socketManager.receive();
-        //IntegerMessage player = (IntegerMessage) socketManager.receive();
-        //game.setCurrentPlayer(game.getPlayers().get(player.getMessage()));
-       // GWC.INSTANCE = game;
-        GWC.INSTANCE = new Game();
-        INSTANCE.setNumberOfPlayers(3);
+        Game game=(Game)socketManager.receive();
+        IntegerMessage player = (IntegerMessage) socketManager.receive();
+        game.setCurrentPlayer(game.getPlayers().get(player.getMessage()));
+        GWC.INSTANCE = game;
+        //GWC.INSTANCE = new Game();
+        //INSTANCE.setNumberOfPlayers(3);
         Colors.Colors(getGameInstance().getPlayers());
         GWC.INSTANCE_VIEW = new View(imageGroup);
         GWC.INSTANCE_IMG_BUILDER = new ImageBuilder();
@@ -69,7 +69,7 @@ public class GWC {
         //Colors.Colors(getGameInstance().getPlayers());
 
 
-        /*new Thread(()->{
+        new Thread(()->{
             while(true){
                 Message mes = socketManager.receive();
                 Platform.runLater(
@@ -79,7 +79,7 @@ public class GWC {
                 );
             }
 
-        }).start();*/
+        }).start();
 
 
 
