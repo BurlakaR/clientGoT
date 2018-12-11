@@ -3,6 +3,7 @@ package com.common;
 import com.common.model.Map.MapNodes.MapNode;
 import com.common.model.Map.MapNodes.NodeType;
 import com.common.model.Orders.OrderType;
+import com.common.model.Units.Squad;
 
 import java.util.ArrayList;
 
@@ -139,6 +140,10 @@ public class Validator {
                 }
             }
         }
+        return null;
+    }
+
+    private static ArrayList<Squad> getSquadsPossibleToBuild(MapNode node){
         return null;
     }
 }

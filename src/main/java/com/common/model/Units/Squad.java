@@ -1,10 +1,14 @@
 package com.common.model.Units;
 
+import com.common.model.Map.MapNodes.MapNode;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Squad implements Serializable{
     private ArrayList<Unit> squad = new ArrayList<Unit>();
+
+    private MapNode node;
 
     public Squad(){}
 
@@ -31,5 +35,13 @@ public class Squad implements Serializable{
 
     public ArrayList<Unit> getSquad() {
         return squad;
+    }
+
+    public MapNode getNode() {
+        return node;
+    }
+
+    public void setNode(MapNode node) {
+        this.node = node;
     }
 }
