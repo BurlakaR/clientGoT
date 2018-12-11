@@ -9,6 +9,8 @@ import javafx.scene.Group;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
+
 
 public class ControllerViewMap {
     Group root;
@@ -24,7 +26,6 @@ public class ControllerViewMap {
 
 
     public void ableAllNodes(){
-        handlerBuilder.standartHandlers();
         for(int i=0; i<ControllerImplementation.getModelViewBinding().getNodeCount(); i++){
             if(GWC.getGameInstance().getMap().getNodes().get(i).getOwner()!=null)
             ableChoose(ControllerImplementation.getModelViewBinding().getNodeView(GWC.getGameInstance().getMap().getNodes().get(i)));
@@ -34,6 +35,14 @@ public class ControllerViewMap {
     public void disableAllNodes(){
         for(int i=0; i<ControllerImplementation.getModelViewBinding().getNodeCount(); i++){
             disableChoose(ControllerImplementation.getModelViewBinding().getNodeView(GWC.getGameInstance().getMap().getNodes().get(i)));
+        }
+    }
+
+    public void disableOrders(ArrayList<MapNode> nodes){
+        for (MapNode nod :
+                nodes) {
+            ImageView vn = ControllerImplementation.getModelViewBinding().getNodeView(nod);
+            GWC.getInstanceView().getViewMap().getNodeView(vn).getNodePane().getOrder().setOnMouseClicked(null);
         }
     }
 
@@ -84,4 +93,6 @@ public class ControllerViewMap {
             GWC.getInstanceView().getViewMap().getNodeView(i).getNodePane().getOrder().setEffect(Colors.setGray(new ColorAdjust()));
         }
     }
+
+
 }

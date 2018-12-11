@@ -168,24 +168,33 @@ public class HandlerBuilder {
     }
 
     public void orderMake(OrderType orderType) {
+        nodeEnter=new EventHandler<MouseEvent>()  {
+            @Override
+            public void handle(MouseEvent event) {
+                ImageView source =(ImageView)event.getSource();
+                ColorAdjust colorAdjust = (ColorAdjust) source.getEffect();
+                source.setEffect(Colors.setBright(colorAdjust));
+
+            }
+        };
+
+        nodeExit=new EventHandler<MouseEvent>()  {
+            @Override
+            public void handle(MouseEvent event) {
+                ImageView source =(ImageView)event.getSource();
+                ColorAdjust colorAdjust = (ColorAdjust) source.getEffect();
+                source.setEffect(Colors.setUsual(colorAdjust));
+
+            }
+        };
 
 
         orderClicked = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                MapNode n;
-                for (MapNode nod :
-                        nodes) {
-                    ImageView vn = ControllerImplementation.getModelViewBinding().getNodeView(nod);
-                    GWC.getInstanceView().getViewMap().getNodeView(vn).getNodePane().getOrder().setOnMouseClicked(null);
-                }
-                for (int i = 0; i < GWC.getInstanceView().getViewMap().size(); i++) {
-                    n = GWC.getGameInstance().getMap().getNodes().get(i);
-                    if (n.getOwner() != null)
-                        ControllerImplementation.getModelViewBinding().getNodeView(n).setEffect(Colors.setUsual(Colors.getColor(n.getOwner())));
-                    if (n.isAble())
-                        ControllerImplementation.getModelViewBinding().getNodeView(n).setEffect(Colors.setUsual(new ColorAdjust()));
-                }
+                ControllerImplementation.getControllerViewMap().ableAllNodes();
+                ControllerImplementation.getControllerViewMap().disableOrders(nodes);
+                GWC.getInstanceView().setNoColorToNodes(GWC.getGameInstance().getMap().getNodes());
                 if (prevOrder != null) {
                     prevOrder.setOnMouseClicked(orderClicked);
                 }
@@ -203,25 +212,13 @@ public class HandlerBuilder {
                     default:
                         break;
                 }
-                ImageView nodeimg;
-                Player owner;
-                for (int i = 0; i < GWC.getInstanceView().getViewMap().size(); i++) {
-                    nodeimg = GWC.getInstanceView().getViewMap().getNodeView(i).getNodeImage();
-                    owner = ControllerImplementation.getModelViewBinding().getNode(nodeimg).getOwner();
-                    if (owner != null)
-                        nodeimg.setEffect(Colors.setGray(Colors.getColor(owner)));
-                    else
-                        nodeimg.setEffect(Colors.setGray(new ColorAdjust()));
-                }
+                GWC.getInstanceView().setGreyColorToNodes(GWC.getGameInstance().getMap().getNodes());
                 ImageView vn;
+                GWC.getInstanceView().setNoColorToNodes(nodes);
                 for (MapNode nod :
                         nodes) {
                     if (nod.isAble()) {
                         vn = ControllerImplementation.getModelViewBinding().getNodeView(nod);
-                        if (nod.getOwner() != null)
-                            vn.setEffect(Colors.setUsual(Colors.getColor(nod.getOwner())));
-                        if (nod.isAble()) {
-                            vn.setEffect(Colors.setUsual(new ColorAdjust()));
 
                             GWC.getInstanceView().getViewMap().getNodeView(vn).getNodeImage().setOnMouseClicked(new EventHandler<MouseEvent>() {
                                 @Override
@@ -240,8 +237,9 @@ public class HandlerBuilder {
                                         public void handle(MouseEvent event) {
                                             node.getOrder().setSource(node);
                                             //System.out.println(node.getOrder().getSource().getName() + node.getOrder().getTarget().getName());
-                                            GWC.getInstanceSockets().send(node.getOrder());
+                                            //GWC.getInstanceSockets().send(node.getOrder());
                                             confirm.close();
+                                            GWC.getInstanceController().render(GWC.getGameInstance());
                                         }
                                     });
                                     group.getChildren().add(Conf);
@@ -254,9 +252,8 @@ public class HandlerBuilder {
                     }
 
                 }
-            }
-        };
-    }
+            };
+        }
 
 
     public EventHandler<MouseEvent> getNodeEnter() {

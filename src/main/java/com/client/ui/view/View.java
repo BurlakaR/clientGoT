@@ -4,6 +4,7 @@ import com.client.ui.Colors;
 import com.client.ui.ControllerImplementation;
 import com.client.ui.GWC;
 import com.common.Player;
+import com.common.model.Map.MapNodes.MapNode;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -58,6 +59,22 @@ public class View {
             }
             else if(!ControllerImplementation.getModelViewBinding().getNode(buf).isAble()) buf.setEffect(Colors.setBlack(new ColorAdjust()));
             else buf.setEffect(new ColorAdjust());
+        }
+    }
+
+    public void setNoColorToNodes(ArrayList<MapNode> nodes){
+        for (MapNode node:
+             nodes) {
+            if(node.isAble())
+            ControllerImplementation.getModelViewBinding().getNodeView(node).setEffect(new ColorAdjust());
+        }
+    }
+
+    public void setGreyColorToNodes(ArrayList<MapNode> nodes){
+        for (MapNode node:
+                nodes) {
+            if(node.isAble())
+            ControllerImplementation.getModelViewBinding().getNodeView(node).setEffect(Colors.setGray(new ColorAdjust()));
         }
     }
 

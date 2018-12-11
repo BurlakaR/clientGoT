@@ -29,6 +29,7 @@ public class ControllerImplementation implements IClientController {
         GWC.getGameInstance().getMap().getNodes().get(37).setOrder(new OrderAttack(true, 1 ));
 
         modelViewBinding.render();
+        controllerViewMap.handlerBuilder.standartHandlers();
         controllerViewMap.ableAllNodes();
         GWC.getInstanceView().setColorsToNodes();
         GWC.getInstanceView().showNodes();
@@ -61,6 +62,7 @@ public class ControllerImplementation implements IClientController {
         GWC.getGameInstance().updateMapByMap(game.getMap());
         GWC.getInstanceView().removeAllExceptNodes();
         modelViewBinding.rerender();
+        controllerViewMap.handlerBuilder.standartHandlers();
         controllerViewMap.ableAllNodes();
         GWC.getInstanceView().setColorsToNodes();
         GWC.getInstanceView().showNodesInfo();
@@ -71,6 +73,7 @@ public class ControllerImplementation implements IClientController {
         GWC.getGameInstance().updateMapByMap(map);
         GWC.getInstanceView().removeAllExceptNodes();
         modelViewBinding.rerender();
+        controllerViewMap.handlerBuilder.standartHandlers();
         controllerViewMap.ableAllNodes();
         GWC.getInstanceView().setColorsToNodes();
         GWC.getInstanceView().showNodesInfo();
