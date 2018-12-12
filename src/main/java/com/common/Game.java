@@ -336,7 +336,7 @@ public class Game extends Message {
 
     public Player getPlayerByName(String name){
         for (Player p : players){
-            if(p.getName() == name){
+            if(p.getName().equals(name)){
                 return p;
             }
         }

@@ -33,6 +33,15 @@ public class HandlerBuilder {
 
     ArrayList<MapNode> nodes=new ArrayList<>();
     ImageView prevOrder;
+    static OrderType orderType;
+
+    public static OrderType getOrderType() {
+        return orderType;
+    }
+
+    public static void setOrderType(OrderType orderType) {
+        HandlerBuilder.orderType = orderType;
+    }
 
     EventHandler<MouseEvent> nodeEnter;
     EventHandler<MouseEvent> nodeExit;
@@ -172,6 +181,7 @@ public class HandlerBuilder {
     }
 
     public void orderMake(OrderType orderType) {
+        setOrderType(orderType);
         nodeEnter=new EventHandler<MouseEvent>()  {
             @Override
             public void handle(MouseEvent event) {
@@ -207,14 +217,16 @@ public class HandlerBuilder {
                 MapNode node = ControllerImplementation.getModelViewBinding().getNode(GWC.getInstanceView().getViewMap().getNodeViewByOrder(source).getNodeImage());
                 Order order=ControllerImplementation.getModelViewBinding().getNode(GWC.getInstanceView().getViewMap().getNodeViewByOrder(source).getNodeImage()).getOrder();
 
-                switch (orderType) {
+                switch (getOrderType()) {
                     case OrderFire:
                         nodes = Validator.getNodesThatCouldBeFired(node);
                         break;
                     case OrderAttack:
                         nodes = Validator.getNodesForCrusade(node);
+                        break;
                     case OrderRule:
                         nodes = Validator.getNodesAvailableForBuilding((OrderRule)order);
+                        break;
                     default:
                         break;
                 }
@@ -246,7 +258,7 @@ public class HandlerBuilder {
                                             //System.out.println(node.getOrder().getSource().getName() + node.getOrder().getTarget().getName());
                                             GWC.getInstanceSockets().send(node.getOrder());
                                             confirm.close();
-                                            GWC.getInstanceController().render(GWC.getGameInstance());
+                                            //GWC.getInstanceController().render(GWC.getGameInstance());
                                         }
                                     });
                                     group.getChildren().add(Conf);
