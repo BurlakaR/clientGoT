@@ -30,7 +30,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class HandlerBuilder {
     Group root;
-
     ArrayList<MapNode> nodes=new ArrayList<>();
     ImageView prevOrder;
     static OrderType orderType;
@@ -72,7 +71,7 @@ public class HandlerBuilder {
             public void handle(MouseEvent event) {
                 ImageView source =(ImageView)event.getSource();
                 Player owner = ControllerImplementation.getModelViewBinding().getNode(source).getOwner();
-                    source.setEffect(Colors.setUsual(Colors.getColor(owner)));
+                    source.setEffect(Colors.setUsual(Colors.getColor(GWC.getGameInstance().getPlayerByName(owner.getName()))));
 
             }
         };
@@ -181,7 +180,8 @@ public class HandlerBuilder {
     }
 
     public void orderMake(OrderType orderType) {
-        setOrderType(orderType);
+
+        HandlerBuilder.setOrderType(orderType);
         nodeEnter=new EventHandler<MouseEvent>()  {
             @Override
             public void handle(MouseEvent event) {
@@ -217,7 +217,8 @@ public class HandlerBuilder {
                 MapNode node = ControllerImplementation.getModelViewBinding().getNode(GWC.getInstanceView().getViewMap().getNodeViewByOrder(source).getNodeImage());
                 Order order=ControllerImplementation.getModelViewBinding().getNode(GWC.getInstanceView().getViewMap().getNodeViewByOrder(source).getNodeImage()).getOrder();
 
-                switch (getOrderType()) {
+
+                switch (HandlerBuilder.getOrderType()) {
                     case OrderFire:
                         nodes = Validator.getNodesThatCouldBeFired(node);
                         break;

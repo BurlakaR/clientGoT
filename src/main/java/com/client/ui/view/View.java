@@ -55,7 +55,7 @@ public class View {
             Player owner = ControllerImplementation.getModelViewBinding().getNode(buf).getOwner();
             if(owner!=null) {
                 if (ControllerImplementation.getModelViewBinding().getNode(buf).isAble())
-                    buf.setEffect(Colors.getColor(owner));
+                    buf.setEffect(Colors.getColor(GWC.getGameInstance().getPlayerByName(owner.getName())));
             }
             else if(!ControllerImplementation.getModelViewBinding().getNode(buf).isAble()) buf.setEffect(Colors.setBlack(new ColorAdjust()));
             else buf.setEffect(new ColorAdjust());

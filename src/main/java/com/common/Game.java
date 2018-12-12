@@ -374,6 +374,13 @@ public class Game extends Message {
         return thirdEventsDeck;
     }
 
+    public void updateNodeByNode(MapNode newNode){
+        for(MapNode n : map.getNodes()){
+            if(n.getName().equals(newNode.getName())){
+                n.updateNodeByNode(this, newNode);
+            }
+        }
+    }
 
     @Override
     public void executeOnClient(IClientController controller, Game game) {

@@ -35,6 +35,7 @@ public class MapNode extends ForNode {
         this.hasPowerCoin = node.hasPowerCoin;
         this.order = node.order;
         this.squad = node.squad;
+        this.owner = node.owner;
         for (Unit u : squad.getSquad()){
             u.setPlayer(game.getPlayerByName(u.getPlayer().getName()));
         }
@@ -89,9 +90,9 @@ public class MapNode extends ForNode {
 
     public boolean isFreeOrOwnedBy(Player p){
         if(owner == null){
-            return false;
+            return true;
         }
-        return (owner.getName().equals(p.getName())) || owner == null;
+        return owner.getName().equals(p.getName());
     }
 
     public boolean isOwnedBy(Player p){

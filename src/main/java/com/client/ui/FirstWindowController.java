@@ -1,6 +1,6 @@
 package com.client.ui;
 
-import com.client.communication.SocketManager;
+import com.client.communication.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

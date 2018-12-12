@@ -31,7 +31,9 @@ public class OrderAttack extends Order {
             Battle battle = new Battle();
             battle.executeOnServer(game, socketManager);
         }
+        game.updateNodeByNode(target);
         source.setOrder(new NoOrder());
+        game.updateNodeByNode(source);
     }
 
     public boolean isLeavePowerCoinOnPreviousNode() {
