@@ -87,7 +87,7 @@ public class ControllerViewMap {
         handlerBuilder.orderMake(orderType);
         for(int i=0;i<GWC.getInstanceView().getViewMap().size(); i++){
             node = ControllerImplementation.getModelViewBinding().getNode(GWC.getInstanceView().getViewMap().getNodeView(i).getNodeImage());
-            if(node.getOrder().getOrderType()==orderType&&node.getOwner().equals(GWC.getGameInstance().getCurrentPlayer()))
+            if(node.getOrder().getOrderType()==orderType&&node.getOwner().equals(GWC.getGameInstance().getPlayerByName(GWC.getGameInstance().getCurrentPlayer().getName())))
             GWC.getInstanceView().getViewMap().getNodeView(i).getNodePane().getOrder().setOnMouseClicked(handlerBuilder.getOrderClicked());
             else
             GWC.getInstanceView().getViewMap().getNodeView(i).getNodePane().getOrder().setEffect(Colors.setGray(new ColorAdjust()));

@@ -61,7 +61,7 @@ public class HandlerBuilder {
             public void handle(MouseEvent event) {
                 ImageView source =(ImageView)event.getSource();
                 Player owner = ControllerImplementation.getModelViewBinding().getNode(source).getOwner();
-                    source.setEffect(Colors.setBright(Colors.getColor(owner)));
+                    source.setEffect(Colors.setBright(Colors.getColor(GWC.getGameInstance().getPlayerByName(owner.getName()))));
 
             }
         };
