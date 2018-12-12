@@ -1,6 +1,6 @@
 package com.client.ui;
 
-import com.client.communication.SocketManager;
+import com.client.communication.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -37,8 +37,8 @@ public class FirstWindowController {
         if(ipserver.getText()!=null&&roomnumber.getText()!=null) {
             //Look at GWC
             //Next 2 Strings comment to work without server using ConnectButton
-            //socketManager.setIp(ipserver.getText());
-            //socketManager.connectGame(Integer.parseInt(roomnumber.getText()));
+            socketManager.setIp(ipserver.getText());
+            socketManager.connectGame(Integer.parseInt(roomnumber.getText()));
             startGame(event);
         }
     }

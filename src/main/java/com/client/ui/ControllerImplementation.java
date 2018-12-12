@@ -51,6 +51,7 @@ public class ControllerImplementation implements IClientController {
 
     @Override
     public void render(Game game) {
+        System.out.println(game.getMap().getNodes().get(24).getOrder().getOrderType());
         GWC.getGameInstance().updateMapByMap(game.getMap());
         GWC.getInstanceView().removeAllExceptNodes();
         modelViewBinding.rerender();

@@ -336,7 +336,7 @@ public class Game extends Message {
 
     public Player getPlayerByName(String name){
         for (Player p : players){
-            if(p.getName() == name){
+            if(p.getName().equals(name)){
                 return p;
             }
         }
@@ -374,6 +374,13 @@ public class Game extends Message {
         return thirdEventsDeck;
     }
 
+    public void updateNodeByNode(MapNode newNode){
+        for(MapNode n : map.getNodes()){
+            if(n.getName().equals(newNode.getName())){
+                n.updateNodeByNode(this, newNode);
+            }
+        }
+    }
 
     @Override
     public void executeOnClient(IClientController controller, Game game) {

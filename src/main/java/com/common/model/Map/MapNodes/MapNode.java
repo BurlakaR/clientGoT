@@ -89,9 +89,9 @@ public class MapNode extends ForNode {
 
     public boolean isFreeOrOwnedBy(Player p){
         if(owner == null){
-            return false;
+            return true;
         }
-        return (owner.getName().equals(p.getName())) || owner == null;
+        return owner.getName().equals(p.getName());
     }
 
     public boolean isOwnedBy(Player p){

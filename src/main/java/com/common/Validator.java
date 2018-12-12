@@ -173,7 +173,7 @@ public class Validator {
             }
         }
         for(Order o : orders){
-            if(o.getOrderType() == OrderType.OrderDefence){
+            if(o.getOrderType() == OrderType.OrderAttack){
                 return o;
             }
         }
