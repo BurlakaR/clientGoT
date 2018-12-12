@@ -25,9 +25,14 @@ public abstract class Deck extends Message {
         if(!cards.isEmpty()){
             Card buf = cards.get(0);
             cards.remove(0);
+            removed.add(buf);
             return buf;
         }
-        return null;
+        else{
+            returnRemoved();
+            shuffle();
+            return getTop();
+        }
     }
 
     public void returnRemoved(){

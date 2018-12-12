@@ -2,6 +2,8 @@ package com.common;
 
 import com.common.model.Map.MapNodes.MapNode;
 import com.common.model.Map.MapNodes.NodeType;
+import com.common.model.Orders.NoOrder;
+import com.common.model.Orders.Order;
 import com.common.model.Orders.OrderRule;
 import com.common.model.Orders.OrderType;
 import com.common.model.Units.Squad;
@@ -114,7 +116,7 @@ public class Validator {
         return neighboringControlledSeas ;
     }
 
-    private static boolean couldGetIntoPort( MapNode sourceSea, MapNode targetPort){
+    private static boolean couldGetIntoPort(MapNode sourceSea, MapNode targetPort){
         ArrayList<MapNode> portNeighbors = targetPort.getNeighbors();
         MapNode portLand = getPortLand(targetPort);
         return portLand.isFreeOrOwnedBy(sourceSea.getOwner());
@@ -154,5 +156,32 @@ public class Validator {
     //order source should be set. Rule order should be with a star.
     public static ArrayList<MapNode> getNodesAvailableForBuilding(OrderRule order){
         return null;
+    }
+
+    public static Order getNextOrderForExecution(Game game, Player p){
+        ArrayList<Order> orders = new ArrayList<Order>();
+        for(MapNode node : game.getMap().getNodes()){
+            OrderType ot = node.getOrder().getOrderType();
+            if(node.isOwnedBy(p) &&
+                    (ot == OrderType.OrderFire || ot == OrderType.OrderAttack || ot == OrderType.OrderRule)){
+                orders.add(node.getOrder());
+            }
+        }
+        for(Order o : orders){
+            if(o.getOrderType() == OrderType.OrderFire){
+                return o;
+            }
+        }
+        for(Order o : orders){
+            if(o.getOrderType() == OrderType.OrderDefence){
+                return o;
+            }
+        }
+        for(Order o : orders){
+            if(o.getOrderType() == OrderType.OrderRule){
+                return o;
+            }
+        }
+        return new NoOrder();
     }
 }

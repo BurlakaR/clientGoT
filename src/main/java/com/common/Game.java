@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class Game extends Message {
     private Map map;
-    private int moveNumber = 1;
+    private int moveNumber = 0;
     private int currentWildForce = 0;
     private static int numberOfPlayers = 0;
     private WildDeck wilds;
@@ -140,28 +140,50 @@ public class Game extends Message {
         return moveNumber;
     }
 
-    public void nextMove(short moveNumber) {
-        if(moveNumber < 10)
+    public void nextMove() {
+        if(!gameIsOver())
         {
             this.moveNumber++;
         }
         else
         {
-            GameOver();
+            gameOver();
         }
     }
 
     private void recountCastles()
     {
-
+        for(Player p : players){
+            int res = 0;
+            for(MapNode n : map.getNodes()){
+                if(n.containsACastle() && n.isOwnedBy(p)){
+                    res++;
+                }
+            }
+            p.setNumberOfCastles(res);
+        }
     }
 
-    public void StartGame()
+    private int getMaxOwnedCustles(){
+        int max = 0;
+        for (Player p : players){
+            if(p.getNumberOfCastles() > max){
+                max = p.getNumberOfCastles();
+            }
+        }
+        return max;
+    }
+
+    public void startGame()
     {
 
     }
 
-    private void GameOver() {
+    private boolean gameIsOver(){
+        return moveNumber >= 10 || getMaxOwnedCustles() >= 7;
+    }
+
+    private void gameOver() {
 
     }
 
@@ -327,6 +349,31 @@ public class Game extends Message {
             this.map.getNodes().get(i).updateNodeByNode(this, newNodes.get(i));
         }
     }
+
+    public ArrayList<Player> getIronThrone() {
+        return ironThrone;
+    }
+
+    public ArrayList<Player> getValyrianSword() {
+        return valyrianSword;
+    }
+
+    public ArrayList<Player> getRaven() {
+        return raven;
+    }
+
+    public WesterosDeck getFirstEventsDeck() {
+        return firstEventsDeck;
+    }
+
+    public WesterosDeck getSecondEventsDeck() {
+        return secondEventsDeck;
+    }
+
+    public WesterosDeck getThirdEventsDeck() {
+        return thirdEventsDeck;
+    }
+
 
     @Override
     public void executeOnClient(IClientController controller, Game game) {

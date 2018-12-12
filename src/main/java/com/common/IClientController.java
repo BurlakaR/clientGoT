@@ -2,7 +2,6 @@ package com.common;
 
 import com.common.model.Map.Map;
 import com.common.model.Map.MapNodes.MapNode;
-import com.common.model.Orders.Order;
 import com.common.model.Orders.OrderAttack;
 import com.common.model.Orders.OrderFire;
 import com.common.model.Orders.OrderRule;

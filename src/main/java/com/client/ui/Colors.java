@@ -60,7 +60,7 @@ public class Colors {
 
     static public ColorAdjust setBlack(ColorAdjust colorAdjust){
         ColorAdjust buf = clone(colorAdjust);
-        buf.setBrightness(-0.9);
+        buf.setBrightness(-0.75);
         return buf;
     }
 

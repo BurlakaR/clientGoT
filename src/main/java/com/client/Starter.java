@@ -17,7 +17,7 @@ public class Starter extends AbstractJavaFxApplicationSupport {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setTitle("Fuck this shit");
+        stage.setTitle("Game of Thrones");
         stage.setScene(new Scene(view.getView()));
         stage.setResizable(true);
         stage.centerOnScreen();

@@ -15,4 +15,9 @@ public class Land extends MapNode {
         this.crowns = crowns;
         nodeType = NodeType.Land;
     }
+
+    @Override
+    public boolean containsACastle(){
+        return castle != null;
+    }
 }

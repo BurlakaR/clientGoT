@@ -18,6 +18,7 @@ public class OrderFire extends Order {
 
     @Override
     public void executeOnServer(Game game, ISocketManager socketManager) {
-
+        target.setOrder(new NoOrder());
+        source.setOrder(new NoOrder());
     }
 }

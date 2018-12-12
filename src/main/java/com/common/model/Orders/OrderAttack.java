@@ -4,6 +4,7 @@ import com.common.Game;
 import com.common.IClientController;
 import com.common.ISocketManager;
 import com.common.model.Units.Squad;
+import com.common.model.utils.Battle;
 
 public class OrderAttack extends Order {
     private boolean leavePowerCoinOnPreviousNode;
@@ -23,6 +24,14 @@ public class OrderAttack extends Order {
 
     @Override
     public void executeOnServer(Game game, ISocketManager socketManager) {
+        if(target.isFreeOrOwnedBy(source.getOwner())){
+            target.setSquad(source.takeSquad());
+        }
+        else {
+            Battle battle = new Battle();
+            battle.executeOnServer(game, socketManager);
+        }
+        source.setOrder(new NoOrder());
     }
 
     public boolean isLeavePowerCoinOnPreviousNode() {

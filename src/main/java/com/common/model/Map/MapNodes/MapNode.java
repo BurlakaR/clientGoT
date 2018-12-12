@@ -4,7 +4,6 @@ import com.common.Game;
 import com.common.IClientController;
 import com.common.ISocketManager;
 import com.common.Player;
-import com.common.model.Orders.EmptyOrder;
 import com.common.model.Orders.NoOrder;
 import com.common.model.Orders.Order;
 import com.common.model.Units.Squad;
@@ -55,6 +54,12 @@ public class MapNode extends ForNode {
         return squad;
     }
 
+    public Squad takeSquad(){
+        Squad buf = squad;
+        squad = new Squad();
+        return buf;
+    }
+
     public void setSquad(Squad squad) {
         this.squad = squad;
         owner=squad.get(0).getPlayer();
@@ -86,14 +91,14 @@ public class MapNode extends ForNode {
         if(owner == null){
             return false;
         }
-        return (owner.getName() == p.getName()) || owner == null;
+        return (owner.getName().equals(p.getName())) || owner == null;
     }
 
     public boolean isOwnedBy(Player p){
         if(owner == null){
             return false;
         }
-        return owner.getName() == p.getName();
+        return owner.getName().equals(p.getName());
     }
 
     //one more really bad place for those guys
@@ -129,4 +134,6 @@ public class MapNode extends ForNode {
     public Player getOwner() {
         return owner;
     }
+
+    public boolean containsACastle(){ return false;}
 }
